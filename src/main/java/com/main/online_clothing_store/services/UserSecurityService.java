@@ -33,7 +33,7 @@ public class UserSecurityService implements UserDetailsService{
         if(adminUser.isPresent()){
             return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIs_locked(), "USER, ADMIN");
         }
-        throw new UsernameNotFoundException("User not found");
+        throw new UsernameNotFoundException("Email not found");
     }
     
 }

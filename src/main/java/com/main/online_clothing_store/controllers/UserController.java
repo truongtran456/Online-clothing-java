@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.main.online_clothing_store.models.User;
@@ -20,11 +21,11 @@ public class UserController {
     }
     @RequestMapping()
     public String index(){
-        return "user/index";
+        return "layout";
     } 
 
     @RequestMapping("/list")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
-    } 
+    }
 }

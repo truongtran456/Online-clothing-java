@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.main.online_clothing_store.services.UserSecurityService;
 
@@ -33,7 +33,23 @@ public class SecurityConfiguration {
             )
             .userDetailsService(userSecurityService)
             .authenticationProvider(authenticationProvider())
-            .formLogin(withDefaults());
+            .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/")
+                .permitAll()
+            .and()
+            .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .permitAll()
+            .and()
+            .rememberMe()
+                .key("UniqueAndSecret")
+                .tokenValiditySeconds(86400)
+            .and()
+            .csrf()
+                .disable();
         return http.build();
     }
 
