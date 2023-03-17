@@ -1,4 +1,4 @@
-package com.main.online_clothing_store.controllers;
+package com.main.online_clothing_store.controllers.user;
 
 import java.util.List;
 
