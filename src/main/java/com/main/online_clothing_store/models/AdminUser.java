@@ -68,11 +68,11 @@ public class AdminUser implements Serializable{
     @Column(nullable = false, name = "is_locked")
     private Boolean is_locked;
 
-    @Column(nullable = true, name = "created_at	")
+    @Column(nullable = false, name = "created_at	")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date created_at	;
 
-    @Column(nullable = true, name = "modified_at")
+    @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
 }
