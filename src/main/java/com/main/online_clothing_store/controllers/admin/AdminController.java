@@ -20,8 +20,13 @@ public class AdminController {
         this.adminUserService = adminUserService;
     }
 
-    @GetMapping("/list")
-    public String getAllAdminUsers(){
-        return "admin/dashboard";
-    } 
+    @RequestMapping("/list")
+    public List<AdminUser> getAllAdminUsers(){
+        return adminUserService.getAllAdminUsers();
+    }
+    
+    @GetMapping("/")
+    public String dashboard(){
+        return "admin/dashboard/dashboard";
+    }
 }
