@@ -9,9 +9,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.main.online_clothing_store.models.composite_primary_keys.OrderItemId;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -28,15 +30,11 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "order_items")
-@IdClass(OrderItemId.class)
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private Integer product_inventory_id;
-
-    @Id
-    private Integer order_detail_id;
+    @EmbeddedId
+    private OrderItemId id;
 
     @Column(nullable = false, name = "price")
     @Min(value = 0, message = "The price must be positive")
@@ -47,17 +45,6 @@ public class OrderItem implements Serializable {
     @Max(value = 100, message = "Invalid discount percentage")
     private Integer discount_percent;
 
-    @Column(nullable = false, name = "start_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date start_date;
-
-    @Column(nullable = false, name = "end_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date end_date;
-
-    @Column(nullable = false, name = "is_actived")
-    private Boolean is_actived;
-
     @Column(nullable = false, name = "created_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date created_at;
@@ -65,4 +52,12 @@ public class OrderItem implements Serializable {
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @MapsId("product_inventory_id")
+    private ProductInventory product_inventory;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @MapsId("order_detail_id")
+    private OrderDetail order_detail;
 }

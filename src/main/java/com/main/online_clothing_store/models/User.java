@@ -2,14 +2,18 @@ package com.main.online_clothing_store.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -33,7 +37,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     @NotBlank(message = "First name is mandatory")
@@ -113,4 +117,13 @@ public class User implements Serializable {
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Wishlist> wishlist = new HashSet<Wishlist>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<CartItem> cart_items = new HashSet<CartItem>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
 }

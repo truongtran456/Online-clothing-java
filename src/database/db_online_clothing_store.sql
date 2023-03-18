@@ -144,7 +144,7 @@ CREATE TABLE `products` (
   `weight` varchar(32) NOT NULL,
   `dimensions` varchar(128) NOT NULL,
   `materials` varchar(512) NOT NULL,
-  `other_Info` varchar(512) NOT NULL,
+  `other_info` varchar(512) NOT NULL,
   `import_price` decimal(10,0) NOT NULL,
   `sell_price` decimal(10,0) NOT NULL,
   `discount_percent` tinyint(4) NOT NULL,
@@ -327,7 +327,7 @@ ALTER TABLE `product_categories`
 --
 ALTER TABLE `product_inventories`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `product_id` (`product_id`,`size`,`color`);
+  ADD UNIQUE KEY `product` (`product_id`,`size`,`color`);
 
 --
 -- Indexes for table `roles`

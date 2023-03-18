@@ -3,14 +3,20 @@ package com.main.online_clothing_store.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -34,12 +40,6 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private Integer user_id;
-
-    private Integer coupon_id;
-
-    private Integer payment_id;
     
     @Column(nullable = false, name = "subtotal")
     @Min(value = 0, message = "The subtotal must be positive")
@@ -84,6 +84,7 @@ public class OrderDetail implements Serializable {
     @Size(max = 10, message = "Telephone number with up to 10 characters")
     private String telephone;
 
+    @Column(nullable = false, name = "status")
     private Integer status;
 
     @Column(nullable = false, name = "created_at")
@@ -93,4 +94,19 @@ public class OrderDetail implements Serializable {
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order_detail")
+    private Set<OrderItem> order_items = new HashSet<OrderItem>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "coupon_id", referencedColumnName = "id")
+    private Coupon coupon;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
+    private Payment payment;
 }

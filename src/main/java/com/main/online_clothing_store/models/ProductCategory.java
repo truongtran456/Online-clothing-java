@@ -25,16 +25,16 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@Accessors(chain = true)
+@Accessors(chain=true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "payments")
-public class Payment implements Serializable {
+@Table(name = "product_categories")
+public class ProductCategory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name")
@@ -47,14 +47,17 @@ public class Payment implements Serializable {
     @Size(max = 512, message = "Description with up to 512 characters")
     private String description;
 
+    @Column(nullable = false, name = "is_actived")
+    private Boolean is_actived;
+
     @Column(nullable = false, name = "created_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date created_at	;
 
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "payment")
-    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product_category")
+    private Set<Product> products = new HashSet<Product>();
 }

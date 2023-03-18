@@ -3,14 +3,20 @@ package com.main.online_clothing_store.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -35,8 +41,6 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private Integer product_category_id;
 
     @Column(name = "name")
     @NotBlank(message = "Name is mandatory")
@@ -97,4 +101,14 @@ public class Product implements Serializable {
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private Set<Wishlist> wishlist = new HashSet<Wishlist>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private Set<ProductInventory> product_inventories = new HashSet<ProductInventory>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_category_id", referencedColumnName = "id")
+    private ProductCategory product_category;
 }

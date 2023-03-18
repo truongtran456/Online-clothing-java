@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.main.online_clothing_store.models.composite_primary_keys.CartItemId;
+import com.main.online_clothing_store.models.composite_primary_keys.RoleAdminUserId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -14,7 +14,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,30 +26,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cart_items")
-public class CartItem implements Serializable {
+@Table(name = "role_admin_users")
+public class RoleAdminUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private CartItemId id;
+    private RoleAdminUserId id;
 
-    @Column(nullable = false, name = "quantity")
-    @Min(value = 0, message = "The quantity must be positive")
-    private Integer quantity;
-    
     @Column(nullable = false, name = "created_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
-
-    @Column(nullable = false, name = "modified_at")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date created_at	;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("user_id")
-    private User user;
+    @MapsId("role_id")
+    private Role role;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("product_inventory_id")
-    private ProductInventory product_inventory;
+    @MapsId("admin_user_id")
+    private AdminUser admin_user;
 }

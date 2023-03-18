@@ -25,16 +25,16 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@Accessors(chain = true)
+@Accessors(chain=true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "payments")
-public class Payment implements Serializable {
+@Table(name = "roles")
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name")
@@ -55,6 +55,6 @@ public class Payment implements Serializable {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "payment")
-    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
+    private Set<RoleAdminUser> role_admin_users = new HashSet<RoleAdminUser>();
 }

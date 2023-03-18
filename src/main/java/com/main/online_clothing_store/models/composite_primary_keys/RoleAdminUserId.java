@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Embeddable
-public class OrderItemId implements Serializable {
-    private Integer product_inventory_id;
-    private Integer order_detail_id;
+public class RoleAdminUserId implements Serializable {
+    private Integer admin_user_id;
+    private Integer role_id;
 }
