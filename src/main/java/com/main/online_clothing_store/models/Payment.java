@@ -5,14 +5,14 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.main.online_clothing_store.models.composite_primary_keys.CartItemId;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,20 +25,24 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cart_items")
-@IdClass(CartItemId.class)
-public class CartItem implements Serializable {
+@Table(name = "payments")
+public class Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Integer user_id;
-    @Id
-    private Integer product_inventory_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(nullable = false, name = "quantity")
-    @Min(value = 0, message = "The quantity must be positive")
-    private Integer quantity;
-    
+    @Column(name = "name")
+    @NotBlank(message = "Name is mandatory")
+    @Size(max = 256, message = "Name with up to 256 characters")
+    private String name;
+
+    @Column(name = "description")
+    @NotBlank(message = "Description is mandatory")
+    @Size(max = 512, message = "Description with up to 512 characters")
+    private String description;
+
     @Column(nullable = false, name = "created_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date created_at;
@@ -46,5 +50,4 @@ public class CartItem implements Serializable {
     @Column(nullable = false, name = "modified_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date modified_at;
-
 }
