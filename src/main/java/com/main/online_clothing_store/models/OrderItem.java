@@ -17,6 +17,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,19 @@ public class OrderItem implements Serializable {
     @Min(value = 0, message = "The discount percent must be positive")
     @Max(value = 100, message = "Invalid discount percentage")
     private Integer discount_percent;
+
+    @Column(nullable = false, name = "quantity")
+    @Min(value = 0, message = "The quantity must be positive")
+    private Integer quantity;
+
+    @Column(nullable = true, name = "evaluation")
+    @Min(value = 1, message = "The evaluation must be positive")
+    @Max(value = 5, message = "Invalid evaluation")
+    private Integer evaluation;
+
+    @Column(nullable = true, name = "comment")
+    @Size(max = 512, message = "Comment with up to 512 characters")
+    private String comment;
 
     @Column(nullable = false, name = "created_at")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
