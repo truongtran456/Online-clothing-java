@@ -25,13 +25,13 @@ public class UserSecurityService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // TODO Auto-generated method stub
+        Optional<AdminUser> adminUser = adminUserRepository.findByEmail(username);
+        if(adminUser.isPresent()){
+            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIs_locked(), "ADMIN");
+        }
         Optional<User> user = userRepository.findByEmail(username);
         if(user.isPresent()){
             return new UserSecurityDetails(user.get().getEmail(), user.get().getPassword(), user.get().getIs_locked(), "USER");
-        }
-        Optional<AdminUser> adminUser = adminUserRepository.findByEmail(username);
-        if(adminUser.isPresent()){
-            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIs_locked(), "USER, ADMIN");
         }
         throw new UsernameNotFoundException("Email not found");
     }

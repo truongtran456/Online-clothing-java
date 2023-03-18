@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.main.online_clothing_store.models.AdminUser;
@@ -19,8 +20,8 @@ public class AdminController {
         this.adminUserService = adminUserService;
     }
 
-    @RequestMapping("/list")
-    public List<AdminUser> getAllAdminUsers(){
-        return adminUserService.getAllAdminUsers();
+    @GetMapping("/list")
+    public String getAllAdminUsers(){
+        return "admin/dashboard";
     } 
 }
