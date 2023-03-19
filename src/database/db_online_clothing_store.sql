@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2023 at 02:05 PM
+-- Generation Time: Mar 19, 2023 at 04:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,241 +24,251 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_users`
+-- Table structure for table `AdminUsers`
 --
 
-CREATE TABLE `admin_users` (
+CREATE TABLE `AdminUsers` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(256) NOT NULL,
-  `last_name` varchar(256) NOT NULL,
-  `avatar` text NOT NULL,
+  `firstName` varchar(256) NOT NULL,
+  `lastName` varchar(256) NOT NULL,
+  `avatar` text DEFAULT NULL,
   `telephone` varchar(10) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(512) NOT NULL,
-  `last_login` datetime NOT NULL,
-  `is_locked` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `lastLogin` datetime NOT NULL,
+  `isLocked` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `AdminUsers`
+--
+
+INSERT INTO `AdminUsers` (`id`, `firstName`, `lastName`, `avatar`, `telephone`, `email`, `password`, `lastLogin`, `isLocked`, `createdAt`, `modifiedAt`) VALUES
+(1, 'admin', 'admin', '', '0898759325', 'admin@gmail.com', '$2y$10$2vY4VCXWawZJjZd/iOqam.9SyzL1rjsD9qkMDrc/Ijaubo5ly8vsK', '2023-03-18 03:28:58', 0, '2023-03-18', '2023-03-18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_items`
+-- Table structure for table `CartItems`
 --
 
-CREATE TABLE `cart_items` (
-  `user_id` int(11) NOT NULL,
-  `product_inventory_id` int(11) NOT NULL,
+CREATE TABLE `CartItems` (
+  `userId` int(11) NOT NULL,
+  `productInventoryId` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coupons`
+-- Table structure for table `Coupons`
 --
 
-CREATE TABLE `coupons` (
+CREATE TABLE `Coupons` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` varchar(512) NOT NULL,
-  `discount_percent` tinyint(4) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `is_actived` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `discountPercent` tinyint(4) NOT NULL,
+  `startDate` date NOT NULL,
+  `endDate` date NOT NULL,
+  `isActived` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_details`
+-- Table structure for table `OrderDetails`
 --
 
-CREATE TABLE `order_details` (
+CREATE TABLE `OrderDetails` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `subtotal` decimal(10,0) NOT NULL,
   `total` decimal(10,0) NOT NULL,
-  `coupon_id` int(11) NOT NULL,
-  `payment_id` int(11) NOT NULL,
-  `note` varchar(512) NOT NULL,
-  `apartment_number` varchar(256) NOT NULL,
+  `couponId` int(11) DEFAULT NULL,
+  `paymentId` int(11) NOT NULL,
+  `note` varchar(512) DEFAULT NULL,
+  `apartmentNumber` varchar(256) NOT NULL,
   `street` varchar(256) NOT NULL,
   `ward` varchar(256) NOT NULL,
   `district` varchar(256) NOT NULL,
   `city` varchar(256) NOT NULL,
   `telephone` varchar(10) NOT NULL,
   `status` smallint(6) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_items`
+-- Table structure for table `OrderItems`
 --
 
-CREATE TABLE `order_items` (
-  `product_inventory_id` int(11) NOT NULL,
-  `order_detail_id` int(11) NOT NULL,
+CREATE TABLE `OrderItems` (
+  `productInventoryId` int(11) NOT NULL,
+  `orderDetailId` int(11) NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `discount_percent` tinyint(4) NOT NULL,
+  `discountPercent` tinyint(4) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `evaluation` tinyint(4) NOT NULL,
-  `comment` varchar(512) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `evaluation` tinyint(4) DEFAULT NULL,
+  `comment` varchar(512) DEFAULT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Table structure for table `Payments`
 --
 
-CREATE TABLE `payments` (
+CREATE TABLE `Payments` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` varchar(512) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table `ProductCategories`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE `ProductCategories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `isActived` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ProductInventories`
+--
+
+CREATE TABLE `ProductInventories` (
+  `id` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `size` varchar(32) NOT NULL,
+  `color` varchar(32) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `isActived` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Products`
+--
+
+CREATE TABLE `Products` (
   `id` int(11) NOT NULL,
   `name` varchar(512) NOT NULL,
+  `image` text NOT NULL,
+  `imageHover` text NOT NULL,
   `description` text NOT NULL,
   `gender` tinyint(1) NOT NULL,
   `weight` varchar(32) NOT NULL,
   `dimensions` varchar(128) NOT NULL,
   `materials` varchar(512) NOT NULL,
-  `other_info` varchar(512) NOT NULL,
-  `import_price` decimal(10,0) NOT NULL,
-  `sell_price` decimal(10,0) NOT NULL,
-  `discount_percent` tinyint(4) NOT NULL,
-  `ship_price` decimal(10,0) NOT NULL,
-  `product_category_id` int(11) NOT NULL,
-  `is_actived` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `otherInfo` varchar(512) NOT NULL,
+  `importPrice` decimal(10,0) NOT NULL,
+  `sellPrice` decimal(10,0) NOT NULL,
+  `discountPercent` tinyint(4) NOT NULL,
+  `shipPrice` decimal(10,0) NOT NULL,
+  `productCategoryId` int(11) NOT NULL,
+  `isActived` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_categories`
+-- Table structure for table `RoleAdminUsers`
 --
 
-CREATE TABLE `product_categories` (
+CREATE TABLE `RoleAdminUsers` (
+  `adminUserId` int(11) NOT NULL,
+  `roleId` int(11) NOT NULL,
+  `createdAt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Roles`
+--
+
+CREATE TABLE `Roles` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` varchar(512) NOT NULL,
-  `is_actived` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_inventories`
+-- Table structure for table `Users`
 --
 
-CREATE TABLE `product_inventories` (
+CREATE TABLE `Users` (
   `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `size` varchar(32) NOT NULL,
-  `color` varchar(32) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `is_actived` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
-  `name` varchar(256) NOT NULL,
-  `description` varchar(512) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `role_admin_users`
---
-
-CREATE TABLE `role_admin_users` (
-  `admin_user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `first_name` varchar(256) NOT NULL,
-  `last_name` varchar(256) NOT NULL,
-  `avatar` text NOT NULL,
+  `firstName` varchar(256) NOT NULL,
+  `lastName` varchar(256) NOT NULL,
+  `avatar` text DEFAULT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(512) NOT NULL,
-  `birthdate` date NOT NULL,
-  `gender` tinyint(1) NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  `gender` tinyint(1) DEFAULT NULL,
   `telephone` varchar(10) NOT NULL,
-  `apartment_number` varchar(256) NOT NULL,
+  `apartmentNumber` varchar(256) NOT NULL,
   `street` varchar(256) NOT NULL,
   `ward` varchar(256) NOT NULL,
   `district` varchar(256) NOT NULL,
   `city` varchar(256) NOT NULL,
-  `receive_newsletter` tinyint(1) NOT NULL,
-  `receive_offers` tinyint(1) NOT NULL,
-  `last_login` datetime NOT NULL,
-  `is_locked` tinyint(1) NOT NULL,
-  `created_at` date NOT NULL,
-  `modified_at` date NOT NULL
+  `receiveNewsletter` tinyint(1) NOT NULL,
+  `receiveOffers` tinyint(1) NOT NULL,
+  `lastLogin` datetime NOT NULL,
+  `isLocked` tinyint(1) NOT NULL,
+  `createdAt` date NOT NULL,
+  `modifiedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `avatar`, `email`, `password`, `birthdate`, `gender`, `telephone`, `apartment_number`, `street`, `ward`, `district`, `city`, `receive_newsletter`, `receive_offers`, `last_login`, `is_locked`, `created_at`, `modified_at`) VALUES
-(1, 'Pham Van', 'Hung', '', 'phamhunggl721@gmail.com', '$2y$10$2vY4VCXWawZJjZd/iOqam.9SyzL1rjsD9qkMDrc/Ijaubo5ly8vsK', '2001-03-25', 1, '0898759325', 'KTX DHQG', 'To Vinh Dien', 'Dong Hoa', 'Di An', 'Binh Duong', 1, 1, '2023-03-16 07:36:03', 0, '2023-03-16', '2023-03-16');
+INSERT INTO `Users` (`id`, `firstName`, `lastName`, `avatar`, `email`, `password`, `birthdate`, `gender`, `telephone`, `apartmentNumber`, `street`, `ward`, `district`, `city`, `receiveNewsletter`, `receiveOffers`, `lastLogin`, `isLocked`, `createdAt`, `modifiedAt`) VALUES
+(1, 'Pham Van', 'Hung', '', 'phamhunggl721@gmail.com', '$2y$10$2vY4VCXWawZJjZd/iOqam.9SyzL1rjsD9qkMDrc/Ijaubo5ly8vsK', '2001-03-25', 1, '0898759325', 'KTX DHQG', 'To Vinh Dien', 'Dong Hoa', 'Di An', 'Binh Duong', 1, 1, '2023-03-16 07:36:03', 0, '2023-03-16', '2023-03-16'),
+(9, 'Pham Van', 'Hung', NULL, 'phamhunggl325@gmail.com', '$2a$10$4pvP0IKisEnAaIMVS5qC2ua4XLd4ToQrHFgwc60/qSex/WRtZmYnW', NULL, NULL, '0344406561', '123', 'To Vinh Dien', 'Dong Hoa', 'Di An', 'Binh Duong', 1, 0, '2023-03-19 00:06:01', 0, '2023-03-19', '2023-03-19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wishlist`
+-- Table structure for table `Wishlist`
 --
 
-CREATE TABLE `wishlist` (
-  `product_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_at` date NOT NULL
+CREATE TABLE `Wishlist` (
+  `productId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `createdAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -266,206 +276,207 @@ CREATE TABLE `wishlist` (
 --
 
 --
--- Indexes for table `admin_users`
+-- Indexes for table `AdminUsers`
 --
-ALTER TABLE `admin_users`
+ALTER TABLE `AdminUsers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `telephone` (`telephone`);
 
 --
--- Indexes for table `cart_items`
+-- Indexes for table `CartItems`
 --
-ALTER TABLE `cart_items`
-  ADD KEY `fk_cart_user` (`user_id`),
-  ADD KEY `fk_cart_product_inventory` (`product_inventory_id`);
+ALTER TABLE `CartItems`
+  ADD KEY `fk_cart_user` (`userId`),
+  ADD KEY `fk_cart_product_inventory` (`productInventoryId`);
 
 --
--- Indexes for table `coupons`
+-- Indexes for table `Coupons`
 --
-ALTER TABLE `coupons`
+ALTER TABLE `Coupons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_details`
+-- Indexes for table `OrderDetails`
 --
-ALTER TABLE `order_details`
+ALTER TABLE `OrderDetails`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_coupon` (`coupon_id`),
-  ADD KEY `fk_user` (`user_id`),
-  ADD KEY `fk_payment` (`payment_id`);
+  ADD KEY `fk_coupon` (`couponId`),
+  ADD KEY `fk_user` (`userId`),
+  ADD KEY `fk_payment` (`paymentId`);
 
 --
--- Indexes for table `order_items`
+-- Indexes for table `OrderItems`
 --
-ALTER TABLE `order_items`
-  ADD KEY `fk_product_inventory` (`product_inventory_id`),
-  ADD KEY `fk_order_detail` (`order_detail_id`);
+ALTER TABLE `OrderItems`
+  ADD KEY `fk_product_inventory` (`productInventoryId`),
+  ADD KEY `fk_order_detail` (`orderDetailId`);
 
 --
--- Indexes for table `payments`
+-- Indexes for table `Payments`
 --
-ALTER TABLE `payments`
+ALTER TABLE `Payments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indexes for table `ProductCategories`
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `fk_product_category` (`product_category_id`);
-
---
--- Indexes for table `product_categories`
---
-ALTER TABLE `product_categories`
+ALTER TABLE `ProductCategories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `product_inventories`
+-- Indexes for table `ProductInventories`
 --
-ALTER TABLE `product_inventories`
+ALTER TABLE `ProductInventories`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `product` (`product_id`,`size`,`color`);
+  ADD UNIQUE KEY `product` (`productId`,`size`,`color`) USING BTREE;
 
 --
--- Indexes for table `roles`
+-- Indexes for table `Products`
 --
-ALTER TABLE `roles`
+ALTER TABLE `Products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `fk_product_category` (`productCategoryId`);
+
+--
+-- Indexes for table `RoleAdminUsers`
+--
+ALTER TABLE `RoleAdminUsers`
+  ADD KEY `fk_admin_user` (`adminUserId`),
+  ADD KEY `fk_role` (`roleId`);
+
+--
+-- Indexes for table `Roles`
+--
+ALTER TABLE `Roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_admin_users`
+-- Indexes for table `Users`
 --
-ALTER TABLE `role_admin_users`
-  ADD KEY `fk_admin_user` (`admin_user_id`),
-  ADD KEY `fk_role` (`role_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
+ALTER TABLE `Users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `email_2` (`email`);
+  ADD UNIQUE KEY `telephone` (`telephone`);
 
 --
--- Indexes for table `wishlist`
+-- Indexes for table `Wishlist`
 --
-ALTER TABLE `wishlist`
-  ADD KEY `fk_wishlist_product` (`product_id`),
-  ADD KEY `fk_wishlist_user` (`user_id`);
+ALTER TABLE `Wishlist`
+  ADD KEY `fk_wishlist_product` (`productId`),
+  ADD KEY `fk_wishlist_user` (`userId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin_users`
+-- AUTO_INCREMENT for table `AdminUsers`
 --
-ALTER TABLE `admin_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `coupons`
---
-ALTER TABLE `coupons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_details`
---
-ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payments`
---
-ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product_categories`
---
-ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product_inventories`
---
-ALTER TABLE `product_inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
+ALTER TABLE `AdminUsers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Coupons`
+--
+ALTER TABLE `Coupons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `OrderDetails`
+--
+ALTER TABLE `OrderDetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Payments`
+--
+ALTER TABLE `Payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ProductCategories`
+--
+ALTER TABLE `ProductCategories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ProductInventories`
+--
+ALTER TABLE `ProductInventories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Products`
+--
+ALTER TABLE `Products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Roles`
+--
+ALTER TABLE `Roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `cart_items`
+-- Constraints for table `CartItems`
 --
-ALTER TABLE `cart_items`
-  ADD CONSTRAINT `fk_cart_product_inventory` FOREIGN KEY (`product_inventory_id`) REFERENCES `product_inventories` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `CartItems`
+  ADD CONSTRAINT `fk_cart_product_inventory` FOREIGN KEY (`productInventoryId`) REFERENCES `ProductInventories` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `order_details`
+-- Constraints for table `OrderDetails`
 --
-ALTER TABLE `order_details`
-  ADD CONSTRAINT `fk_coupon` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_payment` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `OrderDetails`
+  ADD CONSTRAINT `fk_coupon` FOREIGN KEY (`couponId`) REFERENCES `Coupons` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_payment` FOREIGN KEY (`paymentId`) REFERENCES `Payments` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `order_items`
+-- Constraints for table `OrderItems`
 --
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `fk_order_detail` FOREIGN KEY (`order_detail_id`) REFERENCES `order_details` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_product_inventory` FOREIGN KEY (`product_inventory_id`) REFERENCES `product_inventories` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `OrderItems`
+  ADD CONSTRAINT `fk_order_detail` FOREIGN KEY (`orderDetailId`) REFERENCES `OrderDetails` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_product_inventory` FOREIGN KEY (`productInventoryId`) REFERENCES `ProductInventories` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `products`
+-- Constraints for table `ProductInventories`
 --
-ALTER TABLE `products`
-  ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`product_category_id`) REFERENCES `product_categories` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `ProductInventories`
+  ADD CONSTRAINT `fk_product` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_inventories`
+-- Constraints for table `Products`
 --
-ALTER TABLE `product_inventories`
-  ADD CONSTRAINT `fk_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `Products`
+  ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`productCategoryId`) REFERENCES `ProductCategories` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `role_admin_users`
+-- Constraints for table `RoleAdminUsers`
 --
-ALTER TABLE `role_admin_users`
-  ADD CONSTRAINT `fk_admin_user` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `RoleAdminUsers`
+  ADD CONSTRAINT `fk_admin_user` FOREIGN KEY (`adminUserId`) REFERENCES `AdminUsers` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_role` FOREIGN KEY (`roleId`) REFERENCES `Roles` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `wishlist`
+-- Constraints for table `Wishlist`
 --
-ALTER TABLE `wishlist`
-  ADD CONSTRAINT `fk_wishlist_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_wishlist_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `Wishlist`
+  ADD CONSTRAINT `fk_wishlist_product` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_wishlist_user` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

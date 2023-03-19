@@ -14,6 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Embeddable
 public class RoleAdminUserId implements Serializable {
-    private Integer admin_user_id;
-    private Integer role_id;
+    private Integer adminUserId;
+    private Integer roleId;
 }

@@ -29,7 +29,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "product_categories")
+@Table(name = "ProductCategories")
 public class ProductCategory implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -47,17 +47,17 @@ public class ProductCategory implements Serializable {
     @Size(max = 512, message = "Description with up to 512 characters")
     private String description;
 
-    @Column(nullable = false, name = "is_actived")
-    private Boolean is_actived;
+    @Column(nullable = false, name = "isActived")
+    private Boolean isActived;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt	;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product_category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productCategory")
     private Set<Product> products = new HashSet<Product>();
 }

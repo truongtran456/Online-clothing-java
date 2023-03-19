@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.main.online_clothing_store.models.AdminUser;
 import com.main.online_clothing_store.repositories.AdminUserRepository;
-import com.main.online_clothing_store.services.interfaces.IAdminUserService;
 
 @Service
-public class AdminUserService implements IAdminUserService {
+public class AdminUserService {
     AdminUserRepository adminUserRepository;
 
     @Autowired
@@ -19,33 +18,23 @@ public class AdminUserService implements IAdminUserService {
         this.adminUserRepository = adminUserRepository;
     }
 
-    @Override
     public List<AdminUser> getAllAdminUsers() {
-        // TODO Auto-generated method stub
         return adminUserRepository.findAll();
     }
 
-    @Override
     public Optional<AdminUser> findById(int id) {
-        // TODO Auto-generated method stub
         return adminUserRepository.findById(id);
     }
 
-    @Override
     public Optional<AdminUser> findByEmail(String email) {
-        // TODO Auto-generated method stub
         return adminUserRepository.findByEmail(email);
     }
 
-    @Override
     public AdminUser save(AdminUser adminUser) {
-        // TODO Auto-generated method stub
         return adminUserRepository.save(adminUser);
     }
 
-    @Override
     public void deleteById(int id) {
-        // TODO Auto-generated method stub
         adminUserRepository.deleteById(id);
     }
     

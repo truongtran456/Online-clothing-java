@@ -34,7 +34,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "products")
+@Table(name = "Products")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -46,6 +46,14 @@ public class Product implements Serializable {
     @NotBlank(message = "Name is mandatory")
     @Size(max = 512, message = "Name with up to 512 characters")
     private String name;
+
+    @Column(name = "image")
+    @NotBlank(message = "Image is mandatory")
+    private String image;
+
+    @Column(name = "imageHover")
+    @NotBlank(message = "Image hover is mandatory")
+    private String imageHover;
 
     @Column(name = "description")
     @NotBlank(message = "Description is mandatory")
@@ -69,46 +77,46 @@ public class Product implements Serializable {
     @Size(max = 512, message = "Materials with up to 512 characters")
     private String materials;
 
-    @Column(name = "other_info")
+    @Column(name = "otherInfo")
     @NotBlank(message = "Other info is mandatory")
     @Size(max = 512, message = "Other info with up to 512 characters")
-    private String other_info;
+    private String otherInfo;
 
-    @Column(nullable = false, name = "import_price")
+    @Column(nullable = false, name = "importPrice")
     @Min(value = 0, message = "The import price must be positive")
-    private BigDecimal import_price;
+    private BigDecimal importPrice;
 
-    @Column(nullable = false, name = "sell_price")
+    @Column(nullable = false, name = "sellPrice")
     @Min(value = 0, message = "The sell price must be positive")
-    private BigDecimal sell_price;
+    private BigDecimal sellPrice;
 
-    @Column(nullable = false, name = "discount_percent")
+    @Column(nullable = false, name = "discountPercent")
     @Min(value = 0, message = "The discount percent must be positive")
     @Max(value = 100, message = "Invalid discount percentage")
-    private Integer discount_percent;
+    private Integer discountPercent;
 
-    @Column(nullable = false, name = "ship_price")
+    @Column(nullable = false, name = "shipPrice")
     @Min(value = 0, message = "The ship price must be positive")
-    private BigDecimal ship_price;
+    private BigDecimal shipPrice;
 
-    @Column(nullable = false, name = "is_actived")
-    private Boolean is_actived;
+    @Column(nullable = false, name = "isActived")
+    private Boolean isActived;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private Set<Wishlist> wishlist = new HashSet<Wishlist>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-    private Set<ProductInventory> product_inventories = new HashSet<ProductInventory>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    private Set<ProductInventory> productInventories = new HashSet<ProductInventory>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_category_id", referencedColumnName = "id")
-    private ProductCategory product_category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productCategoryId", referencedColumnName = "id")
+    private ProductCategory productCategory;
 }

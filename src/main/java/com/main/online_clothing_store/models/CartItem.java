@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cart_items")
+@Table(name = "CartItems")
 public class CartItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -38,19 +38,19 @@ public class CartItem implements Serializable {
     @Min(value = 0, message = "The quantity must be positive")
     private Integer quantity;
     
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("product_inventory_id")
-    private ProductInventory product_inventory;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("productInventoryId")
+    private ProductInventory productInventory;
 }

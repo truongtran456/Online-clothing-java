@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="my-account.html">My Account</a></li>
+                    <li sec:authorize="hasAuthority('USER')"><a th:href="@{/user/my-account}">My Account</a></li>
                 </ul>
             </div>
         </div>

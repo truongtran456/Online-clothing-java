@@ -15,6 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -27,40 +29,44 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@Accessors(chain=true)
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "Users", uniqueConstraints = { @UniqueConstraint(name = "email", columnNames = { "email" }),
+        @UniqueConstraint(name = "telephone", columnNames = { "telephone" }) })
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     @NotBlank(message = "First name is mandatory")
     @Size(max = 256, message = "First name with up to 256 characters")
-    private String first_name;
+    private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     @NotBlank(message = "Last name is mandatory")
     @Size(max = 256, message = "Last name with up to 256 characters")
-    private String last_name;
+    private String lastName;
 
     @Column(nullable = true, name = "avatar")
     private String avatar;
 
     @Column(unique = true)
     @Size(max = 256, message = "Email with up to 256 characters")
-    @Email(regexp="^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,5}", message = "Email is invalid")
+    @Email(regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,5}", message = "Email is invalid")
     private String email;
 
     @NotBlank(message = "Password is mandatory")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$", message = "Password must be at least 8 and up to 10 characters, one uppercase letter, one lowercase letter, one number and one special character")
     private String password;
-    
+
+    @Transient
+    @NotBlank(message = "Password is mandatory")
+    private String retypePassword;
+
     @Column(nullable = true, name = "birthdate")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date birthdate;
@@ -72,10 +78,10 @@ public class User implements Serializable {
     @Pattern(regexp = "^\\d{10}$", message = "Telephone must be contain 10 digits")
     private String telephone;
 
-    @Column(name = "apartment_number")
+    @Column(name = "apartmentNumber")
     @NotBlank(message = "Apartment number is mandatory")
     @Size(max = 256, message = "Apartment number with up to 256 characters")
-    private String apartment_number;
+    private String apartmentNumber;
 
     @Column(name = "street")
     @NotBlank(message = "Street is mandatory")
@@ -97,33 +103,33 @@ public class User implements Serializable {
     @Size(max = 256, message = "City with up to 256 characters")
     private String city;
 
-    @Column(nullable = false, name = "receive_newsletter")
-    private Boolean receive_newsletter;
+    @Column(nullable = false, name = "receiveNewsletter")
+    private Boolean receiveNewsletter;
 
-    @Column(nullable = false, name = "receive_offers")
-    private Boolean receive_offers;
+    @Column(nullable = false, name = "receiveOffers")
+    private Boolean receiveOffers;
 
-    @Column(nullable = false, name = "last_login")
+    @Column(nullable = false, name = "lastLogin")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private Date last_login;
+    private Date lastLogin;
 
-    @Column(nullable = false, name = "is_locked")
-    private Boolean is_locked;
+    @Column(nullable = false, name = "isLocked")
+    private Boolean isLocked;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Wishlist> wishlist = new HashSet<Wishlist>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<CartItem> cart_items = new HashSet<CartItem>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<CartItem> cartItems = new HashSet<CartItem>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 }

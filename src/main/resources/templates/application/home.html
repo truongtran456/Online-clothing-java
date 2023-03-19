@@ -6,7 +6,789 @@
 </head>
 
 <body>
+    <!-- Banner Area -->
+    <section id="banner_one" layout:fragment="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner_text_one">
+                        <h1 class="wow flipInX" data-wow-duration="3.0s" data-wow-delay=".3s"
+                            style="visibility: visible; animation-duration: 3s; animation-delay: 0.3s; animation-name: flipInX;">
+                            Live For <span class="wow flipInX" data-wow-duration="2.0s" data-wow-delay=".5s"
+                                style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: flipInX;">Fashion</span>
+                        </h1>
+                        <h3>Save Up To 50%</h3>
+                        <a th:href="@{/shop}" class="theme-btn-one bg-black btn_md">Shop Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero_img">
+                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/common/man.png"
+                            alt="img" class="wow slideInRight" data-wow-duration="3.0s" data-wow-delay=".3s"
+                            style="visibility: visible; animation-duration: 3s; animation-delay: 0.3s; animation-name: slideInRight;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="home_area" layout:fragment="content">
+        <!-- Hot Product Area -->
+        <section id="hot_Product_area" class="ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center_heading">
+                            <h2>Hot Product</h2>
+                            <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tabs_center_button">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li role="presentation">
+                                    <a data-bs-toggle="tab" href="#!" data-bs-target="#new_arrival" role="tab"
+                                        class="active">New Arrival</a>
+                                </li>
+                                <li role="presentation">
+                                    <a data-bs-toggle="tab" data-bs-target="#trending" role="tab" href="#!">Trending</a>
+                                </li>
+                                <li role="presentation"><a data-bs-toggle="tab" data-bs-target="#best_sellers"
+                                        href="#!">Best Sellers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="tabs_el_wrapper">
+                            <div class="tab-content" id="myTabContent">
+                                <div id="new_arrival" class="tab-pane fade show in active" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product1.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product2.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Blue Dress For Woman</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product3.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product4.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dresss</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product5.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product6.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="hot">Hot</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Blue Dress For Woman </a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product7.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product8.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#!" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                            <i class="fas fa-expand"></i>
+                                                        </a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dresss</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="trending" class="tab-pane fade" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product1.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product2.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Blue Dress For Woman</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product3.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product4.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dresss</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product5.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product6.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="hot">Hot</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Blue Dress For Woman </a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product7.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product8.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#!" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                            <i class="fas fa-expand"></i>
+                                                        </a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dresss</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="best_sellers" class="tab-pane fade" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product9.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product10.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add
+                                                        To
+                                                        Cart</button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dress</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product11.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product12.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="hot">Hot</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Black T-Shirt For Woman
+                                                        </a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product13.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product14.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Blue Dress For Woman</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="product_wrappers_one">
+                                                <div class="thumb">
+                                                    <a href="product-single.html" class="image">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product5.png"
+                                                            alt="Product">
+                                                        <img class="hover-image"
+                                                            src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/product-image/product6.png"
+                                                            alt="Product">
+                                                    </a>
+                                                    <span class="badges">
+                                                        <span class="new">New</span>
+                                                    </span>
+                                                    <div class="actions">
+                                                        <a href="wishlist.html" class="action wishlist"
+                                                            title="Wishlist"><i class="far fa-heart"></i></a>
+                                                        <a href="#" class="action quickview"
+                                                            data-link-action="quickview" title="Quick view"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter"><i
+                                                                class="fas fa-expand"></i></a>
+                                                        <a href="compare.html" class="action compare" title="Compare"><i
+                                                                class="fas fa-exchange-alt"></i></a>
+                                                    </div>
+                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="title">
+                                                        <a href="product-single.html">Woman Full Sliv Dresss</a>
+                                                    </h5>
+                                                    <span class="price">
+                                                        <span class="new">$38.50</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Special offer -->
+        <section id="special_offer_one">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 offset-lg-4 col-md-12 col-sm-12 col-12">
+                        <div class="offer_banner_one text-center">
+                            <h5>TRENDING</h5>
+                            <h2>New Fashion</h2>
+                            <p>
+                                Consectetur adipisicing elit. Dolores nisi distinctio magni, iure deserunt doloribus
+                                optio
+                            </p>
+                            <a th:href="@{/shop}" class="theme-btn-one bg-whites btn_md">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Instagram Arae -->
+        <section id="instagram_area_one" class="pt-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center_heading">
+                            <h2>Follow Us Instagram</h2>
+                            <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="instagram_post_slider owl-carousel owl-theme owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage"
+                                    style="transform: translate3d(-3993px, 0px, 0px); transition: all 1s ease 0s; width: 8712px;">
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post8.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post9.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post10.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post1.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post11.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post12.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post3.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post4.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post5.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post6.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post7.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post8.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post9.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post10.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post1.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post11.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post12.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post3.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post4.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post5.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post6.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 363px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post7.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-nav disabled"><button type="button" role="presentation"
+                                    class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button"
+                                    role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+                            <div class="owl-dots disabled"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 </body>
 
 </html>

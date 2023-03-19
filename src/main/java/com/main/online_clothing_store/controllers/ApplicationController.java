@@ -9,5 +9,17 @@ public class ApplicationController {
     public String home(){
         return "application/home";
     }
-    
+    @GetMapping("/shop")
+    public String shop(){
+        
+        return "application/shop";
+    }
+    @GetMapping("/about-us")
+    public String about_us(){
+        return "application/about_us";
+    }
+    @GetMapping("/contact")
+    public String contact(){
+        return "application/contact";
+    }
 }

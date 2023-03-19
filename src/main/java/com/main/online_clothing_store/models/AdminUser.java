@@ -31,7 +31,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "admin_users")
+@Table(name = "AdminUsers")
 public class AdminUser implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -39,15 +39,15 @@ public class AdminUser implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     @NotBlank(message = "First name is mandatory")
     @Size(max = 256, message = "First name with up to 256 characters")
-    private String first_name;
+    private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     @NotBlank(message = "Last name is mandatory")
     @Size(max = 256, message = "Last name with up to 256 characters")
-    private String last_name;
+    private String lastName;
 
     @Column(nullable = true, name = "avatar")
     private String avatar;
@@ -65,22 +65,22 @@ public class AdminUser implements Serializable{
     @Pattern(regexp = "^\\d{10}$", message = "Telephone must be contain 10 digits")
     private String telephone;
 
-    @Column(nullable = false, name = "last_login")
+    @Column(nullable = false, name = "lastLogin")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private Date last_login;
+    private Date lastLogin;
 
-    @Column(nullable = false, name = "is_locked")
-    private Boolean is_locked;
+    @Column(nullable = false, name = "isLocked")
+    private Boolean isLocked;
 
-    @Column(nullable = false, name = "created_at	")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt	;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "admin_user")
-    private Set<RoleAdminUser> role_admin_users = new HashSet<RoleAdminUser>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminUser")
+    private Set<RoleAdminUser> roleAdminUsers = new HashSet<RoleAdminUser>();
 
 }

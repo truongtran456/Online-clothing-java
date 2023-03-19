@@ -14,6 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Embeddable
 public class WishlistId implements Serializable {
-    private Integer product_id;
-    private Integer user_id;
+    private Integer productId;
+    private Integer userId;
 }

@@ -26,22 +26,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "wishlist")
+@Table(name = "Wishlist")
 public class Wishlist implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private WishlistId id;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt	;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("product_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("productId")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
     private User user;
 }

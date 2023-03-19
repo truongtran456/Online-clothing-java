@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "order_details")
+@Table(name = "OrderDetails")
 public class OrderDetail implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -49,15 +49,14 @@ public class OrderDetail implements Serializable {
     @Min(value = 0, message = "The total must be positive")
     private BigDecimal total;
 
-    @Column(name = "note")
-    @NotBlank(message = "Note is mandatory")
+    @Column(nullable = true, name = "note")
     @Size(max = 512, message = "Note with up to 512 characters")
     private String note;
 
-    @Column(name = "apartment_number")
+    @Column(name = "apartmentNumber")
     @NotBlank(message = "Apartment number is mandatory")
     @Size(max = 256, message = "Apartment number with up to 256 characters")
-    private String apartment_number;
+    private String apartmentNumber;
 
     @Column(name = "street")
     @NotBlank(message = "Street is mandatory")
@@ -87,26 +86,26 @@ public class OrderDetail implements Serializable {
     @Column(nullable = false, name = "status")
     private Integer status;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order_detail")
-    private Set<OrderItem> order_items = new HashSet<OrderItem>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetail")
+    private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "coupon_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "couponId", referencedColumnName = "id")
     private Coupon coupon;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "payment_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paymentId", referencedColumnName = "id")
     private Payment payment;
 }

@@ -23,25 +23,25 @@
                 <div class="footer_one_widget">
                     <h3>INFORMATION</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li> <a href="about-us.html">About Us</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="faq.html">Frequently Questions</a></li>
-                        <li><a href="order-tracking.html">Order Tracking</a></li>
-                        <li><a href="compare.html">Compare</a></li>
+                        <li><a th:href="@{/home}">Home</a></li>
+                        <li> <a th:href="@{/about-us}">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Frequently Questions</a></li>
+                        <li><a th:href="@{order-tracking}">Order Tracking</a></li>
+                        <li><a href="#">Compare</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-12 col-12">
                 <div class="footer_one_widget">
-                    <h3>Your Account</h3>
+                    <h3>Account</h3>
                     <ul>
-                        <li><a href="cart.html">Cart View One</a></li>
-                        <li><a href="cart-2.html">Cart View Two </a></li>
-                        <li><a href="empty-cart.html">Empty Cart</a></li>
-                        <li><a href="checkout.html">Checkout View One</a></li>
-                        <li><a href="checkout-2.html">Checkout View Two</a></li>
-                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a th:href="@{/user/my-account}">My Account</a></li>
+                        <li><a th:href="@{/login}">Login</a></li>
+                        <li><a th:href="@{/register}">Register</a></li>
+                        <li><a th:href="@{/forgot-password}">Forgot Password</a></li>
+                        <li><a th:href="@{/user/my-cart}">Cart</a></li>
+                        <li><a th:href="@{/user/my-wishlist}">Wishlist</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <div class="footer_one_widget">
                     <h3>NEWSLETTER</h3>
                     <div id="mc_embed_signup" class="subscribe-form">
-                        <form>
+                        <div>
                             <div class="mc-form">
                                 <input class="form-control" type="email" required="" placeholder="Your Mail*"
                                     name="EMAIL" value="">
@@ -58,7 +58,7 @@
                                             class="icon-cursor"></i> Send Mail</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

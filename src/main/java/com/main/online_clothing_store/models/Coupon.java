@@ -31,7 +31,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "coupons")
+@Table(name = "Coupons")
 public class Coupon implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -49,30 +49,30 @@ public class Coupon implements Serializable {
     @Size(max = 512, message = "Description with up to 512 characters")
     private String description;
 
-    @Column(nullable = false, name = "discount_percent")
+    @Column(nullable = false, name = "discountPercent")
     @Min(value = 0, message = "The discount percent must be positive")
     @Max(value = 100, message = "Invalid discount percentage")
-    private Integer discount_percent;
+    private Integer discountPercent;
 
-    @Column(nullable = false, name = "start_date")
+    @Column(nullable = false, name = "startDate")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date start_date;
+    private Date startDate;
 
-    @Column(nullable = false, name = "end_date")
+    @Column(nullable = false, name = "endDate")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date end_date;
+    private Date endDate;
 
-    @Column(nullable = false, name = "is_actived")
-    private Boolean is_actived;
+    @Column(nullable = false, name = "isActived")
+    private Boolean isActived;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "coupon")
-    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coupon")
+    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 }

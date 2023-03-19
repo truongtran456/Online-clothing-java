@@ -1,5 +1,6 @@
 package com.main.online_clothing_store.controllers.user;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.main.online_clothing_store.models.User;
 import com.main.online_clothing_store.services.UserService;
 
 @Controller
@@ -19,13 +19,12 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
-    @RequestMapping()
-    public String index(){
-        return "layout";
-    } 
 
-    @RequestMapping("/list")
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
+    @GetMapping({"/", "/my-account"})
+    public String my_account(Principal principal){
+        if(principal == null){
+            return "redirect:/login";
+        }
+        return "user/my_account";
     }
 }

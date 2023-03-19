@@ -27,11 +27,11 @@ public class UserSecurityService implements UserDetailsService{
         // TODO Auto-generated method stub
         Optional<AdminUser> adminUser = adminUserRepository.findByEmail(username);
         if(adminUser.isPresent()){
-            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIs_locked(), "ADMIN");
+            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIsLocked(), "ADMIN");
         }
         Optional<User> user = userRepository.findByEmail(username);
         if(user.isPresent()){
-            return new UserSecurityDetails(user.get().getEmail(), user.get().getPassword(), user.get().getIs_locked(), "USER");
+            return new UserSecurityDetails(user.get().getEmail(), user.get().getPassword(), user.get().getIsLocked(), "USER");
         }
         throw new UsernameNotFoundException("Email not found");
     }

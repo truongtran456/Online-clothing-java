@@ -26,22 +26,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "role_admin_users")
+@Table(name = "RoleAdminUsers")
 public class RoleAdminUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private RoleAdminUserId id;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt	;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("role_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("roleId")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("admin_user_id")
-    private AdminUser admin_user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("adminUserId")
+    private AdminUser adminUser;
 }

@@ -29,7 +29,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "payments")
+@Table(name = "Payments")
 public class Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -47,14 +47,14 @@ public class Payment implements Serializable {
     @Size(max = 512, message = "Description with up to 512 characters")
     private String description;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "payment")
-    private Set<OrderDetail> order_details = new HashSet<OrderDetail>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "payment")
+    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 }

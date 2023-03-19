@@ -30,7 +30,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "order_items")
+@Table(name = "OrderItems")
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -41,10 +41,10 @@ public class OrderItem implements Serializable {
     @Min(value = 0, message = "The price must be positive")
     private BigDecimal price;
 
-    @Column(nullable = false, name = "discount_percent")
+    @Column(nullable = false, name = "discountPercent")
     @Min(value = 0, message = "The discount percent must be positive")
     @Max(value = 100, message = "Invalid discount percentage")
-    private Integer discount_percent;
+    private Integer discountPercent;
 
     @Column(nullable = false, name = "quantity")
     @Min(value = 0, message = "The quantity must be positive")
@@ -59,19 +59,19 @@ public class OrderItem implements Serializable {
     @Size(max = 512, message = "Comment with up to 512 characters")
     private String comment;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at;
+    private Date createdAt;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("product_inventory_id")
-    private ProductInventory product_inventory;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("productInventoryId")
+    private ProductInventory productInventory;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("order_detail_id")
-    private OrderDetail order_detail;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("orderDetailId")
+    private OrderDetail orderDetail;
 }

@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "product_inventories", uniqueConstraints = { @UniqueConstraint(name = "product",columnNames = { "product_id", "size", "color" }) })
+@Table(name = "productInventories", uniqueConstraints = { @UniqueConstraint(name = "product",columnNames = { "productId", "Size", "Color" }) })
 public class ProductInventory implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -55,24 +55,24 @@ public class ProductInventory implements Serializable {
     @Min(value = 0, message = "The quantity must be positive")
     private Integer quantity;
     
-    @Column(nullable = false, name = "is_actived")
-    private Boolean is_actived;
+    @Column(nullable = false, name = "isActived")
+    private Boolean isActived;
 
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false, name = "createdAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date created_at	;
+    private Date createdAt	;
 
-    @Column(nullable = false, name = "modified_at")
+    @Column(nullable = false, name = "modifiedAt")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modified_at;
+    private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product_inventory")
-    private Set<OrderItem> order_items = new HashSet<OrderItem>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productInventory")
+    private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product_inventory")
-    private Set<CartItem> cart_items = new HashSet<CartItem>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productInventory")
+    private Set<CartItem> cartItems = new HashSet<CartItem>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId", referencedColumnName = "id")
     private Product product;
 }
