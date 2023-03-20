@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "productInventories", uniqueConstraints = { @UniqueConstraint(name = "product",columnNames = { "productId", "Size", "Color" }) })
+@Table(name = "ProductInventories", uniqueConstraints = { @UniqueConstraint(name = "product",columnNames = { "productId", "Size", "Color" }) })
 public class ProductInventory implements Serializable {
     private static final long serialVersionUID = 1L;
 

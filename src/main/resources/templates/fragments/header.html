@@ -63,6 +63,7 @@
                         </div>
                     </li>
                     <li sec:authorize="hasAuthority('USER')"><a th:href="@{/user/my-account}">My Account</a></li>
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
                 </ul>
             </div>
         </div>
