@@ -66,4 +66,7 @@ public class UserService {
     public Boolean isValidRetypePassword(String password, String retypePassword) {
         return Objects.equals(password, retypePassword);
     }
+    public Long getTotalUser(){
+        return userRepository.count();
+    }
 }
