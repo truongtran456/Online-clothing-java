@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Add product</title>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Add Product</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Product
+                    </p>
+                </div>
+                <div>
+                    <a href="product-list.html" class="btn btn-primary"> View All
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>Add Product</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row ec-vendor-uploads">
+                                <div class="col-lg-8">
+                                    <div class="ec-vendor-upload-detail">
+                                        <form class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Product name</label>
+                                                <input type="text" class="form-control slug-title"
+                                                    placeholder="Casual men shirt" id="inputEmail4">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Product type</label>
+                                                <select name="categories" id="Categories" class="form-select">
+                                                    <option value="t-shirt">T-shirt</option>
+                                                    <option value="dress">Dress</option>
+                                                    <option value="table">Table</option>
+                                                    <option value="sofa">Sofa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail5" class="form-label">Slug</label>
+                                                <input type="text" class="form-control slug-title" placeholder="/slug"
+                                                    id="inputEmail5">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail6" class="form-label">Product SKU</label>
+                                                <input type="text" class="form-control" placeholder="Product SKU"
+                                                    id="inputEmail6">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Main category</label>
+                                                <select name="categories" id="Categories" class="form-select">
+                                                    <option value="t-shirt">shirt</option>
+                                                    <option value="dress">Dress</option>
+                                                    <option value="table">Table</option>
+                                                    <option value="sofa">Sofa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Child category</label>
+                                                <select name="categories" id="Categories" class="form-select">
+                                                    <option value="t-shirt">Men shirt</option>
+                                                    <option value="dress">Dress</option>
+                                                    <option value="table">Table</option>
+                                                    <option value="sofa">Sofa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail7" class="form-label">Unit</label>
+                                                <input type="text" class="form-control " placeholder="kg/meter/lb/ml"
+                                                    id="inputEmail7">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail8" class="form-label">Product
+                                                    quantity</label>
+                                                <input type="text" class="form-control" placeholder="Product quantity"
+                                                    id="inputEmail8">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail9" class="form-label">Product
+                                                    price</label>
+                                                <input type="text" class="form-control " placeholder="Product price"
+                                                    id="inputEmail9">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail0" class="form-label">Product sale
+                                                    price</label>
+                                                <input type="text" class="form-control" placeholder="Product sale price"
+                                                    id="inputEmail0">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail11" class="form-label">Dscount (%)</label>
+                                                <input type="text" class="form-control " placeholder="Product discount"
+                                                    id="inputEmail11">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Product tags</label>
+                                                <div class="bootstrap-tagsinput"><input type="text" placeholder="">
+                                                </div><input type="text" class="form-control" id="group_tag"
+                                                    name="group_tag" value="" placeholder="" data-role="tagsinput"
+                                                    style="display: none;">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label">Description</label>
+                                                <textarea class="form-control" rows="4"></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="product_add_cancel_button">
+                                                    <button type="submit" class="btn btn-border">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary">Add
+                                                        product</button>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="ec-vendor-img-upload">
+                                        <div class="ec-vendor-main-img">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type="file" id="imageUpload" class="ec-image-upload"
+                                                        accept=".png, .jpg, .jpeg">
+                                                    <label for="imageUpload"><img
+                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                            class="svg_img header_svg" alt="edit"></label>
+                                                </div>
+                                                <div class="avatar-preview ec-preview">
+                                                    <div class="imagePreview ec-div-preview">
+                                                        <img class="ec-image-preview"
+                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                            alt="edit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="thumb-upload-set colo-md-12">
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload01" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-2.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload02" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-4.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload03" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-1.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload04" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-2.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload05" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-3.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type="file" id="thumbUpload06" class="ec-image-upload"
+                                                            accept=".png, .jpg, .jpeg">
+                                                        <label for="imageUpload"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-4.png"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

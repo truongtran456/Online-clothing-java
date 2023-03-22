@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Categories</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper">
+                <div>
+                    <h1>All Orders</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>All Orders
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div id="responsive-data-table_wrapper"
+                                    class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                    <table id="responsive-data-table" class="table dataTable no-footer"
+                                        style="width:100%" aria-describedby="responsive-data-table_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0"
+                                                    aria-controls="responsive-data-table" rowspan="1" colspan="1"
+                                                    aria-sort="ascending"
+                                                    aria-label="ID: activate to sort column descending"
+                                                    style="width: 30.957px;">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Photo: activate to sort column ascending"
+                                                    style="width: 60.0586px;">Photo</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Product name: activate to sort column ascending"
+                                                    style="width: 134.707px;">Product name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Category: activate to sort column ascending"
+                                                    style="width: 92.0703px;">Category</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Price: activate to sort column ascending"
+                                                    style="width: 52.5195px;">Price</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Seller: activate to sort column ascending"
+                                                    style="width: 57.5977px;">Seller</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Payment type: activate to sort column ascending"
+                                                    style="width: 132.637px;">Payment type</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Shipping address: activate to sort column ascending"
+                                                    style="width: 163.887px;">Shipping address</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Status: activate to sort column ascending"
+                                                    style="width: 85.6445px;">Status</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 82.4805px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td class="sorting_1">#001</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-1.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td class="sorting_1">#002</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-2.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td class="sorting_1">#003</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-3.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td class="sorting_1">#004</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-4.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td class="sorting_1">#005</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-5.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td class="sorting_1">#006</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-6.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td class="sorting_1">#007</td>
+                                                <td><img class="product-img tbl-img"
+                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-7.png"
+                                                        alt="product"></td>
+                                                <td>Chair</td>
+                                                <td>Office chair</td>
+                                                <td>$1794</td>
+                                                <td>Otobi</td>
+                                                <td>Credit card</td>
+                                                <td>New Jersy, USA</td>
+                                                <td> <span class="badge badge-success">Active</span> </td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                            class="btn btn-outline-success">Info</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">Info</span>
+                                                        </button>
+
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Order detail</a>
+                                                            <a class="dropdown-item" href="#">Order Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

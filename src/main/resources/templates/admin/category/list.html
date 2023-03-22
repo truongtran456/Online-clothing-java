@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Categories</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>All Category</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>All Category
+                    </p>
+                </div>
+
+                <div>
+                    <a href="/admin/category/add" class="btn btn-primary">Add category</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="ec-cat-list card card-default">
+                        <div class="card-body">
+                            <div id="responsive-data-table_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                <table id="responsive-data-table" class="table dataTable no-footer"
+                                    aria-describedby="responsive-data-table_info">
+                                    <thead>
+                                        <tr>
+                                            <th class="sorting sorting_asc" tabindex="0"
+                                                aria-controls="responsive-data-table" rowspan="1" colspan="1"
+                                                aria-sort="ascending"
+                                                aria-label="ID: activate to sort column descending"
+                                                style="width: 28.4961px;">ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Category: activate to sort column ascending"
+                                                style="width: 87.4219px;">Category</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Description: activate to sort column ascending"
+                                                style="width: 246.738px;">Description</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Is active: activate to sort column ascending"
+                                                style="width: 82.832px;">Is active</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Created at: activate to sort column ascending"
+                                                style="width: 98.9062px;">Created at</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Modified at: activate to sort column ascending"
+                                                style="width: 75.9961px;">Modified at</th>
+                                            <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Action: activate to sort column ascending"
+                                                style="width: 78.2031px;">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="odd" th:each="productCategory : ${productCategories}">
+                                            <td class="sorting_1" th:text="${productCategory.id}"></td>
+                                            <td th:text="${productCategory.name}"></td>
+                                            <td th:text="${productCategory.description}"></td>
+                                            <td th:text="${productCategory.isActived}"></td>
+                                            <td th:text="${productCategory.createdAt}"></td>
+                                            <td th:text="${productCategory.modifiedAt}"></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-outline-success">Info</button>
+                                                    <button type="button"
+                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">Info</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item"  th:href="@{edit/{id}(id=${productCategory.id})}">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>
