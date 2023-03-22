@@ -1,5 +1,8 @@
 package com.main.online_clothing_store.services;
 
+import java.io.IOException;
+import java.util.Base64;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -7,13 +10,17 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.main.online_clothing_store.models.User;
 import com.main.online_clothing_store.repositories.AdminUserRepository;
 import com.main.online_clothing_store.repositories.UserRepository;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -41,7 +48,7 @@ public class UserService {
     }
 
     @Transactional
-    public User save(User user) throws Exception {
+    public User create(User user) throws Exception {
         if(adminUserRepository.findByEmail(user.getEmail()).isPresent()){
             throw new Exception("User already exists");
         }
@@ -52,6 +59,31 @@ public class UserService {
         user.setCreatedAt(currentTime);
         user.setModifiedAt(currentTime);
         return userRepository.save(user);
+    }
+
+    @Transactional
+    public User update(User user) throws ObjectNotFoundException, IllegalArgumentException, IOException {
+        if(!user.getEmail().equals(SecurityContextHolder.getContext().getAuthentication().getName())){
+            throw new IllegalArgumentException("Can not update your account");
+        }
+        Optional<User> userUpdateOptional = userRepository.findByEmail(user.getEmail());
+        if(userUpdateOptional.isPresent()){
+            if(!user.getUpload().isEmpty()){
+                user.setAvatar(Base64.getEncoder().encodeToString(user.getUpload().getBytes()));
+            }
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.YEAR, -18);
+            if(user.getBirthdate().after(calendar.getTime())){
+                throw new IllegalArgumentException("User not have enough 18 years old");
+            }
+            if(!user.getNewPassword().isBlank()){
+                user.setPassword(passwordEncoder.encode(user.getNewPassword()));
+            }
+            Date currentTime = new Date();
+            user.setModifiedAt(currentTime);
+            return userRepository.save(user);
+        }
+        throw new ObjectNotFoundException("User does not exists");
     }
 
     public void deleteById(int id) {

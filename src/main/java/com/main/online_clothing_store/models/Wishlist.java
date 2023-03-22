@@ -34,7 +34,7 @@ public class Wishlist implements Serializable {
     private WishlistId id;
 
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt	;
 
     @ManyToOne(fetch = FetchType.LAZY)

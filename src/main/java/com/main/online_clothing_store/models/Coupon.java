@@ -55,22 +55,22 @@ public class Coupon implements Serializable {
     private Integer discountPercent;
 
     @Column(nullable = false, name = "startDate")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @Column(nullable = false, name = "endDate")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @Column(nullable = false, name = "isActived")
     private Boolean isActived;
 
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @Column(nullable = false, name = "modifiedAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "coupon")

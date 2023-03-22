@@ -50,7 +50,7 @@ public class AuthenticationController {
                 return "authentication/register";
             }
             try {
-                user = userService.save(user);
+                user = userService.create(user);
                 return "redirect:/login";
             }
             catch(Exception e){

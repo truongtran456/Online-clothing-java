@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,20 +56,24 @@ public class User implements Serializable {
     @Column(nullable = true, name = "avatar")
     private String avatar;
 
+    @Transient
+    private MultipartFile upload;
+
     @Column(unique = true)
     @Size(max = 256, message = "Email with up to 256 characters")
     @Email(regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,5}", message = "Email is invalid")
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
     private String password;
 
     @Transient
-    @NotBlank(message = "Password is mandatory")
     private String retypePassword;
+    
+    @Transient
+    private String newPassword;
 
     @Column(nullable = true, name = "birthdate")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
     @Column(nullable = true, name = "gender")
@@ -110,18 +115,18 @@ public class User implements Serializable {
     private Boolean receiveOffers;
 
     @Column(nullable = false, name = "lastLogin")
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLogin;
 
     @Column(nullable = false, name = "isLocked")
     private Boolean isLocked;
 
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @Column(nullable = false, name = "modifiedAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

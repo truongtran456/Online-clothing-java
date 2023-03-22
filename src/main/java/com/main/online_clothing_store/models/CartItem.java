@@ -39,11 +39,11 @@ public class CartItem implements Serializable {
     private Integer quantity;
     
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @Column(nullable = false, name = "modifiedAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

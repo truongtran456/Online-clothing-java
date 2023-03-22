@@ -87,11 +87,11 @@ public class OrderDetail implements Serializable {
     private Integer status;
 
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @Column(nullable = false, name = "modifiedAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetail")

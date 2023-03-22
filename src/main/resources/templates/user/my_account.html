@@ -32,12 +32,10 @@
                     <!-- Nav tabs -->
                     <div class="dashboard_tab_button">
                         <ul role="tablist" class="nav flex-column dashboard-list">
-                            <li><a href="#!" data-bs-toggle="tab" data-bs-target="#dashboard" class=" active"><i
+                            <li><a href="#!" data-bs-toggle="tab" data-bs-target="#dashboard"><i
                                         class="fas fa-tachometer-alt"></i>Dashboard</a></li>
                             <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders"><i
                                         class="fas fa-cart-arrow-down"></i>Orders</a></li>
-                            <li><a href="#!" data-bs-toggle="tab" data-bs-target="#address"><i
-                                        class="fas fa-map-marker-alt"></i>Addresses</a></li>
                             <li><a href="#!" data-bs-toggle="tab" data-bs-target="#account-details"><i
                                         class="fas fa-user"></i>Account
                                     details</a>
@@ -92,97 +90,125 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane" id="address">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="myaccount-content">
-                                        <h4 class="title">Billing Address</h4>
-                                        <div class="billing_address">
-                                            <h5><strong>Alex Porty</strong></h5>
-                                            <p>
-                                                1234 Market ##, Suite 900 <br>
-                                                Lorem Ipsum, ## 12345
-                                            </p>
-                                            <p>Mobile: (123) 123-456789</p>
-                                            <a href="account-info-edit.html" class="theme-btn-one bg-black btn_sm">Edit
-                                                Address</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="myaccount-content">
-                                        <h4 class="title">Shipping Address</h4>
-                                        <div class="billing_address">
-                                            <h5><strong>Alex Porty</strong></h5>
-                                            <p>
-                                                1234 Market ##, Suite 900 <br>
-                                                Lorem Ipsum, ## 12345
-                                            </p>
-                                            <p>Mobile: (123) 123-456789</p>
-                                            <a href="account-info-edit.html" class="theme-btn-one bg-black btn_sm">Edit
-                                                Address</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                         <div class="tab-pane fade" id="account-details">
                             <div class="myaccount-content">
                                 <h4 class="title">Account details</h4>
                                 <div class="login_form_container">
                                     <div class="account_details_form">
-                                        <form action="#">
+                                        <form method="POST" th:action="@{/user/update-account}" th:object="${user}"
+                                            enctype="multipart/form-data">
                                             <div class="img_profiles">
-                                                <img src="https://andit.co/projects/html/andshop/andshop_frontend/assets/img/team/team1.png" alt="img">
+                                                <a onclick="open_upload()"><img id="avatar"
+                                                        th:src="|data:image/png;base64, *{avatar}|" alt="img">
+                                                </a>
+                                                <input type="file" accept="image/*" th:field="*{upload}" hidden>
                                             </div>
                                             <div class="input-radio">
                                                 <span class="custom-radio">
-                                                    <input type="radio" value="1" name="mr" checked=""> Mr.</span>
+                                                    <input type="radio" th:field="*{gender}" th:value="true"
+                                                        th:checked="${user.gender}" /> Mr.</span>
+                                                <span class="custom-radio">
+                                                    <input type="radio" th:field="*{gender}" th:value="false"
+                                                        th:checked="${!user.gender}" /> Mrs.</span>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name" class="form-control" value="Kazi"
-                                                    readonly="">
+                                            <div class="row">
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="firstName">First name <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{firstName}"
+                                                        autofocus>
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('firstName')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="lastName">Last name <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{lastName}">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('lastName')}"
+                                                        th:text="${error}"></p>
+                                                </div>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name" class="form-control" value="Saiful"
-                                                    readonly="">
+                                            <div class="default-form-box">
+                                                <label for="birthdate">Birthdate <span>*</span></label>
+                                                <input type="date" class="form-control" th:field="*{birthdate}">
+                                                <p class="text-danger" th:each="error: ${#fields.errors('birthdate')}"
+                                                    th:text="${error}"></p>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name" value="demo123@gmail.com"
-                                                    class="form-control" readonly="">
+                                            <div class="default-form-box">
+                                                <label for="telephone">Telephone <span>*</span></label>
+                                                <input type="text" class="form-control" th:field="*{telephone}">
+                                                <p class="text-danger" th:each="error: ${#fields.errors('telephone')}"
+                                                    th:text="${error}"></p>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password" value="123456789"
-                                                    class="form-control" readonly="">
+                                            <div class="default-form-box">
+                                                <label for="apartmentNumber">Apartment number <span>*</span></label>
+                                                <input type="text" class="form-control" th:field="*{apartmentNumber}">
+                                                <p class="text-danger"
+                                                    th:each="error: ${#fields.errors('apartmentNumber')}"
+                                                    th:text="${error}"></p>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="birthday" value="2017-06-01"
-                                                    class="form-control" readonly="">
+                                            <div class="row">
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="street">Street <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{street}">
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('street')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="ward">Ward <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{ward}">
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('ward')}"
+                                                        th:text="${error}"></p>
+                                                </div>
                                             </div>
-                                            <span class="example">
-                                                (E.g.: 05/31/1970)
-                                            </span>
+                                            <div class="row">
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="district">District <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{district}">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('district')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="default-form-box col-lg-6">
+                                                    <label for="city">City <span>*</span></label>
+                                                    <input type="text" class="form-control" th:field="*{city}">
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('city')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="default-form-box">
+                                                <label for="email">Email <span>*</span></label>
+                                                <input type="email" class="form-control" th:field="*{email}" readonly>
+                                            </div>
+                                            <div class="default-form-box">
+                                                <label for="newPassword">New password <span>*</span></label>
+                                                <input type="password" class="form-control" th:field="*{newPassword}">
+                                                <p class="text-danger" th:each="error: ${#fields.errors('newPassword')}"
+                                                    th:text="${error}"></p>
+                                            </div>
+                                            <p class="text-danger" th:if="${message != null}" th:text="${message}"></p>
                                             <br>
-                                            <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
+                                            <p class="text-danger"
+                                                th:each="error: ${#fields.errors('receiveNewsletter')}"
+                                                th:text="${error}"></p>
+                                            <label class="checkbox-default">
+                                                <input type="checkbox" th:field="*{receiveOffers}">
                                                 <span>Receive offers from our partners</span>
                                             </label>
+                                            <p class="text-danger" th:each="error: ${#fields.errors('receiveOffers')}"
+                                                th:text="${error}"></p>
+                                            </br>
                                             <br>
-                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
+                                            <label class="checkbox-default">
+                                                <input type="checkbox" th:field="*{receiveNewsletter}">
                                                 <span>Sign up for our newsletter<br><em>You may unsubscribe at any
                                                         moment. For that purpose, please find our contact info in the
                                                         legal notice.</em></span>
                                             </label>
+                                            </br>
                                             <div class="save_button mt-3">
-                                                <a href="account-info-edit.html"
-                                                    class="theme-btn-one bg-black btn_sm">Update</a>
+                                                <button type="submit"
+                                                    class="theme-btn-one bg-black btn_sm">Update</button>
                                             </div>
                                         </form>
                                     </div>
@@ -194,6 +220,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Optional Section -->
+    <th:block layout:fragment="optional">
+        <script>
+            $('a[data-bs-toggle="tab"]').click(function () {
+                localStorage.setItem("CURRENT_TAB", $(this).attr('data-bs-target'));
+            });
+            $(document).ready(function () {
+                var tab = localStorage.getItem('CURRENT_TAB') == null ? '#dashboard' : localStorage.getItem('CURRENT_TAB');
+                $(`a[data-bs-toggle="tab"][data-bs-target="${tab}"]`)[0].click();
+            });
+        </script>
+    </th:block>
 </body>
 
 </html>

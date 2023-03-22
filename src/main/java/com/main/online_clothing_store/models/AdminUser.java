@@ -66,18 +66,18 @@ public class AdminUser implements Serializable{
     private String telephone;
 
     @Column(nullable = false, name = "lastLogin")
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLogin;
 
     @Column(nullable = false, name = "isLocked")
     private Boolean isLocked;
 
     @Column(nullable = false, name = "createdAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt	;
 
     @Column(nullable = false, name = "modifiedAt")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminUser")
