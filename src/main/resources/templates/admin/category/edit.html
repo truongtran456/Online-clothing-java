@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Add category</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>Edit Category</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Edit Category
+                    </p>
+                </div>
+                <div>
+                    <a href="main-category.html" class="btn btn-primary">All category</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xl-8 offset-lg-2 col-lg-12">
+                    <div class="ec-cat-list card card-default mb-24px">
+                        <div class="card-body">
+                            <div class="ec-cat-form">
+                                <h4>Edit New Category</h4>
+
+                                <form class="row">
+                                    <div class="form-group col-6 ">
+                                        <label for="text" class="col-form-label">Category name</label>
+                                        <input id="text" name="text" class="form-control here slug-title" type="text">
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label for="slug" class="col-form-label">Slug</label>
+                                        <div class="col-12">
+                                            <input id="slug" name="slug" class="form-control here set-slug" type="text">
+                                            <small>The “slug” is the URL-friendly version of the name. It is
+                                                usually all lowercase and contains only letters, numbers, and
+                                                hyphens.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label class=" col-form-label">Sort Description</label>
+                                        <div class="col-12">
+                                            <textarea id="sortdescription" name="sortdescription" cols="40" rows="2"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6 ">
+                                        <label class=" col-form-label">Product type</label>
+                                        <div class="col-12">
+                                            <select name="categories" id="Categories" class="form-select">
+                                                <option value="t-shirt">shirt</option>
+                                                <option value="dress">Dress</option>
+                                                <option value="table">Table</option>
+                                                <option value="sofa">Sofa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label class="col-form-label">Full Description</label>
+                                        <div class="col-12">
+                                            <textarea id="fulldescription" name="fulldescription" cols="40" rows="4"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label class=" col-form-label">Product Tags <span>( Type and
+                                                make comma to separate tags )</span></label>
+                                        <div class="col-12">
+                                            <div class="bootstrap-tagsinput"><input type="text" placeholder="">
+                                            </div><input type="text" class="form-control" id="group_tag"
+                                                name="group_tag" value="" placeholder="" data-role="tagsinput"
+                                                style="display: none;">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Add category</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>Add Category</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Add Category
+                    </p>
+                </div>
+                <div>
+                    <a href="main-category.html" class="btn btn-primary">All category</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xl-8 offset-lg-2 col-lg-12">
+                    <div class="ec-cat-list card card-default mb-24px">
+                        <div class="card-body">
+                            <div class="ec-cat-form">
+                                <h4>Add New Category</h4>
+
+                                <form class="row" action="admin/category/save" method="post">
+                                    <div class="form-group col-6 ">
+                                        <label for="name" class="col-form-label">Category name</label>
+                                        <input id="name" name="name" class="form-control here slug-title" type="text">
+                                    </div>
+
+                                    <div class="form-group col-6 ">
+                                        <label class="col-form-label">Full Description</label>
+                                        <div class="col-12">
+                                            <textarea id="fulldescription" name="fulldescription" cols="40" rows="4"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6 form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>
