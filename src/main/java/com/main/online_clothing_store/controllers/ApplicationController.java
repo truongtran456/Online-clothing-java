@@ -1,18 +1,54 @@
 package com.main.online_clothing_store.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.main.online_clothing_store.models.Product;
+import com.main.online_clothing_store.services.ProductService;
+
 
 @Controller
 public class ApplicationController {
+    @Autowired
+    ProductService productService;
+
     @GetMapping({"/", "/home"})
-    public String home(){
+    public String home(Model model) {
+        List<Product> newArrivalProducts = productService.getNewArrivalProducts();
+        List<Product> saleProducts = productService.getSaleProducts();
+        model.addAttribute("newArrivalProducts", newArrivalProducts);
+        model.addAttribute("saleProducts", saleProducts);
         return "application/home";
     }
-    @GetMapping("/shop")
-    public String shop(){
-        
-        return "application/shop";
+    @GetMapping("/products")
+    public String products(@RequestParam(required = false) Integer page, @RequestParam(required = false) String filterBy, @RequestParam(required = false) String sortBy, Model model){
+        if(page == null || page < 1){
+            page = 1;
+        }
+        if(filterBy == null || filterBy.isBlank()){
+            filterBy = "all";
+        }
+        if(sortBy == null || sortBy.isBlank()){
+            sortBy = "newest";
+        }
+        Page<Product> products = productService.getAllProducts(12, page, filterBy, sortBy);
+        Integer totalPage = products.getTotalPages();
+        if(page > totalPage){
+            page = totalPage;
+        }
+
+        model.addAttribute("products", products.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("filterBy", filterBy);
+        model.addAttribute("sortBy", sortBy);
+        return "application/products";
     }
     @GetMapping("/about-us")
     public String about_us(){

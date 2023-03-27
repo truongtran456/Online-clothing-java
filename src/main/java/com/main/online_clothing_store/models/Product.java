@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -18,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -94,6 +96,9 @@ public class Product implements Serializable {
     @Min(value = 0, message = "The discount percent must be positive")
     @Max(value = 100, message = "Invalid discount percentage")
     private Integer discountPercent;
+
+    @Formula(value = "coalesce(sellPrice * (1 - discountPercent / 100.0), 0)")
+    private Double discountPrice;
 
     @Column(nullable = false, name = "shipPrice")
     @Min(value = 0, message = "The ship price must be positive")

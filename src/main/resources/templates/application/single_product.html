@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+
+<head>
+    <title th:text="${product.name}"></title>
+</head>
+
+<body>
+    <!-- Banner Area -->
+    <section id="common_banner_one" layout:fragment="banner">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_banner_text">
+                        <h2>Single Product</h2>
+                        <ul>
+                            <li><a th:href="@{/home}">Home</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li><a th:href="@{/products}">Products</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li class="active">Single Product</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section layout:fragment="content">
+        <!-- Product Single Area -->
+        <section id="product_single_one" class="ptb-100">
+            <div class="container">
+                <div class="row area_boxed">
+                    <div class="col-lg-4">
+                        <div class="product_single_one_img">
+                            <img th:src="|data:image/png;base64, ${product.image}|" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="product_details_right_one">
+                            <div class="modal_product_content_one">
+                                <form th:action="@{/user/cart/add-to-cart}" method="post" id="product_count_form_two">
+                                    <input type="text" name="id" th:value="${product.id}" hidden />
+                                    <h3 th:text="|${product.name} - Code: ${product.id}|"></h3>
+                                    <h4>[[|${#numbers.formatCurrency(product.sellPrice * (1 - product.discountPercent /
+                                        100.0))}|]] <del
+                                            th:text="|${#numbers.formatCurrency(product.sellPrice)}|"></del></h4>
+                                    <div class="customs_selects">
+                                        <div class="mb-2">
+                                            <span class="font-weight-600">Size</span>
+                                        </div>
+                                        <div>
+                                            <select name="size" id="size" class="customs_sel_box">
+                                                <option th:each="size : ${sizes}" th:value="${size}" th:text="${size}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="customs_selects pt-2 mb-3">
+                                        <div class="mb-2">
+                                            <span class="font-weight-600">Color</span>
+                                        </div>
+                                        <div>
+                                            <select name="color" id="color" class="customs_sel_box">
+                                                <option th:each="color : ${colors}" th:value="${color}"
+                                                    th:text="${color}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="product_count_one">
+                                        <div class="plus-minus-input">
+                                            <div class="input-group-button">
+                                                <button type="button" class="button" data-quantity="minus"
+                                                    data-field="quantity">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <input class="form-control" type="number" id="quantity" name="quantity"
+                                                value="0" min="0">
+                                            <div class="input-group-button">
+                                                <button type="button" class="button" data-quantity="plus"
+                                                    data-field="quantity">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-danger" th:if="${message != ''}" th:text="${message}"></p>
+                                    <div class="links_Product_areas">
+                                        <ul>
+                                            <li>
+                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                        class="far fa-heart"></i>Add To Wishlist</a>
+                                            </li>
+                                            <li>
+                                                <a href="compare.html" class="action compare" title="Compare"><i
+                                                        class="fas fa-exchange-alt"></i>Add To Compare</a>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="theme-btn-one btn-black-overlay btn_sm">Add To
+                                            Cart</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product_details_tabs">
+                            <ul class="nav nav-tabs">
+                                <li><a data-bs-toggle="tab" data-bs-target="#description" href="#!"
+                                        class="active">Description</a></li>
+                                <li><a data-bs-toggle="tab" data-bs-target="#additional" href="#!">Additional
+                                        Information</a></li>
+                                <li><a data-bs-toggle="tab" data-bs-target="#review" href="#!">Review</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="description" class="tab-pane fade in show active">
+                                    <div th:utext="${product.description}" class="product_description">
+
+                                    </div>
+                                </div>
+                                <div id="additional" class="tab-pane fade">
+                                    <div class="product_additional">
+                                        <ul>
+                                            <li>Gender: <span th:text="${product.gender ? 'Male' : 'Female'}"></span></li>
+                                            <li>Weight: <span th:text="${product.weight}"></span></li>
+                                            <li>Dimensions: <span th:text="${product.dimensions}"></span></li>
+                                            <li>Materials: <span th:text="${product.materials}"></span></li>
+                                            <li>Other Info: <span th:text="${product.otherInfo}"></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="review" class="tab-pane fade">
+                                    <div class="product_reviews">
+                                        <ul>
+                                            <li class="media d-flex" th:each="orderItem : ${orderItems}">
+                                                <div class="media-img flex-shrink-0">
+                                                    <img th:src="|data:image/png;base64, ${orderItem.orderDetail.user.avatar}|"
+                                                        alt="img">
+                                                </div>
+                                                <div class="media-body flex-grow-1 ms-3">
+                                                    <div class="media-header">
+                                                        <div class="media-name">
+                                                            <h4
+                                                                th:text="${#strings.trim(orderItem.orderDetail.user.firstName + ' ' + orderItem.orderDetail.user.lastName)}">
+                                                            </h4>
+                                                            <p th:text="${{orderItem.modifiedAt}}"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-pragraph">
+                                                        <p th:text="${orderItem.comment}"></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Product -->
+        <section id="related_product" class="pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center_heading">
+                            <h2>You Might Also Like</h2>
+                            <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12" th:each="product : ${relatedProducts}">
+                        <div class="product_wrappers_one">
+                            <div class="thumb">
+                                <a th:href="|@{/products/single-product/}${product.id}|" class="image">
+                                    <img th:src="|data:image/png;base64, ${product.image}|" alt="Product">
+                                    <img class="hover-image" th:src="|data:image/png;base64, ${product.imageHover}|"
+                                        alt="Product">
+                                </a>
+                                <span class="badges">
+                                    <span class="new">New</span>
+                                </span>
+                                <span class="badges mt-5">
+                                    <span class="hot" th:if="${product.discountPercent > 0}"
+                                        th:text="|Sale ${product.discountPercent}%|"></span>
+                                </span>
+                                <div class="actions">
+                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                            class="far fa-heart"></i></a>
+                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                            class="fas fa-exchange-alt"></i></a>
+                                </div>
+                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                    data-bs-target="#shoppingCartModal">
+                                    Add To Cart
+                                </button>
+                            </div>
+                            <div class="content">
+                                <h5 class="title">
+                                    <a th:href="|@{/products/single-product/}${product.id}|" th:text="${product.name}"></a>
+                                </h5>
+                                <span class="price">
+                                    <span class="new"
+                                        th:text="|${#numbers.formatCurrency(product.sellPrice * (1 - product.discountPercent / 100.0))}|"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Arae -->
+        <section id="instagram_area_one">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center_heading">
+                            <h2>Follow Us Instagram</h2>
+                            <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="instagram_post_slider owl-carousel owl-theme owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage"
+                                    style="transform: translate3d(-1929px, 0px, 0px); transition: all 1s ease 0s; width: 5515px;">
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post7.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post8.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post9.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post1.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post3.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post4.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post5.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post6.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post7.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post8.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post9.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post1.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post2.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post3.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post4.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post5.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 275.706px;">
+                                        <div class="instgram_post">
+                                            <a href="#!">
+                                                <i class="fab fa-instagram"></i>
+                                                <img th:src="@{/img/instagram/post6.png}" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-nav disabled"><button type="button" role="presentation"
+                                    class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button"
+                                    role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+                            <div class="owl-dots disabled"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+</body>
+
+</html>

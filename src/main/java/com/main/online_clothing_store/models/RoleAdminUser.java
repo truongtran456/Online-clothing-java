@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
@@ -39,9 +40,11 @@ public class RoleAdminUser implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("roleId")
+    @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false)
     private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("adminUserId")
+    @JoinColumn(name = "adminUserId", referencedColumnName = "id", insertable = false, updatable = false)
     private AdminUser adminUser;
 }

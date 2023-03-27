@@ -18,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -77,6 +78,9 @@ public class OrderDetail implements Serializable {
     @NotBlank(message = "City is mandatory")
     @Size(max = 256, message = "City with up to 256 characters")
     private String city;
+
+    @Transient
+    public String shipAddress;
 
     @Column(name = "telephone")
     @NotBlank(message = "Telephone number is mandatory")

@@ -17,4 +17,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
            "FROM OrderDetails c WHERE c.status = :status " +
            "GROUP BY MONTH(c.createdAt)",  nativeQuery = true)
     public List<Object[]> sumTotalByMonthAndStatus(Integer status);
+
+    public List<OrderDetail> findByUserId(Integer id);
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.main.online_clothing_store.models.Product;
 import com.main.online_clothing_store.services.ProductService;
 
-@Controller
+@Controller("adminProductController")
 @RequestMapping("/admin/product")
 public class ProductController {
     ProductService productService;

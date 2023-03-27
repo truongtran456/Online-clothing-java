@@ -8455,3 +8455,40 @@ table {
     font-size: 16px;
     font-weight: 700;
 }
+.paginate_button.page-item .page-link {
+    border-radius: unset;
+    width: 90px;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 17px;
+    padding: 6px 10px;
+    height: 29px;
+}
+.pagination .page-item {
+    margin: auto;
+}
+.pagination {
+    margin: auto;
+}
+.form-select.form-select-sm {
+    min-height: calc(1.5em + 0.5rem + 2px);
+}
+#responsive-data-table_length label {
+    display: inline-flex;
+    align-items: center;
+}
+#responsive-data-table_filter label {
+    display: inline-flex;
+    align-items: center;
+}
+.dataTables_filter label input {
+    margin-left: 10px;
+}
+.img-60 {
+    width: 60px;
+    height: 60px;
+}
+.font-weight-600 {
+    font-weight: 600;
+}

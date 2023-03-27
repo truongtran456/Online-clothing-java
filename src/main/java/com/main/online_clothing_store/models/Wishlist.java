@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
@@ -39,9 +40,11 @@ public class Wishlist implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productId")
+    @JoinColumn(name = "productId", referencedColumnName = "id", insertable = false, updatable = false)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
+    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 }

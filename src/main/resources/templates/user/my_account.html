@@ -3,6 +3,10 @@
 
 <head>
     <title>My Account</title>
+    <!-- No Extra plugin used -->
+    <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+    <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    <link id="style.css" th:href="@{/admin/css/style.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -58,34 +62,64 @@
                         <div class="tab-pane fade" id="orders">
                             <div class="myaccount-content">
                                 <h4 class="title">Orders </h4>
-                                <div class="table_page table-responsive">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Order</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Total</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>May 10, 2018</td>
-                                                <td><span class="success">Completed</span></td>
-                                                <td>$25.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>May 10, 2018</td>
-                                                <td>Processing</td>
-                                                <td>$17.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div>
+                                            <div id="responsive-data-table_wrapper"
+                                                class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                                <table id="responsive-data-table" class="table dataTable no-footer"
+                                                    style="width: 100%;" aria-describedby="responsive-data-table_info">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="sorting sorting_asc" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-sort="ascending"
+                                                                aria-label="Id: activate to sort column descending">Id
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-label="Total: activate to sort column ascending">
+                                                                Total</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-label="Payment: activate to sort column ascending">
+                                                                Payment</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-label="Status: activate to sort column ascending">
+                                                                Status</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-label="Order date: activate to sort column ascending">
+                                                                Order date</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="responsive-data-table"
+                                                                aria-label="Action: activate to sort column ascending">
+                                                                Action</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr class="odd" th:each="order : ${orders}">
+                                                            <td class="sorting_1" th:text="${order.id}"></td>
+                                                            <td th:text="|$${order.total}|"></td>
+                                                            <td th:text="${order.payment.name}"></td>
+                                                            <td th:text="${order.status}"></td>
+                                                            <td th:text="${{order.createdAt}}"></td>
+                                                            <td>
+                                                                <div class="btn-group mb-1">
+                                                                    <a th:href="|@{/user/order-detail/}${order.id}|"
+                                                                        class="btn text-primary">View</a>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -98,8 +132,10 @@
                                         <form method="POST" th:action="@{/user/update-account}" th:object="${user}"
                                             enctype="multipart/form-data">
                                             <div class="img_profiles">
-                                                <a onclick="open_upload()"><img id="avatar"
-                                                        th:src="|data:image/png;base64, *{avatar}|" alt="img">
+                                                <a onclick="open_upload()"><img id="avatar" th:if="${avatar != null}"
+                                                        th:src="|data:image/png;base64, ${avatar}|" alt="img">
+                                                    <img id="avatar" th:if="${avatar == null}" src="/img/team/team1.png"
+                                                        alt="img">
                                                 </a>
                                                 <input type="file" accept="image/*" th:field="*{upload}" hidden>
                                             </div>
@@ -222,7 +258,12 @@
     </section>
 
     <!-- Optional Section -->
-    <th:block layout:fragment="optional">
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <script th:src="@{/admin/js/custom.js}"></script>
         <script>
             $('a[data-bs-toggle="tab"]').click(function () {
                 localStorage.setItem("CURRENT_TAB", $(this).attr('data-bs-target'));
