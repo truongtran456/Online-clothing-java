@@ -34,7 +34,6 @@ public class ProductCategoryController {
     public String add(){
         return "admin/category/add";
     }
-    
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable ("id") Integer id, Model model){
         try {

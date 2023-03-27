@@ -1,5 +1,9 @@
 package com.main.online_clothing_store.controllers.admin;
 
+import java.sql.Array;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +49,11 @@ public class AdminController {
         model.addAttribute("totalOrderDetail", totalOrderDetail);
         Long totalMoney = orderDetailService.sumTotalByStatusOrderDetail(2);
         model.addAttribute("totalMoney", totalMoney);
-        List<Object[]> listSumByMonth = orderDetailService.sumTotalByMonthAndStatus(2);
+        int currentYear = Year.now().getValue();
+        int[] listSumByMonth = new int[12];
+        for(int i = 1; i <= 12; i++){
+            listSumByMonth[i-1] = orderDetailService.sumTotalByMonthAndStatus(2, currentYear, i).orElse(0);
+        }
         model.addAttribute("listSumByMonth", listSumByMonth);
         return "admin/dashboard/dashboard";
     }

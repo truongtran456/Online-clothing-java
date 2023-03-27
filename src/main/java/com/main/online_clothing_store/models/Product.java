@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -48,12 +50,16 @@ public class Product implements Serializable {
     private String name;
 
     @Column(name = "image")
-    @NotBlank(message = "Image is mandatory")
     private String image;
 
+    @Transient
+    private MultipartFile uploadImage;
+
     @Column(name = "imageHover")
-    @NotBlank(message = "Image hover is mandatory")
     private String imageHover;
+
+    @Transient
+    private MultipartFile uploadImageHover;
 
     @Column(name = "description")
     @NotBlank(message = "Description is mandatory")

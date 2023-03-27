@@ -2,7 +2,7 @@
 <html lang="en" layout:decorate="~{admin/layout}">
 
 <head>
-    <title>Categories</title>
+    <title>Order info</title>
     <th:block layout:fragment="header_optional">
         <!-- No Extra plugin used -->
         <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
@@ -18,7 +18,7 @@
                 <div>
                     <h1>Order details</h1>
                     <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
-                        <span><i class="mdi mdi-chevron-right"></i></span>Order details
+                        <span><i class="mdi mdi-chevron-right"></i></span>Order info
                     </p>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="ec-odr-dtl card card-default">
                         <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                            <h2 class="ec-odr">Order details</h2>
+                            <h2 class="ec-odr">Order info</h2>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -36,9 +36,9 @@
                                             <h5 class="title_infos"> <span class="mdi mdi-account-circle"></span>
                                                 Customer info</h5>
                                             <ul>
-                                                <li>Name: <span> John Petricia</span></li>
-                                                <li>Email: <span>petri@domain.com</span> </li>
-                                                <li>Phone: <span>(012) 345-678-9012</span></li>
+                                                <li>Name: <span th:text="${orderDetail.user.firstName +' '+ orderDetail.user.lastName}"> </span></li>
+                                                <li>Email: <span th:text="${orderDetail.user.email}"></span> </li>
+                                                <li>Phone: <span th:text="${orderDetail.user.telephone}"></span></li>
                                             </ul>
                                             <a href="#!">View profile</a>
                                         </div>
@@ -50,43 +50,13 @@
                                             <h5 class="title_infos"> <span class="mdi mdi-ship-wheel"></span>
                                                 Shipping info</h5>
                                             <ul>
-                                                <li>Name: <span> Home</span></li>
-                                                <li>Address: <span>Josephin Villa,
-                                                        81 Fulton Park, Brazil/Pedro Leopoldo</span> </li>
-                                                <li>Phone: <span>(012) 345-678-9012</span></li>
+                                                <li>Name: <span th:text="${orderDetail.user.firstName +' '+ orderDetail.user.lastName}"> </span></li>
+                                                <li>Address: <span th:text="${orderDetail.apartmentNumber +', '+ orderDetail.street+', '+ orderDetail.ward+', '+ orderDetail.district+', '+ orderDetail.city}"> </span> </li>
+                                                <li>Phone: <span th:text="${orderDetail.telephone}"></span></li>
                                             </ul>
                                         </div>
                                     </address>
-                                </div>
-                                <div class="col-xl-3 col-lg-6">
-                                    <address class="info-grid">
-                                        <div class="info-content">
-                                            <h5 class="title_infos"> <span class="mdi mdi-cart"></span> Order
-                                                info</h5>
-                                            <ul>
-                                                <li>Vendor: <span>Style echo</span></li>
-                                                <li>Address: <span>Maroon tower, 81 Fulton Park</span> </li>
-                                                <li>Phone: <span>(012) 345-678-9012</span></li>
-                                            </ul>
-                                            <a href="#!">View profile</a>
-                                        </div>
-                                    </address>
-                                </div>
-                                <div class="col-xl-3 col-lg-6">
-                                    <address class="info-grid">
-                                        <div class="info-content">
-                                            <h5 class="title_infos"> <span class="mdi mdi-card-bulleted"></span>Payment
-                                                info</h5>
-                                            <ul>
-                                                <li>Payment method: <span>Credit card</span></li>
-                                                <li>Master: <span>card: **** **** **** 5794</span> </li>
-                                                <li>Business name:<span>Grand Market LLC</span> </li>
-                                                <li>Phone: <span>(012) 345-678-9012</span></li>
-                                            </ul>
-                                        </div>
-                                    </address>
-                                </div>
-
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -103,7 +73,7 @@
                                         <table class="table table-striped o-tbl">
                                             <thead>
                                                 <tr class="line">
-                                                    <td><strong>Order ID</strong></td>
+                                                    <td><strong>ID</strong></td>
                                                     <td><strong>Photo</strong></td>
                                                     <td><strong>Product name</strong></td>
                                                     <td><strong>Unit</strong></td>
@@ -112,70 +82,32 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>#JK5876GH</td>
+                                                <tr th:each="orderItem : ${orderItems}">
+                                                    <td></td>
                                                     <td><img class="product-img"
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-1.png"
-                                                            alt=""></td>
-                                                    <td>Corporate office chair</td>
-                                                    <td>10 Units</td>
-                                                    <td>$1,000</td>
-                                                    <td>$10,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#JK5876GH</td>
-                                                    <td><img class="product-img"
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-2.png"
-                                                            alt=""></td>
-                                                    <td>Corporate office chair</td>
-                                                    <td>10 Units</td>
-                                                    <td>$1,000</td>
-                                                    <td>$10,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#JK5876GH</td>
-                                                    <td><img class="product-img"
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-3.png"
-                                                            alt=""></td>
-                                                    <td>Corporate office chair</td>
-                                                    <td>10 Units</td>
-                                                    <td>$1,000</td>
-                                                    <td>$10,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#JK5876GH</td>
-                                                    <td><img class="product-img"
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-4.png"
-                                                            alt=""></td>
-                                                    <td>Corporate office chair</td>
-                                                    <td>10 Units</td>
-                                                    <td>$1,000</td>
-                                                    <td>$10,000</td>
+                                                        th:src="|data:image/png;base64, *{orderItem.productInventory.product.image}|" alt="img"></td>
+                                                    <td th:text="${orderItem.productInventory.product.name}"></td>
+                                                    <td th:text="${orderItem.quantity}"></td>
+                                                    <td th:text="${'$'+orderItem.productInventory.product.sellPrice}"></td>
+                                                    <td th:text="|$${orderItem.productInventory.product.sellPrice*orderItem.quantity}|"></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">
                                                     </td>
                                                     <td class="text-right"><strong>Total:</strong></td>
-                                                    <td class="text-right"><strong>$42,000</strong></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td colspan="4">
-                                                    </td>
-                                                    <td class="text-right"><strong>Vat (15%):</strong></td>
-                                                    <td class="text-right"><strong>$6,200</strong></td>
+                                                    <td class="text-right"><strong th:text="${orderDetail.subTotal}"></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">
                                                     </td>
                                                     <td class="text-right"><strong>Discount:</strong></td>
-                                                    <td class="text-right"><strong>$10,200</strong></td>
+                                                    <td class="text-right"><strong th:text="${orderDetail.total-orderDetail.subTotal}"></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">
                                                     </td>
                                                     <td class="text-right"><strong>Grand total:</strong></td>
-                                                    <td class="text-right"><strong>$38,000</strong></td>
+                                                    <td class="text-right"><strong th:text="${orderDetail.total}"></strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

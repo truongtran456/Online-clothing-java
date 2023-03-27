@@ -12,7 +12,7 @@
             <div class="breadcrumb-wrapper breadcrumb-contacts">
                 <div>
                     <h1>Customer list</h1>
-                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                    <p class="breadcrumbs"><span><a href="/admin">Home</a></span>
                         <span><i class="mdi mdi-chevron-right"></i></span>Customer
                     </p>
                 </div>
@@ -21,9 +21,9 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="ec-cat-list card card-default">
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div>
                                 <div id="responsive-data-table_wrapper"
-                                    class="dataTables_wrapper dt-bootstrap5 no-footer">                                
+                                    class="dataTables_wrapper dt-bootstrap5 no-footer">
                                     <table id="responsive-data-table" class="table dataTable no-footer"
                                         aria-describedby="responsive-data-table_info">
                                         <thead>
@@ -36,7 +36,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Photo: activate to sort column ascending"
-                                                    style="width: 119.414px;">Photo</th>
+                                                    style="width: 119.414px;">Avatar</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Full name: activate to sort column ascending"
@@ -48,23 +48,15 @@
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Purchased: activate to sort column ascending"
-                                                    style="width: 189.434px;">Purchased</th>
+                                                    style="width: 189.434px;">Telephone</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Return: activate to sort column ascending"
-                                                    style="width: 130.977px;">Return</th>
+                                                    style="width: 130.977px;">Last Login</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Amount: activate to sort column ascending"
-                                                    style="width: 151.777px;">Amount</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Status: activate to sort column ascending"
-                                                    style="width: 160.527px;">Status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Joined: activate to sort column ascending"
-                                                    style="width: 155.625px;">Joined</th>
+                                                    style="width: 151.777px;">Is locked</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Action: activate to sort column ascending"
@@ -73,26 +65,15 @@
                                         </thead>
 
                                         <tbody>
-
-
-
-
-
-
-
-
-                                            <tr class="odd">
-                                                <td class="sorting_1">#001 </td>
+                                            <tr class="odd" th:each="user : ${users}">
+                                                <td class="sorting_1" th:text="${user.id}"></td>
                                                 <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u1.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
+                                                        th:src="|data:image/png;base64, *{user.avatar}|" alt="img"></td>
+                                                <td th:text="${user.firstName +' '+ user.lastName}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td th:text="${user.telephone}"></td>
+                                                <td th:text="${user.lastLogin}"></td>
+                                                <td th:text="${user.isLocked}"></td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <button type="button"
@@ -104,210 +85,8 @@
                                                             <span class="sr-only">Info</span>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1">#002 </td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u2.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Jane cooper</td>
-                                                <td>cooper@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1">#003</td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u3.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1">#004</td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u4.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1">#005 </td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u5.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1">#006 </td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u6.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1">#007 </td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u7.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1">#008 </td>
-                                                <td><img class="cat-thumb"
-                                                        src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/user/u8.jpg"
-                                                        alt="Product Image"></td>
-                                                <td>Esther Howard</td>
-                                                <td>michale@example.com</td>
-                                                <td>1794</td>
-                                                <td>5782</td>
-                                                <td>$40,892</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>26 Mar 2021</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Edit</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/admin/user/info/{id}(id=${user.id})}">Edit</a>
                                                             <a class="dropdown-item" href="#">Delete</a>
                                                         </div>
                                                     </div>

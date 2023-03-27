@@ -2,7 +2,7 @@
 <html lang="en" layout:decorate="~{admin/layout}">
 
 <head>
-    <title>List product</title>
+    <title>List orderDetail</title>
     <th:block layout:fragment="header_optional">
         <!-- No Extra plugin used -->
         <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
@@ -16,13 +16,10 @@
         <div class="content">
             <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                 <div>
-                    <h1>All products</h1>
+                    <h1>All Order Detail</h1>
                     <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
-                        <span><i class="mdi mdi-chevron-right"></i></span>Product
+                        <span><i class="mdi mdi-chevron-right"></i></span>Order details
                     </p>
-                </div>
-                <div>
-                    <a href="/admin/product/add" class="btn btn-primary"> Add Porduct</a>
                 </div>
             </div>
             <div class="row">
@@ -32,7 +29,7 @@
                             <div class="">
                                 <div id="responsive-data-table_wrapper"
                                     class="dataTables_wrapper dt-bootstrap5 no-footer">
-                                    
+
                                     <table id="responsive-data-table" class="table dataTable no-footer"
                                         style="width:100%" aria-describedby="responsive-data-table_info">
                                         <thead>
@@ -45,31 +42,27 @@
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Img: activate to sort column ascending"
-                                                    style="width: 80.0977px;">Image</th>
+                                                    style="width: 180.0977px;">User name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Name: activate to sort column ascending"
-                                                    style="width: 199.062px;">Name</th>
+                                                    style="width: 99.062px;">Total</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Category: activate to sort column ascending"
-                                                    style="width: 118.672px;">Category</th>
+                                                    style="width: 118.672px;">Coupon</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
-                                                    aria-label="Import price: activate to sort column ascending"
-                                                    style="width: 71.0156px;">Import price</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Sell price: activate to sort column ascending"
-                                                    style="width: 133.008px;">Sell price</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Discount percent: activate to sort column ascending"
-                                                    style="width: 77.5195px;">Discount percent</th>
+                                                    aria-label="Category: activate to sort column ascending"
+                                                    style="width: 118.672px;">Payment</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Is active: activate to sort column ascending"
-                                                    style="width: 104.375px;">Is active</th>
+                                                    style="width: 104.375px;">Telephone</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Is active: activate to sort column ascending"
+                                                    style="width: 104.375px;">Status</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Action: activate to sort column ascending"
@@ -78,20 +71,18 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr class="odd" th:each="product : ${products}">
-                                                <td class="sorting_1" th:text="${product.id}"></td>
-                                                <td><img class="tbl-thumb"
-                                                    th:src="|data:image/png;base64, *{product.image}|" alt="img"></td>
-                                                <td th:text="${product.name}"></td>
-                                                <td th:text="${product.productCategory.name}"></td>
-                                                <td th:text="${product.importPrice}"></td>
-                                                <td th:text="${product.sellPrice}"></td>
-                                                <td th:text="${product.discountPercent}"></td>
-                                                <td th:text="${product.isActived}"></td>
+                                            <tr class="odd" th:each="orderDetail : ${orderDetails}">
+                                                <td class="sorting_1" th:text="${orderDetail.id}"></td>
+                                                <td th:text="${orderDetail.user.firstName +' '+orderDetail.user.lastName}"></td>
+                                                <td th:text="${orderDetail.total}"></td>
+                                                <td th:text="${orderDetail.coupon.discountPercent}"></td>
+                                                <td th:text="${orderDetail.payment.name}"></td>
+                                                <td th:text="${orderDetail.telephone}"></td>
+                                                <td th:text="${orderDetail.status}"></td>
                                                 <td>
                                                     <div class="btn-group mb-1">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
+                                                        <a type="button" th:href="@{order-detail/info/{id}(id=${orderDetail.id})}"
+                                                            class="btn btn-outline-success">Info</a>
                                                         <button type="button"
                                                             class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
                                                             data-bs-toggle="dropdown" aria-haspopup="true"
@@ -100,13 +91,14 @@
                                                         </button>
 
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" th:href="@{edit/{id}(id=${product.id})}">Edit</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{edit/{id}(id=${orderDetail.id})}">Edit</a>
                                                             <a class="dropdown-item" href="#">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
 

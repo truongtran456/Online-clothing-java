@@ -72,14 +72,8 @@
                                         </a>
                                         <div class="collapse">
                                             <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
-                                                <li>
-                                                    <a class="sidenav-item-link" href="user-card.html">
-                                                        <span class="nav-text">User Grid</span>
-                                                    </a>
-                                                </li>
-
                                                 <li class="">
-                                                    <a class="sidenav-item-link" href="user-list.html">
+                                                    <a class="sidenav-item-link" href="/admin/user">
                                                         <span class="nav-text">User List</span>
                                                     </a>
                                                 </li>
@@ -94,7 +88,7 @@
                                     </li>
 
                                     <!-- Category -->
-                                    <li class="has-sub">
+                                    <!-- <li class="has-sub">
                                         <a class="sidenav-item-link" href="javascript:void(0)">
                                             <i class="mdi mdi-shape"></i>
                                             <span class="nav-text">Categories</span> <b class="caret"></b>
@@ -113,8 +107,28 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                    </li> -->
+                                    <!-- Category -->
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="javascript:void(0)">
+                                            <i class="mdi mdi-shape"></i>
+                                            <span class="nav-text">Coupon</span> <b class="caret"></b>
+                                        </a>
+                                        <div class="collapse">
+                                            <ul class="sub-menu" id="coupon" data-parent="#sidebar-menu">
+                                                <li class="">
+                                                    <a class="sidenav-item-link" href="/admin/coupon/">
+                                                        <span class="nav-text">All coupon</span>
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a class="sidenav-item-link" href="/admin/coupon/add">
+                                                        <span class="nav-text">Add coupon</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
-
                                     <!-- Products -->
                                     <li class="has-sub">
                                         <a class="sidenav-item-link" href="javascript:void(0)">
@@ -147,7 +161,28 @@
                                             </ul>
                                         </div>
                                     </li>
-
+                                    <!-- Products inventory-->
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="javascript:void(0)">
+                                            <!-- <i class="mdi mdi-palette-advanced"></i> -->
+                                            <i class="mdi mdi-package-variant-closed"></i>
+                                            <span class="nav-text">Inventory</span> <b class="caret"></b>
+                                        </a>
+                                        <div class="collapse">
+                                            <ul class="sub-menu" id="productInventory" data-parent="#sidebar-menu">
+                                                <li class="">
+                                                    <a class="sidenav-item-link" href="/admin/product/inventory/add">
+                                                        <span class="nav-text">Add Product inventory</span>
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a class="sidenav-item-link" href="/admin/product/inventory">
+                                                        <span class="nav-text">List Product inventory</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <!-- Orders -->
                                     <li class="has-sub">
                                         <a class="sidenav-item-link" href="javascript:void(0)">
@@ -157,7 +192,7 @@
                                         <div class="collapse">
                                             <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
                                                 <li class="">
-                                                    <a class="sidenav-item-link" href="new-order.html">
+                                                    <a class="sidenav-item-link" href="/admin/order-detail">
                                                         <span class="nav-text">Order list</span>
                                                     </a>
                                                 </li>
