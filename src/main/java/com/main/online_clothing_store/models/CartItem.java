@@ -49,11 +49,12 @@ public class CartItem implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
-    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "userId", nullable = false, insertable = false, updatable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productInventoryId")
-    @JoinColumn(name = "productInventoryId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "productInventoryId", nullable = false, insertable = false, updatable = false)
     private ProductInventory productInventory;
+    
 }

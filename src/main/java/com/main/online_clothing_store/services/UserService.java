@@ -10,11 +10,15 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import com.main.online_clothing_store.models.User;
 import com.main.online_clothing_store.repositories.AdminUserRepository;
@@ -27,6 +31,12 @@ public class UserService {
     UserRepository userRepository;
     AdminUserRepository adminUserRepository;
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender emailSender;
+
+    @Value("${spring.mail.username}")
+    private String sender;
 
     @Autowired
     public UserService(UserRepository userRepository, AdminUserRepository adminUserRepository, PasswordEncoder passwordEncoder) {
@@ -53,6 +63,7 @@ public class UserService {
             throw new Exception("User already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setGender(true);
         Date currentTime = new Date();
         user.setLastLogin(currentTime);
         user.setIsLocked(false);
@@ -100,5 +111,27 @@ public class UserService {
     }
     public Long getTotalUser(){
         return userRepository.count();
+    }
+
+    public Boolean sendNewPassword(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent()){
+            String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
+            String newPassword = RandomStringUtils.random(8, characters);
+            user.get().setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user.get());
+            sendSimpleMessage(email, "New Password", "Your new password is: " + newPassword);
+            return true;
+        }
+        return false;
+    }
+
+    public void sendSimpleMessage(String to, String subject, String text) {
+            SimpleMailMessage message = new SimpleMailMessage(); 
+            message.setFrom(this.sender);
+            message.setTo(to); 
+            message.setSubject(subject); 
+            message.setText(text);
+            emailSender.send(message);
     }
 }

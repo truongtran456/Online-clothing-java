@@ -82,15 +82,14 @@
                                                             th:text="|Sale ${product.discountPercent}%|"></span>
                                                     </span>
                                                     <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist"
+                                                        <a th:onclick="|add_to_wishlist(${product.id})|" class="action wishlist"
                                                             title="Wishlist"><i class="far fa-heart"></i></a>
                                                         <a href="compare.html" class="action compare" title="Compare"><i
                                                                 class="fas fa-exchange-alt"></i></a>
                                                     </div>
-                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                        Add To Cart
-                                                    </button>
+                                                    <a class="add-to-cart offcanvas-toggle" th:href="|@{/products/single-product/}${product.id}|">
+                                                        View Detail
+                                                    </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="title">
@@ -128,15 +127,14 @@
                                                             th:text="|Sale ${product.discountPercent}%|"></span>
                                                     </span>
                                                     <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist"
+                                                        <a th:onclick="|add_to_wishlist(${product.id})|" class="action wishlist"
                                                             title="Wishlist"><i class="far fa-heart"></i></a>
                                                         <a href="compare.html" class="action compare" title="Compare"><i
                                                                 class="fas fa-exchange-alt"></i></a>
                                                     </div>
-                                                    <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                        data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                        Add To Cart
-                                                    </button>
+                                                    <a class="add-to-cart offcanvas-toggle" th:href="|@{/products/single-product/}${product.id}|">
+                                                        View Detail
+                                                    </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="title">

@@ -39,8 +39,12 @@ public class ProductService {
     public Optional<Product> findById(int id) {
         return productRepository.findById(id);
     }
+
+    public Optional<Product> findByIdAndIsActived(int id) {
+        return productRepository.findByIdAndIsActived(id, true);
+    }
     
-    public Page<Product> getAllProducts(Integer pageSize, Integer offset, String filterBy, String sortBy) {
+    public Page<Product> getAllProducts(String name, Integer pageSize, Integer offset, String filterBy, String sortBy) {
         Page<Product> products = null;
         Sort canSort = null;
         switch(sortBy) {
@@ -56,14 +60,14 @@ public class ProductService {
         }
         switch(filterBy){
             case "newArrival":{
-                products = productRepository.findAll(PageRequest.of(offset - 1, pageSize, canSort));
+                products = productRepository.findByNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), name, true);
                 break;
             }
             case "onSale":{
-                products = productRepository.findByDiscountPercentGreaterThanAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), 0, true);
+                products = productRepository.findByDiscountPercentGreaterThanAndNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), 0, name, true);
                 break;
             }
-            default: products = productRepository.findAll(PageRequest.of(offset - 1, pageSize, canSort));
+            default: products = productRepository.findByNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), name, true);
         }
         return products;
     }

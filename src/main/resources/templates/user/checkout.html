@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+
+<head>
+    <title>Checkout</title>
+</head>
+
+<body>
+    <!-- Banner Area -->
+    <section id="common_banner_one" layout:fragment="banner">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_banner_text">
+                        <h2>Checkout</h2>
+                        <ul>
+                            <li><a th:href="@{/home}">Home</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li class="active">Checkout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout-Area -->
+    <section id="checkout_one" class="ptb-100" layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <form method="post" th:object="${orderDetail}" th:action="@{/user/cart/handle-checkout}">
+                        <div class="order_review box-shadow bg-white">
+                            <div class="check-heading">
+                                <h3>Billings Information</h3>
+                            </div>
+                            <div class="check-out-form">
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="firstName">First name</label>
+                                            <input type="text" class="form-control" id="firstName"
+                                                placeholder="First name *" th:value="${user.firstName}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="lastName">Last name</label>
+                                            <input type="text" class="form-control" id="lastName"
+                                                placeholder="Last name *" th:value="${user.lastName}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input class="form-control" type="text" id="email" th:value="${user.email}"
+                                                readonly placeholder="info@gmail.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="telephone">Telephone</label>
+                                            <input type="text" required class="form-control" th:field="*{telephone}"
+                                                placeholder="Telephone">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('telephone')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="apartmentNumber">Apartment number</label>
+                                            <input type="text" class="form-control" required
+                                                th:field="*{apartmentNumber}" placeholder="Enter Your Apartment Number">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('apartmentNumber')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="street">Street</label>
+                                            <input type="text" class="form-control" required th:field="*{street}"
+                                                placeholder="Enter Your Street">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('street')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="ward">Ward</label>
+                                            <input type="text" class="form-control" required th:field="*{ward}"
+                                                placeholder="Enter Your Ward">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('ward')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="district">District</label>
+                                            <input type="text" class="form-control" required th:field="*{district}"
+                                                placeholder="Enter Your District">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('district')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" required th:field="*{city}"
+                                                placeholder="Enter Your City">
+                                            <p class="text-danger" th:each="error: ${#fields.errors('city')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="note">Additional Notes</label>
+                                            <textarea rows="5" class="form-control" th:field="*{note}"
+                                                placeholder="Order notes"></textarea>
+                                            <p class="text-danger" th:each="error: ${#fields.errors('note')}"
+                                                th:text="${error}"></p>
+                                        </div>
+                                    </div>            
+                                    <p class="text-danger" th:if="${error != null && error != ''}" th:text="${error}"></p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="order_review bg-white">
+                            <div class="check-heading">
+                                <h3>Payment</h3>
+                            </div>
+                            <div class="payment_method">
+                                <div class="payment_option">
+                                    <select name="paymentId" class="customs_sel_box">
+                                        <option th:each="payment : ${payments}" th:value="${payment.id}"
+                                            th:text="${payment.name}"
+                                            th:selected="${payment.id == orderDetail.payment.id}">
+                                        </option>
+                                    </select>
+                                    <p class="mt-4">
+                                        There are many variations of passages of Lorem Ipsum available, but the
+                                        majority
+                                        have suffered alteration.
+                                    </p>
+                                </div>
+                            </div> <button type="submit"
+                                class="theme-btn-one btn-black-overlay btn_sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="order_review  box-shadow bg-white">
+                        <div class="check-heading">
+                            <h3>Your Orders</h3>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item : ${cartItems}">
+                                        <td>[[${item.name}]] <span class="product-qty"
+                                                th:text="|x ${item.quantity}|"></span>
+                                        </td>
+                                        <td th:text="${#numbers.formatCurrency(item.quantity * item.price)}"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>SubTotal</th>
+                                        <td class="product-subtotal" th:text="${#numbers.formatCurrency(subtotal)}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping</th>
+                                        <td>Free Shipping</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Discount</th>
+                                        <td class="product-subtotal" th:text="${#numbers.formatCurrency(subtotal - total)}">$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <td class="product-subtotal" th:text="${#numbers.formatCurrency(total)}">
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="checkout-area-bg bg-white">
+                        <div class="check-heading">
+                            <h3>Coupon</h3>
+                        </div>
+                        <div class="check-out-form">
+                            <div class="row">
+                                <form method="post" th:action="@{/user/cart/apply-coupon}">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="couponName" id="couponName" th:value="${coupon}" placeholder="Your Coupon">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <button type="submit"
+                                                class="theme-btn-one btn-black-overlay btn_sm">Apply</button>
+                                        </div>
+                                    </div>
+                                    <p class="text-danger" th:if="${couponMessage != null}" th:text="${couponMessage}"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

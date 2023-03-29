@@ -62,4 +62,28 @@ public class AuthenticationController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Principal principal) {
+        return principal == null ? "authentication/forgot_password" : "redirect:/";
+    }
+
+    @PostMapping("/send-new-password")
+    public String sendNewPassword(Principal principal, String email, Model model) {
+        if(principal == null){
+            try {
+                if(userService.sendNewPassword(email)){
+                    model.addAttribute("message", "We have sent you a new password to your email address. Please check your email.");
+                }
+                else{
+                    model.addAttribute("message", "Error!");
+                }
+            }
+            catch(Exception e){
+                model.addAttribute("message", "Email does not exist.");
+            }
+            return "redirect:/forgot-password";
+        }
+        return "redirect:/";
+    }
 }

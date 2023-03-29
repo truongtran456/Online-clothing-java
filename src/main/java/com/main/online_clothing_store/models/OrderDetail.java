@@ -98,6 +98,9 @@ public class OrderDetail implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
+    @Transient
+    public Integer paymentId;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetail")
     private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 

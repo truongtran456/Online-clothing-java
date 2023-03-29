@@ -102,9 +102,9 @@
                                                     <tbody>
                                                         <tr class="odd" th:each="order : ${orders}">
                                                             <td class="sorting_1" th:text="${order.id}"></td>
-                                                            <td th:text="|$${order.total}|"></td>
+                                                            <td th:text="${#numbers.formatCurrency(order.total)}"></td>
                                                             <td th:text="${order.payment.name}"></td>
-                                                            <td th:text="${order.status}"></td>
+                                                            <td th:text="${order.status == 0 ? 'Canceled' : order.status == 1 ? 'Pending' : 'Completed'}"></td>
                                                             <td th:text="${{order.createdAt}}"></td>
                                                             <td>
                                                                 <div class="btn-group mb-1">
@@ -217,7 +217,7 @@
                                                 <input type="email" class="form-control" th:field="*{email}" readonly>
                                             </div>
                                             <div class="default-form-box">
-                                                <label for="newPassword">New password <span>*</span></label>
+                                                <label for="newPassword">New password</label>
                                                 <input type="password" class="form-control" th:field="*{newPassword}">
                                                 <p class="text-danger" th:each="error: ${#fields.errors('newPassword')}"
                                                     th:text="${error}"></p>

@@ -27,7 +27,7 @@ public class ApplicationController {
         return "application/home";
     }
     @GetMapping("/products")
-    public String products(@RequestParam(required = false) Integer page, @RequestParam(required = false) String filterBy, @RequestParam(required = false) String sortBy, Model model){
+    public String products(@RequestParam(required = false) String name, @RequestParam(required = false) Integer page, @RequestParam(required = false) String filterBy, @RequestParam(required = false) String sortBy, Model model){
         if(page == null || page < 1){
             page = 1;
         }
@@ -37,7 +37,13 @@ public class ApplicationController {
         if(sortBy == null || sortBy.isBlank()){
             sortBy = "newest";
         }
-        Page<Product> products = productService.getAllProducts(12, page, filterBy, sortBy);
+        if(name == null || name.isBlank()){
+            name = "";
+        }
+        else{
+            name = name.replaceAll("%20", " ").trim();
+        }
+        Page<Product> products = productService.getAllProducts(name, 12, page, filterBy, sortBy);
         Integer totalPage = products.getTotalPages();
         if(page > totalPage){
             page = totalPage;
@@ -49,6 +55,10 @@ public class ApplicationController {
         model.addAttribute("filterBy", filterBy);
         model.addAttribute("sortBy", sortBy);
         return "application/products";
+    }
+    @GetMapping("/order-tracking")
+    public String orderTracking(){
+        return "application/order_tracking";
     }
     @GetMapping("/about-us")
     public String about_us(){

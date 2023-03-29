@@ -20,7 +20,7 @@
                         <ul>
                             <li><a th:href="@{/home}">Home</a></li>
                             <li><i class="fas fa-slash"></i></li>
-                            <li><a th:href="@{/user/my-account}">My Account</a></li>
+                            <li><a th:href="@{/order-tracking}">Order Tracking</a></li>
                             <li><i class="fas fa-slash"></i></li>
                             <li class="active">Order Detail</li>
                         </ul>
@@ -33,8 +33,14 @@
     <section id="order_detail" class="ptb-100" layout:fragment="content">
         <div class="container">
             <div class="card card-default">
-                <div class="card-body">
-                    <h2 class="text-center mb-5">Your order detail</h2>
+                <div th:if="${order == null}" class="card-body">
+                    <h3 th:text="${message}" class="text-center text-danger"></h3>
+                    <div class="row text-right mt-5">
+                        <a th:href="@{/order-tracking}" class="theme-btn-one"><i class="fa fa-arrow-left"></i> Back to order tracking</a>
+                    </div>
+                </div>
+                <div th:if="${order != null}" class="card-body">
+                    <h2 class="text-center mb-5">Order detail</h2>
                     <hr>
                     <div class="row">
                         <div class="col-6"><label>Ship address: <span class="text-muted" th:text="${order.shipAddress}"></span></label></div>
@@ -97,7 +103,7 @@
                                 </tbody>
                             </table>
                             <div class="row text-right mt-5">
-                                <a th:href="@{/user/my-account}" class="theme-btn-one"><i class="fa fa-arrow-left"></i> Back to list orders</a>
+                                <a th:href="@{/order-tracking}" class="theme-btn-one"><i class="fa fa-arrow-left"></i> Back to order tracking</a>
                             </div>
                         </div>
                     </div>

@@ -28,4 +28,5 @@ public class OrderItemService {
         List<Integer> productInventoryIds = product.getProductInventories().parallelStream().map(ProductInventory::getId).collect(Collectors.toList());
         return orderItemRepository.findByCommentIsNotNullAndIdProductInventoryIdIn(productInventoryIds);
     }
+
 }

@@ -10,8 +10,8 @@
                 <span class="search-overlay-close-line"></span>
             </div>
             <div class="search-overlay-form">
-                <form>
-                    <input type="text" class="input-search" placeholder="Search here...">
+                <form th:action="@{/products}" method="get">
+                    <input type="text" class="input-search" placeholder="Search here..." name="name">
                     <button type="submit"><i class="fas fa-search search-btn"></i></button>
                 </form>
             </div>

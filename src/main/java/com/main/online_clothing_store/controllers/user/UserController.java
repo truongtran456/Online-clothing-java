@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping({"/", "/my-account"})
-    public String my_account(Principal principal, Model model){
+    public String myAccount(Principal principal, Model model){
         if(principal == null){
             return "redirect:/login";
         }
@@ -58,7 +58,7 @@ public class UserController {
         return "user/my_account";
     }
     @PostMapping("/update-account")
-    public String update_account(Principal principal, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, HttpServletRequest request, Model model, Errors errors){
+    public String updateAccount(Principal principal, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, HttpServletRequest request, Model model, Errors errors){
         if(principal == null){
             return "redirect:/login";
         }
@@ -82,14 +82,14 @@ public class UserController {
         return "user/my_account";
     }
     @GetMapping("/update-account")
-    public String update_account(Principal principal){
+    public String updateAccount(Principal principal){
         if(principal == null){
             return "redirect:/login";
         }
         return "redirect:/user/my-account";
     }
     @GetMapping("/order-detail/{id}")
-    public String order_detail(Principal principal, @PathVariable (required = true) Integer id, Model model){
+    public String orderDetail(Principal principal, @PathVariable (required = true) Integer id, Model model){
         if(principal == null){
             return "redirect:/login";
         }
