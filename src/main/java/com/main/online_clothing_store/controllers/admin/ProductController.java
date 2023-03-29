@@ -28,7 +28,7 @@ import com.main.online_clothing_store.services.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-@Controller
+@Controller("adminProductController")
 @RequestMapping("/admin/product")
 @SessionAttributes("product")
 public class ProductController {

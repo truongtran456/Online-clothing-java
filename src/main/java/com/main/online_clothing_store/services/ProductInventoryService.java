@@ -1,7 +1,6 @@
 package com.main.online_clothing_store.services;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -50,5 +49,13 @@ public class ProductInventoryService {
             return productInventoryRepository.save(productInventory);
         }
         return productInventory;
+    }
+
+    public List<String> findDistinctColorByProductId(Integer id) {
+        return productInventoryRepository.findDistinctColorsByProductId(id);
+    }
+
+    public List<String> findDistinctSizeByProductId(Integer id) {
+        return productInventoryRepository.findDistinctSizesByProductId(id);
     }
 }

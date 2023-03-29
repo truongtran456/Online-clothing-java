@@ -74,25 +74,13 @@
                                                 <td class="sorting_1" th:text="${coupon.id}"></td>
                                                 <td th:text="${coupon.name}"></td>
                                                 <td th:text="${coupon.discountPercent}"></td>
-                                                <td th:text="${coupon.startDate}"></td>
-                                                <td th:text="${coupon.endDate}"></td>
+                                                <td th:text="${{coupon.startDate}}"></td>
+                                                <td th:text="${{coupon.endDate}}"></td>
                                                 <td th:text="${coupon.isActived}"></td>
                                                 <td>
                                                     <div class="btn-group mb-1">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success">Info</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static">
-                                                            <span class="sr-only">Info</span>
-                                                        </button>
-
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item"
-                                                                th:href="@{edit/{id}(id=${coupon.id})}">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
+                                                        <a th:href="@{edit/{id}(id=${coupon.id})}"
+                                                            class="btn btn-outline-success">Edit</a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>List product inventory</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>All role </h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Roles
+                    </p>
+                </div>
+                <div>
+                    <a href="/admin/role/add" class="btn btn-primary"> Add role</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="">
+                                <div id="responsive-data-table_wrapper"
+                                    class="dataTables_wrapper dt-bootstrap5 no-footer">
+
+                                    <table id="responsive-data-table" class="table dataTable no-footer"
+                                        style="width:100%" aria-describedby="responsive-data-table_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0"
+                                                    aria-controls="responsive-data-table" rowspan="1" colspan="1"
+                                                    aria-sort="ascending"
+                                                    aria-label="ID: activate to sort column descending"
+                                                    style="width: 39.6875px;">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Img: activate to sort column ascending"
+                                                    style="width: 180.0977px;">Admin name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 99.062px;">Role</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 107.109px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="odd" th:each="roleAdminUser : ${roleAdminUsers}">
+                                                <td class="sorting_1" th:text="${roleAdminUser.role.id}"></td>
+                                                <td
+                                                    th:text="${roleAdminUser.adminUser.firstName +' '+roleAdminUser.adminUser.lastName}">
+                                                </td>
+                                                <td th:text="${roleAdminUser.role.name}"></td>
+                                                <td>
+                                                    <a class="btn text-primary"
+                                                    th:href="@{/admin/role/delete(adminUserId=${roleAdminUser.adminUser.Id}, roleId=${roleAdminUser.role.Id})}">Delete</a>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+        <script>
+            function deleteRole(roleId,adminUserId) {
+                let text = "Delete Role!";
+                if (confirm(text) == true) {
+                    $.ajax({
+                        url: "/admin/role/delete",
+                        data:JSON.stringify({
+                            adminUserId: adminUserId,
+                            roleId: roleId
+                        }),
+                        type: "post",
+                        contentType: "application/json",
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            }
+        </script>
+    </th:block>
+</body>
+
+</html>

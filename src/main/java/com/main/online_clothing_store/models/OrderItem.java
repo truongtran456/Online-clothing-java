@@ -12,6 +12,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
@@ -69,9 +70,11 @@ public class OrderItem implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productInventoryId")
+    @JoinColumn(name = "productInventoryId", referencedColumnName = "id", insertable = false, updatable = false)
     private ProductInventory productInventory;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderDetailId")
+    @JoinColumn(name = "orderDetailId", referencedColumnName = "id", insertable = false, updatable = false)
     private OrderDetail orderDetail;
 }

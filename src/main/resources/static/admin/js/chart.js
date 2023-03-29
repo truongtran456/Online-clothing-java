@@ -896,72 +896,72 @@ $(document).ready(function() {
   }
 
   /*======== 12. POLAR CHART ========*/
-  var polar = document.getElementById("polar");
-  if (polar !== null) {
-    var configPolar = {
-      data: {
-        datasets: [
-          {
-            data: [43, 23, 53, 33, 55],
-            backgroundColor: [
-              "rgba(41,204,151,0.5)",
-              "rgba(254,88,101,0.5)",
-              "rgba(128,97,239,0.5)",
-              "rgba(254,196,0,0.5)",
-              "rgba(76,132,255,0.5)"
-            ],
-            label: "" // for legend
-          }
-        ],
-        labels: ["Total Sales", "Rejected", "Completed", "Pending", "Reserve"]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          position: "right",
-          display: false
-        },
-        layout: {
-          padding: {
-            top: 10,
-            bottom: 10,
-            right: 10,
-            left: 10
-          }
-        },
-        title: {
-          display: false,
-          text: "Chart.js Polar Area Chart"
-        },
-        scale: {
-          ticks: {
-            beginAtZero: true,
-            fontColor: "#1b223c",
-            fontSize: 12,
-            stepSize: 10,
-            max: 60
-          },
-          reverse: false
-        },
-        animation: {
-          animateRotate: false,
-          animateScale: true
-        },
-        tooltips: {
-          titleFontColor: "#888",
-          bodyFontColor: "#555",
-          titleFontSize: 12,
-          bodyFontSize: 14,
-          backgroundColor: "rgba(256,256,256,0.95)",
-          displayColors: true,
-          borderColor: "rgba(220, 220, 220, 0.9)",
-          borderWidth: 2
-        }
-      }
-    };
-    window.myPolarArea = Chart.PolarArea(polar, configPolar);
-  }
+  // var polar = document.getElementById("polar");
+  // if (polar !== null) {
+  //   var configPolar = {
+  //     data: {
+  //       datasets: [
+  //         {
+  //           data: [43, 23, 53, 33, 55],
+  //           backgroundColor: [
+  //             "rgba(41,204,151,0.5)",
+  //             "rgba(254,88,101,0.5)",
+  //             "rgba(128,97,239,0.5)",
+  //             "rgba(254,196,0,0.5)",
+  //             "rgba(76,132,255,0.5)"
+  //           ],
+  //           label: "" // for legend
+  //         }
+  //       ],
+  //       labels: ["Total Sales", "Rejected", "Completed", "Pending", "Reserve"]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       legend: {
+  //         position: "right",
+  //         display: false
+  //       },
+  //       layout: {
+  //         padding: {
+  //           top: 10,
+  //           bottom: 10,
+  //           right: 10,
+  //           left: 10
+  //         }
+  //       },
+  //       title: {
+  //         display: false,
+  //         text: "Chart.js Polar Area Chart"
+  //       },
+  //       scale: {
+  //         ticks: {
+  //           beginAtZero: true,
+  //           fontColor: "#1b223c",
+  //           fontSize: 12,
+  //           stepSize: 10,
+  //           max: 60
+  //         },
+  //         reverse: false
+  //       },
+  //       animation: {
+  //         animateRotate: false,
+  //         animateScale: true
+  //       },
+  //       tooltips: {
+  //         titleFontColor: "#888",
+  //         bodyFontColor: "#555",
+  //         titleFontSize: 12,
+  //         bodyFontSize: 14,
+  //         backgroundColor: "rgba(256,256,256,0.95)",
+  //         displayColors: true,
+  //         borderColor: "rgba(220, 220, 220, 0.9)",
+  //         borderWidth: 2
+  //       }
+  //     }
+  //   };
+  //   window.myPolarArea = Chart.PolarArea(polar, configPolar);
+  // }
 
   /*======== 13. RADAR CHART ========*/
   var radar = document.getElementById("radar");

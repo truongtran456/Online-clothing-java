@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Admin profile</title>
+</head>
+
+<body>
+     <!-- CONTENT WRAPPER -->
+     <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>Admin profile</h1>
+                    <p class="breadcrumbs"><span><a href="admin/">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Profile
+                    </p>
+                </div>
+            </div>
+            <div class="user_profile_wrapper_top card">
+                <div class="user_profile_top_bg"></div>
+                <div class="user_profile_top_des">
+                    <div class="user_profile_img">
+                        <img th:if="${adminUser.avatar !=null}" th:src="|data:image/png;base64, *{adminUser.avatar}|"alt="">
+                        <img th:if="${adminUser.avatar ==null}"  src="/img/common/avatar.png" alt="">
+                    
+                    </div>
+                    <div class="user_profile_text_top">
+                        <h3 th:text="${adminUser.firstName+' '+adminUser.lastName}"></h3>
+                        <p th:text="${adminUser.telephone}"></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card bg-white profile-content">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="profile-content-left profile-left-spacing">
+                            <hr class="w-100">
+
+                            <div class="contact-info pt-4">
+                                <h5 class="text-dark">Contact Information</h5>
+
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Email</h3>
+                                    <p th:text="${adminUser.email}"></p>
+                                </div>
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Phone number</h3>
+                                    <p th:text="${adminUser.telephone}"></p>
+                                </div>
+
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Social Profile</h3>
+
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="mb-1 btn btn-outline btn-twitter rounded-circle">
+                                                <i class="mdi mdi-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="mb-1 btn btn-outline btn-linkedin rounded-circle">
+                                                <i class="mdi mdi-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="mb-1 btn btn-outline btn-facebook rounded-circle">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="mb-1 btn btn-outline btn-skype rounded-circle">
+                                                <i class="mdi mdi-skype"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="profile-content-right profile-right-spacing py-5">
+                            <div th:if="${message != null}" th:text="${message}" class="alert alert-danger mt-4">
+                            </div>
+                            <div class="card-body">
+                                <div class="row ec-vendor-uploads">
+                                    <form method="POST" th:action="@{/admin/admin-user/edit}" th:object="${adminUser}"
+                                        class="row g-3" enctype="multipart/form-data">
+                                        <div class="col-lg-8">
+                                            <div class="ec-vendor-upload-detail">
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label for="firstName" class="form-label">First name</label>
+                                                        <input type="text" class="form-control slug-title"
+                                                            placeholder="First name" th:field="*{firstName}">
+                                                        <p class="text-danger"
+                                                            th:each="error: ${#fields.errors('firstName')}"
+                                                            th:text="${error}"></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="lastName" class="form-label">Last name</label>
+                                                        <input type="text" class="form-control slug-title"
+                                                            placeholder="Last name" th:field="*{lastName}">
+                                                        <p class="text-danger"
+                                                            th:each="error: ${#fields.errors('lastName')}"
+                                                            th:text="${error}"></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="telephone" class="form-label">Telephone</label>
+                                                        <input type="text" class="form-control slug-title"
+                                                            placeholder="Telephone" th:field="*{telephone}">
+                                                        <p class="text-danger"
+                                                            th:each="error: ${#fields.errors('telephone')}"
+                                                            th:text="${error}"></p>
+                                                    </div>
+                                                   
+                                                    <div class="col-md-6">
+                                                        <label for="newPassword" class="form-label">New password</label>
+                                                        <input type="password" class="form-control slug-title"
+                                                            placeholder="newPassword" th:field="*{newPassword}">
+                                                        <p class="text-danger"
+                                                            th:each="error: ${#fields.errors('newPassword')}"
+                                                            th:text="${error}"></p>
+                                                    </div>
+    
+                                                    <div class="form-group col-12 form-check form-switch m-3">
+                                                        <input class="form-check-input" type="checkbox" role="switch"
+                                                            id="isLocked" checked th:field="*{isLocked}">
+                                                        <label class="form-check-label" for="isActived">Is Locked</label>
+                                                    </div>
+    
+                                                    <div class="col-md-12">
+                                                        <div class="product_add_cancel_button">
+                                                            <button type="submit" class="btn btn-border">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary">Update
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="ec-vendor-img-upload">
+                                                <div class="ec-vendor-main-img">
+                                                    <label class="form-check-label">Image upload</label>
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('avatar')}"
+                                                        th:text="${error}"></p>
+                                                    <div class="avatar-upload">
+                                                        <div class="avatar-edit">
+                                                            <input type="file" id="uploadAvatar" class="ec-image-upload"
+                                                                th:field="*{uploadAvatar}" accept=".png, .jpg, .jpeg">
+                                                            <label for="uploadAvatar"><img
+                                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                    class="svg_img header_svg" alt="edit"></label>
+                                                        </div>
+                                                        <div class="avatar-preview ec-preview">
+                                                            <div class="imagePreview ec-div-preview">
+                                                                <img class="ec-image-preview"
+                                                                    th:if="${adminUser.avatar != null}"
+                                                                    th:src="|data:image/png;base64, *{avatar}|">
+                                                                <img class="ec-image-preview"
+                                                                    th:if="${adminUser.avatar == null}"
+                                                                    src="/img/common/avatar.png">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Data Tables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

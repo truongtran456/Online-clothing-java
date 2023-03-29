@@ -16,15 +16,14 @@
                         <span><i class="mdi mdi-chevron-right"></i></span>Profile
                     </p>
                 </div>
-                <div>
-                    <a href="admin/user/edit" class="btn btn-primary">Edit</a>
-                </div>
             </div>
             <div class="user_profile_wrapper_top card">
                 <div class="user_profile_top_bg"></div>
                 <div class="user_profile_top_des">
                     <div class="user_profile_img">
-                        <img th:src="|data:image/png;base64, *{user.avatar}|"alt="">
+                        <img th:if="${user.avatar !=null}" th:src="|data:image/png;base64, *{user.avatar}|"alt="">
+                        <img th:if="${user.avatar ==null}"  src="/img/common/avatar.png" alt="">
+                    
                     </div>
                     <div class="user_profile_text_top">
                         <h3 th:text="${user.firstName+' '+user.lastName}"></h3>
@@ -141,11 +140,6 @@
                                         data-bs-target="#r-orders" type="button" role="tab"
                                         aria-controls="orders" aria-selected="false">Recent orders</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="settings-tab" data-bs-toggle="tab"
-                                        data-bs-target="#settings" type="button" role="tab"
-                                        aria-controls="settings" aria-selected="false">Settings</button>
-                                </li>
                             </ul>
                             <div class="tab-content px-3 px-xl-5" id="myTabContent">
 
@@ -156,303 +150,19 @@
                                             <h3>All purchased products</h3>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <div class="row" >
+                                            <div class="col-lg-3 col-md-6 col-sm-6" th:each="orderItem : ${orderItems}">
                                                 <div class="card-wrapper">
                                                     <div class="card-container">
                                                         <div class="card-top">
                                                             <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-1.png" alt="">
+                                                            th:src="|data:image/png;base64, *{orderItem.productInventory.product.image}|" alt="">
                                                         </div>
                                                         <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    men</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-2.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    boys</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-3.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    boys</a></h3>
-                                                            <p>$155.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-4.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Pink inner for
-                                                                    women</a></h3>
-                                                            <p>$145.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-5.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Sports t-shirt</a>
-                                                            </h3>
-                                                            <p>$105.90</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-6.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    men</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-7.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    men</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-8.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Smart watch</a>
-                                                            </h3>
-                                                            <p>$589.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-9.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Laptop</a></h3>
-                                                            <p>$1495.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-10.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    men</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-11.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Casual shirt for
-                                                                    men</a></h3>
-                                                            <p>$195.00</p>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <div class="card-edit"><i
-                                                                    class="mdi mdi-circle-edit-outline"></i>
-                                                            </div>
-                                                            <div class="card-preview"><i
-                                                                    class="mdi mdi-eye-outline"></i>
-                                                            </div>
-                                                            <div class="card-remove"><i
-                                                                    class="mdi mdi mdi-delete-outline"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                <div class="card-wrapper">
-                                                    <div class="card-container">
-                                                        <div class="card-top">
-                                                            <img class="card-image"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-big-12.png" alt="">
-                                                        </div>
-                                                        <div class="card-bottom">
-                                                            <h3><a href="product-detail.html">Double sofa
-                                                                    set</a></h3>
-                                                            <p>$195.00</p>
+                                                            <h3><a href="product-detail.html"  th:text="${orderItem.productInventory.product.name}"></a></h3>
+                                                            <p>[[|${#numbers.formatCurrency(orderItem.productInventory.product.sellPrice * (1 -orderItem.productInventory.product.discountPercent /
+                                                                100.0))}|]] <del
+                                                                    th:text="|${#numbers.formatCurrency(orderItem.productInventory.product.sellPrice)}|"></del></p>
                                                         </div>
                                                         <div class="card-action">
                                                             <div class="card-edit"><i
@@ -482,7 +192,7 @@
                                             <div class="col-12">
                                                 <div class="card card-default">
                                                     <div class="card-body">
-                                                        <div class="table-responsive">
+                                                        <div >
                                                             <table id="responsive-data-table" class="table"
                                                                 style="width:100%">
                                                                 <thead>
@@ -504,7 +214,7 @@
                                                                         <td th:text="${orderDetail.total}"></td>
                                                                         <td th:text="${orderDetail.payment.name}"></td>
                                                                         <td th:text="${orderDetail.telephone}"></td>
-                                                                        <td th:text="${orderDetail.createdAt}"></td>
+                                                                        <td th:text="${{orderDetail.createdAt}}"></td>
                                                                         <td th:if="${orderDetail.status ==0}">Pending</td>
                                                                         <td th:if="${orderDetail.status ==1}">Shipped</td>
                                                                         <td th:if="${orderDetail.status ==2}">Delivered</td>
@@ -518,79 +228,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="tab-pane fade" id="settings" role="tabpanel"
-                                    aria-labelledby="settings-tab">
-                                    <div class="tab-widget mt-5">
-                                        <div class="user_profile_top_heading">
-                                            <h3>Customer settings</h3>
-                                        </div>
-                                        <div class="tab-pane-content mt-5">
-                                            <form th:action="@{/admin/user/info}" action="Post" th:object="${user}">
-                                                <div class="row mb-2">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName">First name</label>
-                                                            <input type="text" class="form-control"
-                                                                id="firstName" th:field="*{firstName}" >
-                                                                <p class="text-danger" th:each="error: ${#fields.errors('firstName')}"
-                                                        th:text="${error}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="lastName">Last name</label>
-                                                            <input type="text" class="form-control"
-                                                                id="lastName" th:field="*{lastName}" >
-                                                                <p class="text-danger" th:each="error: ${#fields.errors('lastName')}"
-                                                        th:text="${error}"></p>
-                                                        </div>
-                                                    </div>      
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group mb-4">
-                                                            <label for="email">Email</label>
-                                                            <input type="email" class="form-control" id="email"
-                                                                 th:field="*{email}">
-                                                                <p class="text-danger" th:each="error: ${#fields.errors('email')}"
-                                                                th:text="${error}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group mb-4">
-                                                            <label for="telephone">Telephone</label>
-                                                            <input type="telephone" class="form-control"
-                                                                 th:field="*{telephone}">
-                                                                <p class="text-danger" th:each="error: ${#fields.errors('telephone')}"
-                                                                th:text="${error}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group mb-4">
-                                                            <label for="telephone">Birthdate</label>
-                                                            <input type="birthdate" class="form-control" id="birthdate"
-                                                                 th:field="*{birthdate}">
-                                                                <p class="text-danger" th:each="error: ${#fields.errors('birthdate')}"
-                                                                th:text="${error}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form_customer_profilr_img user_profile_img">
-                                                            <h6 class="mb-3">Customer profile image:</h6>
-                                                            <img th:src="|data:image/png;base64, *{avatar}|" alt="img">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="d-flex justify-content-end mt-5">
-                                                    <button type="submit"
-                                                        class="btn btn-primary mb-2 btn-pill">Update
-                                                        Profile</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+
+<head>
+    <title>My Account</title>
+    <!-- No Extra plugin used -->
+    <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+    <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    <link id="style.css" th:href="@{/admin/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Banner Area -->
+    <section id="common_banner_one" layout:fragment="banner">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_banner_text">
+                        <h2>Order Detail</h2>
+                        <ul>
+                            <li><a th:href="@{/home}">Home</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li><a th:href="@{/user/my-account}">My Account</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li class="active">Order Detail</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order_detail" class="ptb-100" layout:fragment="content">
+        <div class="container">
+            <div class="card card-default">
+                <div class="card-body">
+                    <h2 class="text-center mb-5">Your order detail</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6"><label>Ship address: <span class="text-muted" th:text="${order.shipAddress}"></span></label></div>
+                        <div class="col-6"><label>Telephone: <span class="text-muted" th:text="${order.telephone}"></span></label></div>
+                        <div class="col-6"><label>Subtotal: <span class="text-muted" th:text="|$${order.subtotal}|"></span></label></div>
+                        <div class="col-6"><label>Order date: <span class="text-muted" th:text="${{order.createdAt}}"></span></label></div>
+                        <div class="col-6"><label>Discount: <span class="text-muted" th:text="|$${order.coupon == null ? 0 : order.subtotal * order.coupon.discountPercent / 100.0}|"></span></label></div>
+                        <div class="col-6"><label>Payment: <span class="text-muted" th:text="${order.payment.name}"></span></label></div>
+                        <div class="col-6"><label>Total: <span class="text-muted" th:text="|$${order.total}|"></span></label></div>
+                        <div class="col-6"><label>Status: <span class="text-muted" th:text="${order.status}"></span></label></div>
+                        <div class="col-12"><label>Note: <span class="text-muted" th:text="${order.note}"></span></label></div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div id="responsive-data-table_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                            <table id="responsive-data-table" class="table dataTable no-footer" style="width: 100%;"
+                                aria-describedby="responsive-data-table_info">
+                                <thead>
+                                    <tr>
+                                        <th class="sorting sorting_asc" tabindex="0"
+                                            aria-controls="responsive-data-table" aria-sort="ascending"
+                                            aria-label="Product: activate to sort column descending">Product
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Image: activate to sort column ascending">
+                                            Image</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Size: activate to sort column ascending">
+                                            Size</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Color: activate to sort column ascending">
+                                            Color</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Price: activate to sort column ascending">
+                                            Price</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Discount Percent: activate to sort column ascending">
+                                            Discout Percent</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Quantity: activate to sort column ascending">
+                                            Quantity</th>
+                                        <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                            aria-label="Total: activate to sort column ascending">
+                                            Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="odd" th:each="orderItem : ${orderItems}">
+                                        <td class="sorting_1" th:text="${orderItem.productInventory.product.name}"></td>
+                                        <td><img class="img-60" th:src="|data:image/png;base64, ${orderItem.productInventory.product.image}|"
+                                                alt=""></td>
+                                        <td th:text="${orderItem.productInventory.size}"></td>
+                                        <td th:text="${orderItem.productInventory.color}"></td>
+                                        <td th:text="|$${orderItem.price}|"></td>
+                                        <td th:text="${orderItem.discountPercent}"></td>
+                                        <td th:text="${orderItem.quantity}"></td>
+                                        <td th:text="|$${(orderItem.quantity * orderItem.price * (1 - orderItem.discountPercent / 100.0))}|"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row text-right mt-5">
+                                <a th:href="@{/user/my-account}" class="theme-btn-one"><i class="fa fa-arrow-left"></i> Back to list orders</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional Section -->
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <script th:src="@{/admin/js/custom.js}"></script>
+    </th:block>
+</body>
+
+</html>

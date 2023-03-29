@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.main.online_clothing_store.models.Coupon;
 import com.main.online_clothing_store.models.OrderDetail;
+import com.main.online_clothing_store.models.OrderItem;
 import com.main.online_clothing_store.models.Product;
 import com.main.online_clothing_store.models.ProductInventory;
 import com.main.online_clothing_store.models.User;
 import com.main.online_clothing_store.services.CouponService;
 import com.main.online_clothing_store.services.OrderDetailService;
+import com.main.online_clothing_store.services.OrderItemService;
 import com.main.online_clothing_store.services.ProductInventoryService;
 import com.main.online_clothing_store.services.ProductService;
 import com.main.online_clothing_store.services.UserService;
@@ -36,10 +38,12 @@ import jakarta.validation.Valid;
 public class AdminUserController {
     UserService userService;
     OrderDetailService orderDetailService;
+    OrderItemService orderItemService;
     @Autowired
-    public AdminUserController(UserService userService, OrderDetailService orderDetailService) {
+    public AdminUserController(UserService userService, OrderDetailService orderDetailService, OrderItemService orderItemService ) {
         this.userService = userService;
         this.orderDetailService = orderDetailService;
+        this.orderItemService = orderItemService;
     }
     @GetMapping({ "", "/", "/list" })
     public String list(Model model) {
@@ -63,6 +67,8 @@ public class AdminUserController {
                 model.addAttribute("totalInOrder", totalInOrder);
                 List<OrderDetail> orderDetails = orderDetailService.getOrderByUserId(id);
                 model.addAttribute("orderDetails", orderDetails);
+                List<OrderItem> orderItems = orderItemService.getListPurchased(id);
+                model.addAttribute("orderItems", orderItems);
                 return "admin/user/profile";
             } catch (Exception e) {
                 return "redirect:/admin/";

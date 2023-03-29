@@ -208,22 +208,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>24541</td>
+                                    <tr th:each="orderItem : ${listTop5OrderItems}">
+                                        <td th:text="${orderItem.orderDetail.id}"></td>
                                         <td>
                                             <a class="text-dark" href="#"><img class="vendor-thumb"
-                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-1.png"
+                                                    th:src="|data:image/png;base64, ${orderItem.productInventory.product.image}|"
                                                     alt="user profile" style="    width: 45px;
                                             height: 45px;"></a>
                                         </td>
                                         <td>
-                                            <a class="text-dark" href="#">Dinning table with chair</a>
+                                            <a class="text-dark" href="#"
+                                                th:text="${orderItem.productInventory.product.name}"></a>
                                         </td>
-                                        <td class="d-none d-lg-table-cell">1 Unit</td>
-                                        <td class="d-none d-lg-table-cell">Oct 20, 2018</td>
-                                        <td class="d-none d-lg-table-cell">$230</td>
+                                        <td class="d-none d-lg-table-cell" th:text="${orderItem.quantity}"></td>
+                                        <td class="d-none d-lg-table-cell" th:text="${{orderItem.createdAt}}"></td>
+                                        <td class="d-none d-lg-table-cell"
+                                            th:text="|$${(orderItem.quantity * orderItem.price * (1 - orderItem.discountPercent / 100.0))}|">
+                                        </td>
                                         <td>
-                                            <span class="badge badge-success">Completed</span>
+                                            <span class="badge badge-danger"
+                                                th:if="${orderItem.orderDetail.status == 0}">Canceled</span>
+                                            <span class="badge badge-warning"
+                                                th:if="${orderItem.orderDetail.status == 1}">Shipping</span>
+                                            <span class="badge badge-success"
+                                                th:if="${orderItem.orderDetail.status == 2}">Completed</span>
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown show d-inline-block widget-dropdown">
@@ -242,147 +250,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>24541</td>
-                                        <td>
-                                            <a class="text-dark" href="#"><img class="vendor-thumb"
-                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-2.png"
-                                                    alt="user profile" style="    width: 45px;
-                                            height: 45px;"></a>
-                                        </td>
-                                        <td>
-                                            <a class="text-dark" href="#">Corporate office chair</a>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">2 Units</td>
-                                        <td class="d-none d-lg-table-cell">Nov 15, 2018</td>
-                                        <td class="d-none d-lg-table-cell">$550</td>
-                                        <td>
-                                            <span class="badge badge-primary">Delayed</span>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown show d-inline-block widget-dropdown">
-                                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                                    id="dropdown-recent-order2" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false"
-                                                    data-display="static"></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li class="dropdown-item">
-                                                        <a href="#">View</a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="#">Remove</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>24541</td>
-                                        <td>
-                                            <a class="text-dark" href="#"><img class="vendor-thumb"
-                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-3.png"
-                                                    alt="user profile" style="    width: 45px;
-                                            height: 45px;"></a>
-                                        </td>
-                                        <td>
-                                            <a class="text-dark" href="#">5 Set comfortable sofa</a>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">1 Unit</td>
-                                        <td class="d-none d-lg-table-cell">Nov 18, 2018</td>
-                                        <td class="d-none d-lg-table-cell">$325</td>
-                                        <td>
-                                            <span class="badge badge-warning">On Hold</span>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown show d-inline-block widget-dropdown">
-                                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                                    id="dropdown-recent-order3" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false"
-                                                    data-display="static"></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li class="dropdown-item">
-                                                        <a href="#">View</a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="#">Remove</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>24541</td>
-                                        <td>
-                                            <a class="text-dark" href="#"><img class="vendor-thumb"
-                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-4.png"
-                                                    alt="user profile" style="    width: 45px;
-                                            height: 45px;"></a>
-                                        </td>
-                                        <td>
-                                            <a class="text-dark" href="#">Full divan set red</a>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">5 Units</td>
-                                        <td class="d-none d-lg-table-cell">Dec 13, 2018</td>
-                                        <td class="d-none d-lg-table-cell">$200</td>
-                                        <td>
-                                            <span class="badge badge-success">Completed</span>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown show d-inline-block widget-dropdown">
-                                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                                    id="dropdown-recent-order4" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false"
-                                                    data-display="static"></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li class="dropdown-item">
-                                                        <a href="#">View</a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="#">Remove</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>24541</td>
-                                        <td>
-                                            <a class="text-dark" href="#"><img class="vendor-thumb"
-                                                    src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/pro-5.png"
-                                                    alt="user profile" style="    width: 45px;
-                                            height: 45px;"></a>
-                                        </td>
-                                        <td>
-                                            <a class="text-dark" href="#"> Single chair</a>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">1 Unit</td>
-                                        <td class="d-none d-lg-table-cell">Dec 23, 2018</td>
-                                        <td class="d-none d-lg-table-cell">$150</td>
-                                        <td>
-                                            <span class="badge badge-danger">Cancelled</span>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown show d-inline-block widget-dropdown">
-                                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                                    id="dropdown-recent-order5" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false"
-                                                    data-display="static"></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li class="dropdown-item">
-                                                        <a href="#">View</a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="#">Remove</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                            <ul class="odd" th:each="item : ${listSumByMonth}">
-                                <li th:text="${item}"></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -440,7 +309,9 @@
                 type="button">Apply</button> </div>
     </div>
     <th:block layout:fragment="footer_optional">
-        <script>       
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var listSumByMonth =  /*[[${listSumByMonth}]]*/ null;
             var ctx = document.getElementById("linechart");
             if (ctx !== null) {
                 var chart = new Chart(ctx, {
@@ -468,20 +339,7 @@
                                 label: "",
                                 backgroundColor: "transparent",
                                 borderColor: "rgb(82, 136, 255)",
-                                data: [
-                                    100,
-                                    11000,
-                                    10000,
-                                    14000,
-                                    11000,
-                                    17000,
-                                    14500,
-                                    18000,
-                                    5000,
-                                    23000,
-                                    14000,
-                                    19000
-                                ],
+                                data: listSumByMonth,
                                 lineTension: 0.3,
                                 pointRadius: 5,
                                 pointBackgroundColor: "rgba(255,255,255,1)",
@@ -570,6 +428,73 @@
                     }
                 });
             }
+            var listCountOrderByStatus =  /*[[${listCountOrderByStatus}]]*/ null;
+            var totalOrderDetail = /*[[${totalOrderDetail}]]*/ null;
+            var polar = document.getElementById("polar");
+            if (polar !== null) {
+                var configPolar = {
+                    data: {
+                        datasets: [
+                            {
+                                data: listCountOrderByStatus,
+                                backgroundColor: [
+                                    "rgba(41,204,151,0.5)",
+                                    "rgba(254,88,101,0.5)",
+                                    "rgba(128,97,239,0.5)"
+                                ],
+                                label: "" // for legend
+                            }
+                        ],
+                        labels: ["Rejected", "Shipping", "Completed"]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: "right",
+                            display: false
+                        },
+                        layout: {
+                            padding: {
+                                top: 10,
+                                bottom: 10,
+                                right: 10,
+                                left: 10
+                            }
+                        },
+                        title: {
+                            display: false,
+                            text: "Chart.js Polar Area Chart"
+                        },
+                        scale: {
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#1b223c",
+                                fontSize: 10,
+                                stepSize: 1,
+                                max: totalOrderDetail + 1
+                            },
+                            reverse: false
+                        },
+                        animation: {
+                            animateRotate: false,
+                            animateScale: true
+                        },
+                        tooltips: {
+                            titleFontColor: "#888",
+                            bodyFontColor: "#555",
+                            titleFontSize: 12,
+                            bodyFontSize: 14,
+                            backgroundColor: "rgba(256,256,256,0.95)",
+                            displayColors: true,
+                            borderColor: "rgba(220, 220, 220, 0.9)",
+                            borderWidth: 2
+                        }
+                    }
+                };
+                window.myPolarArea = Chart.PolarArea(polar, configPolar);
+            }
+            /*]]>*/
         </script>
     </th:block>
 </body>

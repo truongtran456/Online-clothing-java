@@ -11,7 +11,15 @@ import com.main.online_clothing_store.models.composite_primary_keys.OrderItemId;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, OrderItemId> {
-    // @Query(value =  "SELECT * FROM orderItems as c WHERE c.orderDetailId = :id ",  nativeQuery = true)
-    List<OrderItem> findByIdOrderDetailId(Integer id);
-    
+    public List<OrderItem> findByIdOrderDetailId(Integer orderDetailId);
+
+    public List<OrderItem> findByCommentIsNotNullAndIdProductInventoryIdIn(List<Integer> productInventoryIds);
+
+    public List<OrderItem> findTop5ByOrderByCreatedAtDesc();
+
+    @Query(value = "SELECT * FROM OrderItems WHERE orderDetailId IN (SELECT id FROM OrderDetails WHERE userId = :userId) GROUP BY productInventoryId", nativeQuery = true )
+    public List<OrderItem> findOrderItemByUserId(Integer userId);
+
+    @Query(value = "SELECT * FROM OrderItems WHERE orderDetailId = :id", nativeQuery = true )
+    public List<OrderItem> findAllByIdOrderDetailId(Integer id);
 }
