@@ -2,7 +2,7 @@
 <html lang="en" layout:decorate="~{admin/layout}">
 
 <head>
-    <title>List product</title>
+    <title>List coupon</title>
     <th:block layout:fragment="header_optional">
         <!-- No Extra plugin used -->
         <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
@@ -16,13 +16,13 @@
         <div class="content">
             <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                 <div>
-                    <h1>All products</h1>
+                    <h1>All admin</h1>
                     <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
-                        <span><i class="mdi mdi-chevron-right"></i></span>Product
+                        <span><i class="mdi mdi-chevron-right"></i></span>Admin user
                     </p>
                 </div>
                 <div>
-                    <a href="/admin/product/add" class="btn btn-primary"> Add Porduct</a>
+                    <a href="/admin/admin-user/add" class="btn btn-primary"> Add new</a>
                 </div>
             </div>
             <div class="row">
@@ -32,7 +32,7 @@
                             <div class="">
                                 <div id="responsive-data-table_wrapper"
                                     class="dataTables_wrapper dt-bootstrap5 no-footer">
-                                    
+
                                     <table id="responsive-data-table" class="table dataTable no-footer"
                                         style="width:100%" aria-describedby="responsive-data-table_info">
                                         <thead>
@@ -45,31 +45,27 @@
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Img: activate to sort column ascending"
-                                                    style="width: 80.0977px;">Image</th>
+                                                    style="width: 180.0977px;">Name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Name: activate to sort column ascending"
-                                                    style="width: 199.062px;">Name</th>
+                                                    style="width: 99.062px;">Avatar</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Category: activate to sort column ascending"
-                                                    style="width: 118.672px;">Category</th>
+                                                    style="width: 118.672px;">Telephone</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
-                                                    aria-label="Import price: activate to sort column ascending"
-                                                    style="width: 71.0156px;">Import price</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Sell price: activate to sort column ascending"
-                                                    style="width: 133.008px;">Sell price</th>
-                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Discount percent: activate to sort column ascending"
-                                                    style="width: 77.5195px;">Discount percent</th>
+                                                    aria-label="Category: activate to sort column ascending"
+                                                    style="width: 118.672px;">Email</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Is active: activate to sort column ascending"
-                                                    style="width: 104.375px;">Is active</th>
+                                                    style="width: 104.375px;">Last Login</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Is active: activate to sort column ascending"
+                                                    style="width: 104.375px;">Is Locked</th>
                                                 <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Action: activate to sort column ascending"
@@ -78,24 +74,27 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr class="odd" th:each="product : ${products}">
-                                                <td class="sorting_1" th:text="${product.id}"></td>
-                                                <td><img class="tbl-thumb"
-                                                    th:src="|data:image/png;base64, *{product.image}|" alt="img"></td>
-                                                <td th:text="${product.name}"></td>
-                                                <td th:text="${product.productCategory.name}"></td>
-                                                <td th:text="${product.importPrice}"></td>
-                                                <td th:text="${product.sellPrice}"></td>
-                                                <td th:text="${product.discountPercent}"></td>
-                                                <td th:text="${product.isActived}"></td>
+                                            <tr class="odd" th:each="adminUser : ${adminUsers}">
+                                                <td class="sorting_1" th:text="${adminUser.id}"></td>
+                                                <td th:text="${adminUser.firstName +' '+ adminUser.lastName}"></td>
+                                                <td>
+                                                    <img class="tbl-thumb" th:if="${adminUser.avatar !=null}"
+                                                    th:src="|data:image/png;base64, *{adminUser.avatar}|" alt="img">
+                                                    <img class="tbl-thumb" th:if="${adminUser.avatar == null}"
+                                                    src="/img/common/avatar.png" alt="img">
+                                                </td>
+                                                <td th:text="${adminUser.telephone}"></td>
+                                                <td th:text="${adminUser.email}"></td>
+                                                <td th:text="${{adminUser.lastLogin}}"></td>
+                                                <td th:text="${adminUser.isLocked}"></td>
                                                 <td>
                                                     <div class="btn-group mb-1">
-                                                        <a th:href="@{edit/{id}(id=${product.id})}"
-                                                            class="btn btn-outline-success">Edit</a>
+                                                        <a  th:href="@{/admin/admin-user/{id}(id=${adminUser.id})}"
+                                                            class="btn btn-outline-success">Info</a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
 

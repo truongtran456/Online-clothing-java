@@ -11,7 +11,7 @@
         <div class="content">
             <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                 <div>
-                    <h1>Edit Product</h1>
+                    <h1>Add Product</h1>
                     <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
                         <span><i class="mdi mdi-chevron-right"></i></span>Product
                     </p>
@@ -25,226 +25,171 @@
                 <div class="col-12">
                     <div class="card card-default">
                         <div class="card-header card-header-border-bottom">
-                            <h2>Add Product</h2>
-                        </div>
+                            <h2>Edit Product</h2>
 
+                        </div>
+                        <div th:if="${message != null}" th:text="${message}" class="alert alert-danger mt-4">
+
+                        </div>
                         <div class="card-body">
                             <div class="row ec-vendor-uploads">
-                                <div class="col-lg-8">
-                                    <div class="ec-vendor-upload-detail">
-                                        <form class="row g-3">
-                                            <div class="col-md-6">
-                                                <label for="inputEmail4" class="form-label">Product name</label>
-                                                <input type="text" class="form-control slug-title"
-                                                    placeholder="Casual men shirt" id="inputEmail4" th:value="${product.name}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Product type</label>
-                                                <select name="categories" id="Categories" class="form-select">
-                                                    <option value="t-shirt">T-shirt</option>
-                                                    <option value="dress">Dress</option>
-                                                    <option value="table">Table</option>
-                                                    <option value="sofa">Sofa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail5" class="form-label">Slug</label>
-                                                <input type="text" class="form-control slug-title" placeholder="/slug"
-                                                    id="inputEmail5">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail6" class="form-label">Product SKU</label>
-                                                <input type="text" class="form-control" placeholder="Product SKU"
-                                                    id="inputEmail6">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Main category</label>
-                                                <select name="categories" id="Categories" class="form-select">
-                                                    <option value="t-shirt">shirt</option>
-                                                    <option value="dress">Dress</option>
-                                                    <option value="table">Table</option>
-                                                    <option value="sofa">Sofa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Child category</label>
-                                                <select name="categories" id="Categories" class="form-select">
-                                                    <option value="t-shirt">Men shirt</option>
-                                                    <option value="dress">Dress</option>
-                                                    <option value="table">Table</option>
-                                                    <option value="sofa">Sofa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail7" class="form-label">Unit</label>
-                                                <input type="text" class="form-control " placeholder="kg/meter/lb/ml"
-                                                    id="inputEmail7">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail8" class="form-label">Product
-                                                    quantity</label>
-                                                <input type="text" class="form-control" placeholder="Product quantity"
-                                                    id="inputEmail8">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail9" class="form-label">Product
-                                                    price</label>
-                                                <input type="text" class="form-control " placeholder="Product price"
-                                                    id="inputEmail9">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail0" class="form-label">Product sale
-                                                    price</label>
-                                                <input type="text" class="form-control" placeholder="Product sale price"
-                                                    id="inputEmail0">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail11" class="form-label">Dscount (%)</label>
-                                                <input type="text" class="form-control " placeholder="Product discount"
-                                                    id="inputEmail11">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="inputEmail4" class="form-label">Product tags</label>
-                                                <div class="bootstrap-tagsinput"><input type="text" placeholder="">
-                                                </div><input type="text" class="form-control" id="group_tag"
-                                                    name="group_tag" value="" placeholder="" data-role="tagsinput"
-                                                    style="display: none;">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label class="form-label">Description</label>
-                                                <textarea class="form-control" rows="4"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="product_add_cancel_button">
-                                                    <button type="submit" class="btn btn-border">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary">Add
-                                                        product</button>
+                                <form method="POST" th:action="@{/admin/product/edit}" th:object="${product}"
+                                    class="row g-3" enctype="multipart/form-data">
+                                    <div class="col-lg-8">
+                                        <div class="ec-vendor-upload-detail">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label for="name" class="form-label">Product name</label>
+                                                    <input type="text" class="form-control slug-title"
+                                                        placeholder="Casual men shirt" th:field="*{name}">
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('name')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="ec-vendor-img-upload">
-                                        <div class="ec-vendor-main-img">
-                                            <div class="avatar-upload">
-                                                <div class="avatar-edit">
-                                                    <input type="file" id="imageUpload" class="ec-image-upload"
-                                                        accept=".png, .jpg, .jpeg">
-                                                    <label for="imageUpload"><img
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                            class="svg_img header_svg" alt="edit"></label>
+                                                <div class="col-md-6">
+                                                    <label for="weight" class="form-label">weight</label>
+                                                    <input type="text" class="form-control" placeholder="weight"
+                                                        name="weight" min="0" th:field="*{weight}">
+                                                    <p class="text-danger" th:each="error: ${#fields.errors('weight')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-                                                <div class="avatar-preview ec-preview">
-                                                    <div class="imagePreview ec-div-preview">
-                                                        <img class="ec-image-preview"
-                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
-                                                            alt="edit">
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="dimensions" class="form-label">Dimensions</label>
+                                                    <input type="number" class="form-control" placeholder="Dimensions"
+                                                        min="0" id="dimensions" th:field="*{dimensions}">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('dimensions')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-                                            </div>
-                                            <div class="thumb-upload-set colo-md-12">
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload01" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-2.png"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Category</label>
+                                                    <select class="form-select" th:field="*{productCategory}">
+                                                        <option th:each="productCategory : ${productCategories}"
+                                                            th:value="${productCategory.id}" th:selected="${productCategory}"
+                                                            th:text="${productCategory.name}">
+                                                        </option>
+                                                    </select>
                                                 </div>
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload02" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-4.png"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Gender</label>
+                                                    <select name="gender" id="gender" class="form-select">
+                                                        <option value="0">Male</option>
+                                                        <option value="1">Female</option>
+                                                    </select>
                                                 </div>
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload03" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-1.png"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="materials" class="form-label">Materials</label>
+                                                    <input type="text" class="form-control " placeholder="materials"
+                                                        th:field="*{materials}" id="materials">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('materials')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload04" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-2.png"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="importPrice" class="form-label">Product price</label>
+                                                    <input type="text" class="form-control " placeholder="Product price"
+                                                        th:field="*{importPrice}" id="importPrice">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('importPrice')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload05" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-3.png"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="sellPrice" class="form-label">Product sale price</label>
+                                                    <input type="text" class="form-control" th:field="*{sellPrice}"
+                                                        placeholder="Product sale price" id="sellPrice">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('sellPrice')}"
+                                                        th:text="${error}"></p>
                                                 </div>
-                                                <div class="thumb-upload">
-                                                    <div class="thumb-edit">
-                                                        <input type="file" id="thumbUpload06" class="ec-image-upload"
-                                                            accept=".png, .jpg, .jpeg">
-                                                        <label for="imageUpload"><img
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
-                                                                class="svg_img header_svg" alt="edit"></label>
-                                                    </div>
-                                                    <div class="thumb-preview ec-preview">
-                                                        <div class="image-thumb-preview">
-                                                            <img class="image-thumb-preview ec-image-preview"
-                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-4.png"
-                                                                alt="edit">
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <label for="shipPrice" class="form-label">Ship price</label>
+                                                    <input type="text" class="form-control" placeholder="Ship price"
+                                                        th:field="*{shipPrice}" id="shipPrice">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('shipPrice')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="discountPercent" class="form-label">Discount (%)</label>
+                                                    <input type="text" class="form-control "
+                                                        th:field="*{discountPercent}" placeholder="Product discount"
+                                                        id="discountPercent">
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('discountPercent')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" rows="4"
+                                                        th:field="*{description}"></textarea>
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('description')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Order info</label>
+                                                    <textarea class="form-control" rows="2"
+                                                        th:field="*{otherInfo}"></textarea>
+                                                    <p class="text-danger"
+                                                        th:each="error: ${#fields.errors('otherInfo')}"
+                                                        th:text="${error}"></p>
+                                                </div>
+                                                <div class="form-group col-12 form-check form-switch m-3">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="isActived" checked th:field="*{isActived}">
+                                                    <label class="form-check-label" for="isActived">Active</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="product_add_cancel_button">
+                                                        <button type="submit" class="btn btn-border">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-lg-4">
+                                        <div class="ec-vendor-img-upload">
+                                            <div class="ec-vendor-main-img">
+                                                <div class="avatar-upload">
+                                                    <label class="form-check-label">Image</label>
+                                                    <div class="avatar-edit">
+                                                        <input type="file" id="uploadImage" class="ec-image-upload"
+                                                            th:field="*{uploadImage}" accept=".png, .jpg, .jpeg">
+                                                        <label for="uploadImage"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg" alt="edit"></label>
+                                                    </div>
+                                                    <div class="avatar-preview ec-preview">
+                                                        <div class="imagePreview ec-div-preview">
+                                                            <img class="ec-image-preview" 
+                                                                th:src="|data:image/png;base64, *{image}|"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label class="form-check-label">Image hover</label>
+                                    
+                                                <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type="file" id="uploadImageHover" class="ec-image-upload"
+                                                            th:field="*{uploadImageHover}" accept=".png, .jpg, .jpeg">
+                                                        <label for="uploadImageHover"><img
+                                                                src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/edit.svg"
+                                                                class="svg_img header_svg " alt="edit"></label>
+                                                    </div>
+                                                    <div class="avatar-preview ec-preview">
+                                                        <div class="imagePreview ec-div-preview">
+                                                            <img class="ec-image-preview"
+                                                                th:src="|data:image/png;base64, *{imageHover}|"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

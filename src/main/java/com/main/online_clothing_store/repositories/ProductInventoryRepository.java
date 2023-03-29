@@ -18,4 +18,5 @@ public interface ProductInventoryRepository extends JpaRepository<ProductInvento
     public List<String> findDistinctSizesByProductId(int productId);
 
     public Optional<ProductInventory> findTop1ByProductIdAndSizeAndColor(Integer productId, String size, String color);
+
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,12 +51,16 @@ public class Product implements Serializable {
     private String name;
 
     @Column(name = "image")
-    @NotBlank(message = "Image is mandatory")
     private String image;
 
+    @Transient
+    private MultipartFile uploadImage;
+
     @Column(name = "imageHover")
-    @NotBlank(message = "Image hover is mandatory")
     private String imageHover;
+
+    @Transient
+    private MultipartFile uploadImageHover;
 
     @Column(name = "description")
     @NotBlank(message = "Description is mandatory")

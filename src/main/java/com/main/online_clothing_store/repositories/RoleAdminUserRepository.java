@@ -8,5 +8,5 @@ import com.main.online_clothing_store.models.composite_primary_keys.RoleAdminUse
 
 @Repository
 public interface RoleAdminUserRepository extends JpaRepository<RoleAdminUser, RoleAdminUserId> {
-    
+    public void deleteByIdAdminUserIdAndIdRoleId(Integer adminUserId, Integer roleId);
 }
