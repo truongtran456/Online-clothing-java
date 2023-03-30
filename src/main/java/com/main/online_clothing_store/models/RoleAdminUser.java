@@ -38,7 +38,7 @@ public class RoleAdminUser implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt	;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("roleId")
     @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false)
     private Role role;

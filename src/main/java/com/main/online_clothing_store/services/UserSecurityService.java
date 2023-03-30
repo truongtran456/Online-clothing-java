@@ -1,6 +1,7 @@
 package com.main.online_clothing_store.services;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +28,8 @@ public class UserSecurityService implements UserDetailsService{
         // TODO Auto-generated method stub
         Optional<AdminUser> adminUser = adminUserRepository.findByEmail(username);
         if(adminUser.isPresent()){
-            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIsLocked(), "ADMIN");
+            String roles = String.join(", ", "ADMIN", adminUser.get().getRoleAdminUsers().stream().map(a -> a.getRole().getName()).collect(Collectors.joining(", ")));
+            return new UserSecurityDetails(adminUser.get().getEmail(), adminUser.get().getPassword(), adminUser.get().getIsLocked(), roles);
         }
         Optional<User> user = userRepository.findByEmail(username);
         if(user.isPresent()){

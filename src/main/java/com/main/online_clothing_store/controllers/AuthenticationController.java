@@ -82,7 +82,7 @@ public class AuthenticationController {
             catch(Exception e){
                 model.addAttribute("message", "Email does not exist.");
             }
-            return "redirect:/forgot-password";
+            return "authentication/forgot_password";
         }
         return "redirect:/";
     }

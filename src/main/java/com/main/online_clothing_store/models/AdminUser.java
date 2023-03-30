@@ -89,7 +89,7 @@ public class AdminUser implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modifiedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminUser")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adminUser")
     private Set<RoleAdminUser> roleAdminUsers = new HashSet<RoleAdminUser>();
 
 }

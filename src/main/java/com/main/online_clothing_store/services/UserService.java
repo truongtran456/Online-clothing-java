@@ -10,9 +10,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,24 +22,21 @@ import com.main.online_clothing_store.repositories.AdminUserRepository;
 import com.main.online_clothing_store.repositories.UserRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
     UserRepository userRepository;
     AdminUserRepository adminUserRepository;
     PasswordEncoder passwordEncoder;
+    EmailService emailService;
 
     @Autowired
-    private JavaMailSender emailSender;
-
-    @Value("${spring.mail.username}")
-    private String sender;
-
-    @Autowired
-    public UserService(UserRepository userRepository, AdminUserRepository adminUserRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, AdminUserRepository adminUserRepository, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userRepository = userRepository;
         this.adminUserRepository = adminUserRepository;
         this.passwordEncoder  = passwordEncoder;
+        this.emailService = emailService;
     }
 
     public List<User> getAllUsers() {
@@ -120,18 +114,10 @@ public class UserService {
             String newPassword = RandomStringUtils.random(8, characters);
             user.get().setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(user.get());
-            sendSimpleMessage(email, "New Password", "Your new password is: " + newPassword);
+            emailService.sendSimpleMessage(email, "New Password", "Your new password is: " + newPassword);
             return true;
         }
-        return false;
+        throw new NoSuchElementException("User does not exists");
     }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
-            SimpleMailMessage message = new SimpleMailMessage(); 
-            message.setFrom(this.sender);
-            message.setTo(to); 
-            message.setSubject(subject); 
-            message.setText(text);
-            emailSender.send(message);
-    }
 }
