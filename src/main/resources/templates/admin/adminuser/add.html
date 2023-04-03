@@ -2,7 +2,7 @@
 <html lang="en" layout:decorate="~{admin/layout}">
 
 <head>
-    <title>Add product</title>
+    <title>Add admin</title>
 </head>
 
 <body>
@@ -12,7 +12,7 @@
             <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                 <div>
                     <h1>Add New admin</h1>
-                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                    <p class="breadcrumbs"><span><a href="/admin">Home</a></span>
                         <span><i class="mdi mdi-chevron-right"></i></span>Admin user
                     </p>
                 </div>
@@ -139,11 +139,6 @@
     <th:block layout:fragment="footer_optional">
         <!-- Option Switcher -->
         <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
-        <script>
-            function selectedCategory(sel) {
-                alert(sel.value);
-            }
-        </script>
     </th:block>
 </body>
 
