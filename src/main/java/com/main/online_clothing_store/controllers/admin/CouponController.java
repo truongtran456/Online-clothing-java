@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.main.online_clothing_store.models.Coupon;
-import com.main.online_clothing_store.models.Product;
-import com.main.online_clothing_store.models.ProductInventory;
 import com.main.online_clothing_store.services.CouponService;
-import com.main.online_clothing_store.services.ProductInventoryService;
-import com.main.online_clothing_store.services.ProductService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

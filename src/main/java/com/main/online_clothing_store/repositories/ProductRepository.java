@@ -18,5 +18,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     public List<Product> findTop4ByIdNotAndProductCategoryIdAndGenderAndIsActived(Integer id, Integer productCategoryId, Boolean gender, Boolean isActived);
     public Page<Product> findByNameContainingIgnoreCaseAndIsActived(PageRequest pageRequest, String name, Boolean isActived);
     public Page<Product> findByDiscountPercentGreaterThanAndNameContainingIgnoreCaseAndIsActived(PageRequest pageRequest, Integer discountPercent, String name, Boolean isActived);
-
+    public Page<Product> findByProductCategoryIdAndNameContainingIgnoreCaseAndIsActived(PageRequest pageRequest, Integer productCategoryId, String name, Boolean isActived);
 }

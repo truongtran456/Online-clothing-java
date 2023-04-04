@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.main.online_clothing_store.models.Product;
+import com.main.online_clothing_store.models.ProductCategory;
+import com.main.online_clothing_store.repositories.ProductCategoryRepository;
 import com.main.online_clothing_store.repositories.ProductRepository;
 
 import jakarta.transaction.Transactional;
@@ -20,10 +22,12 @@ import jakarta.transaction.Transactional;
 @Service
 public class ProductService {
     ProductRepository productRepository;
+    ProductCategoryRepository productCategoryRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository) {
         this.productRepository = productRepository;
+        this.productCategoryRepository = productCategoryRepository;
     }
 
     public List<Product> getNewArrivalProducts() {
@@ -105,6 +109,16 @@ public class ProductService {
             }
             case "onSale":{
                 products = productRepository.findByDiscountPercentGreaterThanAndNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), 0, name, true);
+                break;
+            }
+            case "pant":{
+                ProductCategory productCategory = productCategoryRepository.findByName("Pant").get();
+                products = productRepository.findByProductCategoryIdAndNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), productCategory.getId(), name, true);
+                break;
+            }
+            case "shirt":{
+                ProductCategory productCategory = productCategoryRepository.findByName("Shirt").get();
+                products = productRepository.findByProductCategoryIdAndNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), productCategory.getId(), name, true);
                 break;
             }
             default: products = productRepository.findByNameContainingIgnoreCaseAndIsActived(PageRequest.of(offset - 1, pageSize, canSort), name, true);

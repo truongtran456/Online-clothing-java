@@ -9,5 +9,5 @@ import com.main.online_clothing_store.models.ProductCategory;
 
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer> {
-    
+    public Optional<ProductCategory> findByName(String name);
 }

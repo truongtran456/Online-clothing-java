@@ -37,6 +37,8 @@
                                 <option th:selected="${filterBy == 'all'}" value="all">All</option>
                                 <option th:selected="${filterBy == 'newArrival'}" value="newArrival">New Arrival</option>
                                 <option th:selected="${filterBy == 'onSale'}" value="onSale">On Sale</option>
+                                <option th:selected="${filterBy == 'pant'}" value="pant">Pant</option>
+                                <option th:selected="${filterBy == 'shirt'}" value="shirt">Shirt</option>
                             </select>
                         </div>
                     </div>
@@ -101,9 +103,9 @@
                                 <span aria-hidden="true">«</span>
                             </a>
                         </li>
-                        <li th:class="|page-item ${page == currentPage ? 'active' : ''}|" th:each="page : ${totalPage}"><a th:id="${page == currentPage ? 'current_page' : ''}" class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${page}|" th:text="${page}"></a></li>
+                        <li th:class="|page-item ${page == currentPage ? 'active' : ''}|" th:each="page : ${#numbers.sequence( 1, totalPage, 1)}"><a th:id="${page == currentPage ? 'current_page' : ''}" class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${page}|" th:text="${page}"></a></li>
                         <li class="page-item">
-                            <a class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${currentPage < totalPage ? currentPage + 1 : totalPage}|" aria-label="Next">
+                            <a class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${currentPage < totalPage ? currentPage + 1 : totalPage == 0 ? 1 : totalPage}|" aria-label="Next">
                                 <span aria-hidden="true">»</span>
                             </a>
                         </li>

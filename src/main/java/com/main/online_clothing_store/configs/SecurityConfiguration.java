@@ -34,8 +34,14 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers("/admin/css/**", "/admin/js/**", "/admin/plugins/**").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/admin-user/**").hasAuthority("SYSTEM")
+                        .requestMatchers("/admin/role/**").hasAuthority("SYSTEM")
+                        .requestMatchers("/admin/coupon/**").hasAuthority("MANAGER")
+                        .requestMatchers("/admin/order-detail/**").hasAuthority("STAFF")
+                        .requestMatchers("/admin/product/**").hasAuthority("MANAGER")
+                        .requestMatchers("/admin/product/inventory/**").hasAuthority("MANAGER")
                         .requestMatchers("/user/**").hasAuthority("USER")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/**").permitAll())
                 .userDetailsService(userSecurityService)
                 .authenticationProvider(authenticationProvider())
