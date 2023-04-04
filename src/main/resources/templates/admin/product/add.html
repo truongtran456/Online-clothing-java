@@ -12,12 +12,12 @@
             <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                 <div>
                     <h1>Add Product</h1>
-                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                    <p class="breadcrumbs"><span><a href="/admin">Home</a></span>
                         <span><i class="mdi mdi-chevron-right"></i></span>Product
                     </p>
                 </div>
                 <div>
-                    <a href="product-list.html" class="btn btn-primary"> View All
+                    <a href="/admin/product" class="btn btn-primary"> View All
                     </a>
                 </div>
             </div>
@@ -41,13 +41,13 @@
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Product name</label>
                                                     <input type="text" class="form-control slug-title"
-                                                        placeholder="Casual men shirt" th:field="*{name}">
+                                                        placeholder="Product name" th:field="*{name}">
                                                     <p class="text-danger" th:each="error: ${#fields.errors('name')}"
                                                         th:text="${error}"></p>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="weight" class="form-label">weight</label>
-                                                    <input type="text" class="form-control" placeholder="weight"
+                                                    <input type="text" class="form-control" placeholder="Weight"
                                                         name="weight" min="0" th:field="*{weight}">
                                                     <p class="text-danger" th:each="error: ${#fields.errors('weight')}"
                                                         th:text="${error}"></p>
@@ -60,7 +60,6 @@
                                                         th:each="error: ${#fields.errors('dimensions')}"
                                                         th:text="${error}"></p>
                                                 </div>
-                                                <!-- <input id="productCategory" type="hidden" th:field="*{productCategory}"/> -->
                                                 <div class="col-md-6">
                                                     <label class="form-label">Category</label>
                                                     <select class="form-select" th:field="*{productCategory}">
@@ -79,7 +78,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="materials" class="form-label">Materials</label>
-                                                    <input type="text" class="form-control " placeholder="materials"
+                                                    <input type="text" class="form-control " placeholder="Materials"
                                                         th:field="*{materials}" id="materials">
                                                     <p class="text-danger"
                                                         th:each="error: ${#fields.errors('materials')}"
@@ -206,11 +205,6 @@
     <th:block layout:fragment="footer_optional">
         <!-- Option Switcher -->
         <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
-        <script>
-            function selectedCategory(sel) {
-                alert(sel.value);
-            }
-        </script>
     </th:block>
 </body>
 
