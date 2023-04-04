@@ -234,8 +234,11 @@ $(document).ready(function () {
     responsiveDataTable.DataTable({
       "aLengthMenu": [[10, 20, 30, 50, 75, -1], [10, 20, 30, 50, 75, "All"]],
       "pageLength": 10,
-      "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
-    });
+      "dom": 'B<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">',
+      buttons: [
+        'csv', 'excel', 'pdf', 'print'
+      ]
+    }).buttons().container().appendTo( '#example_wrapper .col-md-6:eq(0)' );;
   }
 
   /*======== Image Change on Upload ========*/

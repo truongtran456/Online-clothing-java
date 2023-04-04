@@ -5,6 +5,7 @@
     <title>Order Detail</title>
     <!-- No Extra plugin used -->
     <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+    <link th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.css}" rel="stylesheet">
     <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
     <link id="style.css" th:href="@{/admin/css/style.css}" rel="stylesheet">
 </head>
@@ -44,7 +45,7 @@
                         <div class="col-6"><label>Discount: <span class="text-muted" th:text="${#numbers.formatCurrency(order.coupon == null ? 0 : order.subtotal * order.coupon.discountPercent / 100.0)}"></span></label></div>
                         <div class="col-6"><label>Payment: <span class="text-muted" th:text="${order.payment.name}"></span></label></div>
                         <div class="col-6"><label>Total: <span class="text-muted" th:text="${#numbers.formatCurrency(order.total)}"></span></label></div>
-                        <div class="col-6"><label>Status: <span class="text-muted" th:text="${order.status == 0 ? 'Canceled' : order.status == 1 ? 'Pending' : 'Completed'}"></span></label></div>
+                        <div class="col-6"><label>Status: <span class="text-muted" th:text="${order.status == 0 ? 'Canceled' : order.status == 1 ? 'Pending' : 'Completed'}"></span>&nbsp;&nbsp;&nbsp;<a th:href="|@{/user/order-detail/}${order.id}/cancel|" th:if="${order.status == 1}" class="theme-btn-one">(Cancel your order here)</a></label></div>
                         <div class="col-12"><label>Note: <span class="text-muted" th:text="${order.note}"></span></label></div>
                     </div>
                     <hr>
@@ -112,6 +113,13 @@
         <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
         <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
         <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/dataTables.buttons.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/jszip.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/pdfmake.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/vfs_fonts.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.html5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.print.min.js}"></script>
         <script th:src="@{/admin/js/custom.js}"></script>
     </th:block>
 </body>

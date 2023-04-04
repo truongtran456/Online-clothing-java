@@ -140,4 +140,24 @@ public class OrderDetailService {
             }
         }
     }
+
+    public Boolean cancelOrderDetail(Integer id){
+        try {
+            Optional<OrderDetail> orderDetail = orderDetailRepository.findById(id);
+            if(orderDetail.isPresent()){
+                orderDetail.get().setStatus(0);
+                orderDetailRepository.save(orderDetail.get());
+                List<OrderItem> orderItems = orderItemRepository.findAllByIdOrderDetailId(orderDetail.get().getId());
+                for (OrderItem orderItem : orderItems) {
+                    ProductInventory productInventory = productInventoryRepository.findById(orderItem.getProductInventory().getId()).get();
+                    productInventory.setQuantity(productInventory.getQuantity()+orderItem.getQuantity());
+                    productInventoryRepository.save(productInventory);
+                }
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

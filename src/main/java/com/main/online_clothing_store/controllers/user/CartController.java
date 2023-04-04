@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.Optional;
 import java.util.List;
+import java.util.Map;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,22 +55,35 @@ public class CartController {
 
     @Autowired
     OrderItemService orderItemService;
-
-    @PostMapping("/add-to-cart")
-    public String addToCart(Principal principal, @RequestParam("id") Integer id, @RequestParam("size") String size,
-            @RequestParam("color") String color, @RequestParam("quantity") Integer quantity,
-            final RedirectAttributes redirectAttributes) {
-        Optional<User> user = userService.findByEmail(principal.getName());
-        try {
-            if (cartItemService.addToCart(user.get(), id, size, color, quantity)) {
-                redirectAttributes.addFlashAttribute("message", "Added to cart");
-            } else {
-                redirectAttributes.addFlashAttribute("message", "Quantity must be greater than 1");
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
+    
+    @PostMapping(value = "/add-to-cart", produces = "application/json")
+    @ResponseBody
+    public String addToCart(@RequestBody Map<String, Object> request) {
+        JSONObject result = new JSONObject();
+        if(request.get("id") == null || request.get("size") == null || request.get("color") == null || request.get("quantity") == null) {
+            result.put("message", "Failed");
+            result.put("status", 400);
         }
-        return "redirect:/products/single-product/" + id;
+        else{
+            try {
+                Optional<User> user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+                Integer id = Integer.parseInt(request.get("id").toString());
+                String size = request.get("size").toString();
+                String color = request.get("color").toString();
+                Integer quantity = Integer.parseInt(request.get("quantity").toString());
+                if (cartItemService.addToCart(user.get(), id, size, color, quantity)) {
+                    result.put("message", "Added to cart");
+                    result.put("status", 200);
+                } else {
+                    result.put("message", "Quantity must be greater than 1");
+                    result.put("status", 400);
+                }
+            } catch (Exception e) {
+                result.put("message", e.getMessage());
+                result.put("status", 400);
+            }
+        }
+        return result.toString();
     }
 
     @GetMapping(value = "/view-cart", produces = "application/json")

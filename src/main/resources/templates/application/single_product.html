@@ -38,7 +38,7 @@
                     <div class="col-lg-8">
                         <div class="product_details_right_one">
                             <div class="modal_product_content_one">
-                                <form th:action="@{/user/cart/add-to-cart}" method="post" id="product_count_form_two">
+                                <div id="product_count_form_two">
                                     <input type="text" name="id" th:value="${product.id}" hidden />
                                     <h3 th:text="|${product.name} - Code: ${product.id}|"></h3>
                                     <h4>[[|${#numbers.formatCurrency(product.sellPrice * (1 - product.discountPercent /
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-dark" th:if="${message != ''}" th:text="${message}"></p>
+                                    <div id="message"></div>
                                     <div class="links_Product_areas">
                                         <ul>
                                             <li>
@@ -96,10 +96,9 @@
                                                         class="fas fa-exchange-alt"></i>Add To Compare</a>
                                             </li>
                                         </ul>
-                                        <button type="submit" class="theme-btn-one btn-black-overlay btn_sm">Add To
-                                            Cart</button>
+                                        <button th:onclick="|add_to_cart(${product.id})|" class="theme-btn-one btn-black-overlay btn_sm">Add To Cart</button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -409,3 +408,34 @@
 </body>
 
 </html>
+
+<th:block layout:fragment="footer_optional">
+    <script>
+        function add_to_cart(id){
+            var size = $('#size').find(":selected").val();
+            var color = $('#color').find(":selected").val();
+            var quantity = $('#quantity').val();
+            $.ajax({
+                url: '/user/cart/add-to-cart',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id,
+                    size: size,
+                    color: color,
+                    quantity: quantity
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(response) {
+                    if(response.status == 200){
+                        $('#message').html(`<p class="text-success">${response.message}</p>`);
+                        view_cart();
+                    }
+                    else{
+                        $('#message').html(`<p class="text-danger">${response.message}</p>`);
+                    }
+                }
+            });
+        }
+    </script>
+</th:block>

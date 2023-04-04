@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.main.online_clothing_store.models.OrderDetail;
 import com.main.online_clothing_store.models.OrderItem;
@@ -99,6 +97,17 @@ public class UserController {
             model.addAttribute("orderItems", orderItems);
             model.addAttribute("order", orderDetail.get());
             return "user/order_detail";
+        }
+        return "redirect:/404";
+    }
+
+    @GetMapping("/order-detail/{id}/cancel")
+    public String cancelOrderDetail(Principal principal, @PathVariable (required = true) Integer id){
+        if(principal == null){
+            return "redirect:/login";
+        }
+        if(orderDetailService.cancelOrderDetail(id)){
+            return "redirect:/user/order-detail/" + id;
         }
         return "redirect:/404";
     }

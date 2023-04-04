@@ -48,7 +48,7 @@ public class CartItemService {
     }
 
     public Boolean addToCart(User user, Integer id, String size, String color, Integer quantity) {
-        if(quantity <= 0) {
+        if(quantity < 1) {
             return false;
         }
         else{

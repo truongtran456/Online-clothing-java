@@ -18,7 +18,7 @@
                                 style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: flipInX;">Fashion</span>
                         </h1>
                         <h3>Save Up To 50%</h3>
-                        <a th:href="@{/shop}" class="theme-btn-one bg-black btn_md">Shop Now</a>
+                        <a th:href="@{/products}" class="theme-btn-one bg-black btn_md">Shop Now</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -77,9 +77,8 @@
                                                     <span class="badges">
                                                         <span class="new">New</span>
                                                     </span>
-                                                    <span class="badges mt-5">
-                                                        <span class="hot" th:if="${product.discountPercent > 0}"
-                                                            th:text="|Sale ${product.discountPercent}%|"></span>
+                                                    <span class="badges mt-5" th:if="${product.discountPercent > 0}">
+                                                        <span class="hot" th:text="|Sale ${product.discountPercent}%|"></span>
                                                     </span>
                                                     <div class="actions">
                                                         <a th:onclick="|add_to_wishlist(${product.id})|" class="action wishlist"
@@ -122,9 +121,8 @@
                                                     <span class="badges">
                                                         <span class="new">Sale</span>
                                                     </span>
-                                                    <span class="badges mt-5">
-                                                        <span class="hot" th:if="${product.discountPercent > 0}"
-                                                            th:text="|Sale ${product.discountPercent}%|"></span>
+                                                    <span class="badges mt-5" th:if="${product.discountPercent > 0}">
+                                                        <span class="hot" th:text="|Sale ${product.discountPercent}%|"></span>
                                                     </span>
                                                     <div class="actions">
                                                         <a th:onclick="|add_to_wishlist(${product.id})|" class="action wishlist"
@@ -169,7 +167,7 @@
                                 Consectetur adipisicing elit. Dolores nisi distinctio magni, iure deserunt doloribus
                                 optio
                             </p>
-                            <a th:href="@{/shop}" class="theme-btn-one bg-whites btn_md">Shop Now</a>
+                            <a th:href="@{/products}" class="theme-btn-one bg-whites btn_md">Shop Now</a>
                         </div>
                     </div>
                 </div>

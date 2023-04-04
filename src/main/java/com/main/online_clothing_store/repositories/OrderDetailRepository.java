@@ -40,4 +40,5 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
     // @Query("UPDATE OrderDetails SET status= :status WHERE  id= :id")
     // public void updateStatus(Integer id, Integer status);
 
+    public Optional<OrderDetail> findById(Integer id);
 }
