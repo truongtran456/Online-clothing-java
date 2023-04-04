@@ -76,7 +76,7 @@
                                                 <td
                                                     th:text="${orderDetail.user.firstName +' '+orderDetail.user.lastName}">
                                                 </td>
-                                                <td th:text="${orderDetail.total}"></td>
+                                                <td th:text="|$${orderDetail.total}|"></td>
                                                 <td th:text="${orderDetail.coupon.discountPercent}"></td>
                                                 <td th:text="${orderDetail.payment.name}"></td>
                                                 <td th:text="${orderDetail.telephone}"></td>

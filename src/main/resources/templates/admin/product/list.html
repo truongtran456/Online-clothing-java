@@ -84,8 +84,8 @@
                                                     th:src="|data:image/png;base64, *{product.image}|" alt="img"></td>
                                                 <td th:text="${product.name}"></td>
                                                 <td th:text="${product.productCategory.name}"></td>
-                                                <td th:text="${product.importPrice}"></td>
-                                                <td th:text="${product.sellPrice}"></td>
+                                                <td th:text="|$${product.importPrice}|"></td>
+                                                <td th:text="|$${product.sellPrice}|"></td>
                                                 <td th:text="${product.discountPercent}"></td>
                                                 <td th:text="${product.isActived}"></td>
                                                 <td>
