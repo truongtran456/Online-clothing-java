@@ -34,12 +34,12 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers("/admin/css/**", "/admin/js/**", "/admin/plugins/**").permitAll()
-                        .requestMatchers("/admin/admin-user/**").hasAuthority("SYSTEM")
-                        .requestMatchers("/admin/role/**").hasAuthority("SYSTEM")
-                        .requestMatchers("/admin/coupon/**").hasAuthority("MANAGER")
-                        .requestMatchers("/admin/order-detail/**").hasAuthority("STAFF")
-                        .requestMatchers("/admin/product/**").hasAuthority("MANAGER")
-                        .requestMatchers("/admin/product/inventory/**").hasAuthority("MANAGER")
+                        .requestMatchers("/admin/admin-user/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/role/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/coupon/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/order-detail/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/product/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/product/inventory/**").hasAuthority("ADMIN")
                         .requestMatchers("/user/**").hasAuthority("USER")
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/**").permitAll())
