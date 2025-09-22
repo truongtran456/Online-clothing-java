@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>User list</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>Customers</h1>
+                    <p class="breadcrumbs"><span><a href="/admin">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Customer
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="ec-cat-list card card-default">
+                        <div class="card-body">
+                            <div>
+                                <div id="responsive-data-table_wrapper"
+                                    class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                    <table id="responsive-data-table" class="table dataTable no-footer"
+                                        aria-describedby="responsive-data-table_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0"
+                                                    aria-controls="responsive-data-table" rowspan="1" colspan="1"
+                                                    aria-sort="ascending"
+                                                    aria-label="ID: activate to sort column descending"
+                                                    style="width: 72.7148px;">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Photo: activate to sort column ascending"
+                                                    style="width: 119.414px;">Avatar</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Full name: activate to sort column ascending"
+                                                    style="width: 195.586px;">Full name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Email: activate to sort column ascending"
+                                                    style="width: 328.594px;">Email</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Purchased: activate to sort column ascending"
+                                                    style="width: 189.434px;">Telephone</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Return: activate to sort column ascending"
+                                                    style="width: 130.977px;">Last Login</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Amount: activate to sort column ascending"
+                                                    style="width: 151.777px;">Is locked</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 155.41px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="odd" th:each="user : ${users}">
+                                                <td class="sorting_1" th:text="${user.id}"></td>
+                                                <td><img class="cat-thumb" th:if="${user.avatar !=null}"
+                                                        th:src="|data:image/png;base64, *{user.avatar}|" alt="img">
+                                                    <img class="cat-thumb" th:if="${user.avatar ==null}"
+                                                        src="/img/common/avatar.png" alt="img">
+                                                </td>
+                                                <td th:text="${user.firstName +' '+ user.lastName}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td th:text="${user.telephone}"></td>
+                                                <td th:text="${user.lastLogin}"></td>
+                                                <td th:text="${user.isLocked}"></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a th:href="@{/admin/user/info/{id}(id=${user.id})}"
+                                                            class="btn btn-outline-success">Info</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div>
+    <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/dataTables.buttons.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/jszip.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/pdfmake.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/vfs_fonts.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.html5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.print.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

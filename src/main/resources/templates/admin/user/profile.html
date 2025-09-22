@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>User profile</title>
+</head>
+
+<body>
+     <!-- CONTENT WRAPPER -->
+     <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper breadcrumb-contacts">
+                <div>
+                    <h1>Customer profile</h1>
+                    <p class="breadcrumbs"><span><a href="admin/">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Profile
+                    </p>
+                </div>
+            </div>
+            <div class="user_profile_wrapper_top card">
+                <div class="user_profile_top_bg"></div>
+                <div class="user_profile_top_des">
+                    <div class="user_profile_img">
+                        <img th:if="${user.avatar !=null}" th:src="|data:image/png;base64, *{user.avatar}|"alt="">
+                        <img th:if="${user.avatar ==null}"  src="/img/common/avatar.png" alt="">
+                    
+                    </div>
+                    <div class="user_profile_text_top">
+                        <h3 th:text="${user.firstName+' '+user.lastName}"></h3>
+                        <p th:text="${user.apartmentNumber+', '+user.street+', '+user.ward+', '+user.district+', '+user.city}"></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card bg-white profile-content">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="profile-content-left profile-left-spacing">
+                            <div class="product_card_bottom_wrapper">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card_bottom_items">
+                                            <div class="card_bottom_item_icon">
+                                                <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/shoping.png" alt="">
+                                            </div>
+                                            <div class="card_bottom_item_text">
+                                                <p>Purchased</p>
+                                                <h3 th:text="${totalPurchased}"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="card_bottom_items">
+                                            <div class="card_bottom_item_icon">
+                                                <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/cart.png" alt="">
+                                            </div>
+                                            <div class="card_bottom_item_text">
+                                                <p>In order</p>
+                                                <h3 th:text="${totalInOrder}"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="card_bottom_items">
+                                            <div class="card_bottom_item_icon">
+                                                <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/doller.png" alt="">
+                                            </div>
+                                            <div class="card_bottom_item_text">
+                                                <p>Amount</p>
+                                                <h3 th:text="${totalMoney}"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="w-100">
+
+                            <div class="contact-info pt-4">
+                                <h5 class="text-dark">Contact Information</h5>
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Address</h3>
+                                    <p th:text="${user.apartmentNumber+', '+user.street+', '+user.ward+', '+user.district+', '+user.city}"></p>
+                                </div>
+
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Email</h3>
+                                    <p th:text="${user.email}"></p>
+                                </div>
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Phone number</h3>
+                                    <p th:text="${user.telephone}"></p>
+                                </div>
+
+                                <div class="contact_info_sidebar_item">
+                                    <h3>Social Profile</h3>
+
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="mb-1 btn btn-outline btn-twitter rounded-circle">
+                                                <i class="mdi mdi-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="mb-1 btn btn-outline btn-linkedin rounded-circle">
+                                                <i class="mdi mdi-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="mb-1 btn btn-outline btn-facebook rounded-circle">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="mb-1 btn btn-outline btn-skype rounded-circle">
+                                                <i class="mdi mdi-skype"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="profile-content-right profile-right-spacing py-5">
+                            <ul class="nav nav-tabs px-3 px-xl-5 nav-style-border" id="myProfileTab"
+                                role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="purchased-tab" data-bs-toggle="tab"
+                                        data-bs-target="#purchased" type="button" role="tab"
+                                        aria-controls="purchased" aria-selected="true">Purchased</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="orders-tab" data-bs-toggle="tab"
+                                        data-bs-target="#r-orders" type="button" role="tab"
+                                        aria-controls="orders" aria-selected="false">Recent orders</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content px-3 px-xl-5" id="myTabContent">
+
+                                <div class="tab-pane fade show active" id="purchased" role="tabpanel"
+                                    aria-labelledby="purchased-tab">
+                                    <div class="tab-widget mt-5">
+                                        <div class="user_profile_top_heading">
+                                            <h3>All purchased products</h3>
+                                        </div>
+
+                                        <div class="row" >
+                                            <div class="col-lg-3 col-md-6 col-sm-6" th:each="orderItem : ${orderItems}">
+                                                <div class="card-wrapper">
+                                                    <div class="card-container">
+                                                        <div class="card-top">
+                                                            <img class="card-image"
+                                                            th:src="|data:image/png;base64, *{orderItem.productInventory.product.image}|" alt="">
+                                                        </div>
+                                                        <div class="card-bottom">
+                                                            <h3><a href="product-detail.html"  th:text="${orderItem.productInventory.product.name}"></a></h3>
+                                                            <p>[[|${#numbers.formatCurrency(orderItem.productInventory.product.sellPrice * (1 -orderItem.productInventory.product.discountPercent /
+                                                                100.0))}|]] <del
+                                                                    th:text="|${#numbers.formatCurrency(orderItem.productInventory.product.sellPrice)}|"></del></p>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <div class="card-edit"><i
+                                                                    class="mdi mdi-circle-edit-outline"></i>
+                                                            </div>
+                                                            <div class="card-preview"><i
+                                                                    class="mdi mdi-eye-outline"></i>
+                                                            </div>
+                                                            <div class="card-remove"><i
+                                                                    class="mdi mdi mdi-delete-outline"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="r-orders" role="tabpanel"
+                                    aria-labelledby="orders-tab">
+                                    <div class="tab-widget mt-5">
+                                        <div class="user_profile_top_heading">
+                                            <h3>Recent orders</h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card card-default">
+                                                    <div class="card-body">
+                                                        <div >
+                                                            <table id="responsive-data-table" class="table"
+                                                                style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Total</th>
+                                                                        <th>Payment</th>
+                                                                        <th>Telephone</th>
+                                                                        <th>Order date</th>
+                                                                        <th>Status</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                    <tr class="odd" th:each="orderDetail : ${orderDetails}">
+                                                                        <td class="sorting_1" th:text="${orderDetail.id}"></td>
+                                                                        <td th:text="${orderDetail.user.firstName +' '+orderDetail.user.lastName}"></td>
+                                                                        <td th:text="${orderDetail.total}"></td>
+                                                                        <td th:text="${orderDetail.payment.name}"></td>
+                                                                        <td th:text="${orderDetail.telephone}"></td>
+                                                                        <td th:text="${{orderDetail.createdAt}}"></td>
+                                                                        <td th:if="${orderDetail.status ==0}">Pending</td>
+                                                                        <td th:if="${orderDetail.status ==1}">Shipped</td>
+                                                                        <td th:if="${orderDetail.status ==2}">Delivered</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Data Tables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

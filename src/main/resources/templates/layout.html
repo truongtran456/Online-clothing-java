@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="mdl-js" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">AndShop</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" th:href="@{/css/fontawesome.all.min.css}">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <!-- owl.theme.default css -->
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <!--lineProgressbar css -->
+    <link rel="stylesheet" th:href="@{/css/jquery.lineProgressbar.css}">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
+    <!-- Style css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- color css -->
+    <link rel="stylesheet" th:href="@{/css/color.css}">
+    <!-- Responsive css -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+    <link rel="apple-touch-icon" sizes="57x57" th:href="@{/img/favicon/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" th:href="@{/img/favicon/apple-icon-60x60.png}">
+    <link rel="apple-touch-icon" sizes="72x72" th:href="@{/img/favicon/apple-icon-72x72.png}">
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/favicon/apple-icon-76x76.png}">
+    <link rel="apple-touch-icon" sizes="114x114" th:href="@{/img/favicon/apple-icon-114x114.png}">
+    <link rel="apple-touch-icon" sizes="120x120" th:href="@{/img/favicon/apple-icon-120x120.png}">
+    <link rel="apple-touch-icon" sizes="144x144" th:href="@{/img/favicon/apple-icon-144x144.png}">
+    <link rel="apple-touch-icon" sizes="152x152" th:href="@{/img/favicon/apple-icon-152x152.png}">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-icon-180x180.png}">
+    <link rel="icon" type="image/png" sizes="192x192" th:href="@{/img/favicon/android-icon-192x192.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="96x96" th:href="@{/img/favicon/favicon-96x96.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/img/favicon/manifest.json}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+    <!-- Preloader Area -->
+    <div th:replace="~{fragments/preloader :: preloader}"></div>
+
+    <!-- Top Header Area -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- Navbar Area -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <!-- Search Area -->
+    <div th:replace="~{fragments/search :: search}"></div>
+
+    <!-- Banner Area -->
+    <section layout:fragment="banner"></section>
+
+    <!-- Content Section -->
+    <section layout:fragment="content"></section>
+
+    <!-- ShopingCart Modal Area Start-->
+    <div th:replace="~{fragments/shopping_cart :: shopping_cart}"></div>
+
+    <!-- Wishlist Modal Area Start-->
+    <div th:replace="~{fragments/wishlist :: wishlist}"></div>
+
+    <!-- Footer Area -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- CopyRight Area -->
+    <section th:replace="~{fragments/copy_right :: copy_right}"></section>
+
+    <!-- Jquery -->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <!-- Bootstrap js -->
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- owl carousel js -->
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <!-- Menu js -->
+    <script th:src="@{/js/meanmenu.min.js}"></script>
+    <!-- lineProgressbar js -->
+    <script th:src="@{/js/jquery.waypoints.js}"></script>
+    <!-- lineProgressbar js -->
+    <script th:src="@{/js/jquery.lineProgressbar.js}"></script>
+    <!-- Count js -->
+    <script th:src="@{/js/count.js}"></script>
+    <!-- Timer js -->
+    <script th:src="@{/js/nice-select.min.js}"></script>
+    <!-- wow.js -->
+    <script th:src="@{/js/wow.min.js}"></script>
+    <!-- Optional Section -->
+    <th:block layout:fragment="footer_optional" />
+    <!-- Custom js -->
+    <script th:src="@{/js/custom.js}"></script>
+
+</body>
+
+</html>

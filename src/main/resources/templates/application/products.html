@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+
+<head>
+    <title>Products</title>
+</head>
+
+<body>
+    <!-- Banner Area -->
+    <section id="common_banner_one" layout:fragment="banner">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_banner_text">
+                        <h2>Products</h2>
+                        <ul>
+                            <li><a th:href="@{/home}">Home</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li class="active">Products</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Main Area -->
+    <section id="shop_main_area" class="ptb-100" layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="product_shot" style="justify-content: flex-start;">
+                        <div class="product_shot_title">
+                            <p> Filter:</p>
+                        </div>
+                        <div class="customs_selects">
+                            <select id="filter_products" class="customs_sel_box">
+                                <option th:selected="${filterBy == 'all'}" value="all">All</option>
+                                <option th:selected="${filterBy == 'newArrival'}" value="newArrival">New Arrival</option>
+                                <option th:selected="${filterBy == 'onSale'}" value="onSale">On Sale</option>
+                                <option th:selected="${filterBy == 'pant'}" value="pant">Pant</option>
+                                <option th:selected="${filterBy == 'shirt'}" value="shirt">Shirt</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="product_shot">
+                        <div class="product_shot_title">
+                            <p> Sort By:</p>
+                        </div>
+                        <div class="customs_selects">
+                            <select id="sort_products" class="customs_sel_box">
+                                <option th:selected="${sortBy == 'newest'}" value="newest">Sort by newest</option>
+                                <option th:selected="${sortBy == 'priceLow'}" value="priceLow">Price: low to high</option>
+                                <option th:selected="${sortBy == 'priceHigh'}" value="priceHigh">Price: high to low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12" th:each="product : ${products}">
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a th:href="|@{/products/single-product/}${product.id}|" class="image">
+                                <img th:src="|data:image/png;base64, ${product.image}|" alt="Product">
+                                <img class="hover-image" th:src="|data:image/png;base64, ${product.imageHover}|"
+                                    alt="Product">
+                            </a>
+                            <span class="badges">
+                                <span class="new">New</span>
+                            </span>
+                            <span class="badges mt-5">
+                                <span class="hot" th:if="${product.discountPercent > 0}"
+                                    th:text="|Sale ${product.discountPercent}%|"></span>
+                            </span>
+                            <div class="actions">
+                                <a th:onclick="|add_to_wishlist(${product.id})|" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i
+                                        class="fas fa-exchange-alt"></i></a>
+                            </div>
+                            <a class="add-to-cart offcanvas-toggle" th:href="|@{/products/single-product/}${product.id}|">
+                                View Detail
+                            </a>
+                        </div>
+                        <div class="content">
+                            <h5 class="title">
+                                <a th:href="|@{/products/single-product/}${product.id}|" th:text="${product.name}"></a>
+                            </h5>
+                            <span class="price">
+                                <span class="new"
+                                    th:text="|${#numbers.formatCurrency(product.sellPrice * (1 - product.discountPercent / 100.0))}|"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <!-- pagination start -->
+                    <ul id="pagination" class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${currentPage > 1 ? currentPage - 1 : 1}|" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <li th:class="|page-item ${page == currentPage ? 'active' : ''}|" th:each="page : ${#numbers.sequence( 1, totalPage, 1)}"><a th:id="${page == currentPage ? 'current_page' : ''}" class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${page}|" th:text="${page}"></a></li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="|@{/products?}filterBy=${filterBy}&&sortBy=${sortBy}&&page=${currentPage < totalPage ? currentPage + 1 : totalPage == 0 ? 1 : totalPage}|" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- pagination end -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <th:block layout:fragment="footer_optional">
+        <script>
+            function getProducts(selectorFilterBy, selectorSortBy){
+                var sortBy = selectorSortBy.find(":selected").val();
+                var filterBy = selectorFilterBy.find(":selected").val();
+                var currentPage = $('#current_page').text();
+                $(location).attr('href',`/products?filterBy=${filterBy}&&sortBy=${sortBy}&&page=${currentPage}`);
+            }
+            $('#sort_products').change(function(){
+                getProducts($('#filter_products'), $(this));
+            });
+            $('#filter_products').change(function(){
+                getProducts($(this), $('#sort_products'));
+            });
+        </script>
+    </th:block>
+</body>
+
+</html>

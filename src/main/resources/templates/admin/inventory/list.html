@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>List product inventory</title>
+    <th:block layout:fragment="header_optional">
+        <!-- No Extra plugin used -->
+        <link th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/data-tables/responsive.datatables.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>All products inventory</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Inventories
+                    </p>
+                </div>
+                <div>
+                    <a href="/admin/product/inventory/add" class="btn btn-primary"> Add Product inventory</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="">
+                                <div id="responsive-data-table_wrapper"
+                                    class="dataTables_wrapper dt-bootstrap5 no-footer">
+
+                                    <table id="responsive-data-table" class="table dataTable no-footer"
+                                        style="width:100%" aria-describedby="responsive-data-table_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0"
+                                                    aria-controls="responsive-data-table" rowspan="1" colspan="1"
+                                                    aria-sort="ascending"
+                                                    aria-label="ID: activate to sort column descending"
+                                                    style="width: 39.6875px;">ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Img: activate to sort column ascending"
+                                                    style="width: 180.0977px;">Product name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 99.062px;">Size</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Category: activate to sort column ascending"
+                                                    style="width: 118.672px;">Color</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Category: activate to sort column ascending"
+                                                    style="width: 118.672px;">Quantity</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Is active: activate to sort column ascending"
+                                                    style="width: 104.375px;">Is active</th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 107.109px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="odd" th:each="productInventory : ${productInventories}">
+                                                <td class="sorting_1" th:text="${productInventory.id}"></td>
+                                                <td th:text="${productInventory.product.name}"></td>
+                                                <td th:text="${productInventory.size}"></td>
+                                                <td th:text="${productInventory.color}"></td>
+                                                <td th:text="${productInventory.quantity}"></td>
+                                                <td th:text="${productInventory.isActived}"></td>
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <a th:href="@{inventory/edit/{id}(id=${productInventory.id})}"
+                                                            class="btn btn-outline-success">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+    <th:block layout:fragment="footer_optional">
+        <!-- Datatables -->
+        <script th:src="@{/admin/plugins/data-tables/jquery.datatables.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/datatables.responsive.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/dataTables.buttons.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.bootstrap5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/jszip.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/pdfmake.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/vfs_fonts.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.html5.min.js}"></script>
+        <script th:src="@{/admin/plugins/data-tables/buttons.print.min.js}"></script>
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>

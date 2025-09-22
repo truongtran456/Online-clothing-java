@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Add Role</title>
+</head>
+
+<body>
+    <!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Add Product</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Add role
+                    </p>
+                </div>
+                <div>
+                    <a href="/admin/role/" class="btn btn-primary"> View All
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>Add role</h2>
+
+                        </div>
+                        <div th:if="${message != null}" th:text="${message}" class="alert alert-danger mt-4">
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row ec-vendor-uploads">
+                                <form method="POST" th:action="@{/admin/role/add}" 
+                                    class="row g-3" enctype="multipart/form-data">
+                                    <div class="col-lg-8">
+                                        <div class="ec-vendor-upload-detail">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Admin</label>
+                                                    <select name="adminUserId" class="form-select" >
+                                                        <option th:each="adminUser : ${adminUsers}"
+                                                            th:value="${adminUser.id}" th:selected="0"
+                                                            th:text="${adminUser.firstName+' '+adminUser.lastName}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Roles</label>
+                                                    <select name="roleId" class="form-select" >
+                                                        <option th:each="role : ${roles}"
+                                                            th:value="${role.id}" th:selected="0"
+                                                            th:text="${role.name}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 p-3">
+                                                    <div class="product_add_cancel_button">
+                                                        <button type="submit" class="btn btn-border">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Add new</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+        <script>
+            function selectedCategory(sel) {
+                alert(sel.value);
+            }
+        </script>
+    </th:block>
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{admin/layout}">
+
+<head>
+    <title>Product detail</title>
+    <th:block layout:fragment="header_optional">
+        <link th:src="@{/admin/plugins/slick/slick.min.css}" rel="stylesheet">
+        <link th:src="@{/admin/plugins/swiper/swiper-bundle.min.css}" rel="stylesheet">
+    </th:block>
+</head>
+
+<body>
+     <!-- CONTENT WRAPPER -->
+     <div class="ec-content-wrapper" layout:fragment="content">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Product Detail</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Product
+                    </p>
+                </div>
+                <div>
+                    <a href="product-list.html" class="btn btn-primary"> Edit
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>Product Detail</h2>
+                        </div>
+
+                        <div class="card-body product-detail">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="row">
+                                        <div class="single-pro-img">
+                                            <div class="single-product-scroll">
+                                                <div
+                                                    class="single-product-cover slick-initialized slick-slider">
+                                                    <div class="slick-list draggable">
+                                                        <div class="slick-track"
+                                                            style="opacity: 1; width: 3618px; transform: translate3d(-402px, 0px, 0px);">
+                                                            <div class="slick-slide slick-cloned"
+                                                                data-slick-index="-1" id="" aria-hidden="true"
+                                                                style="width: 402px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-current slick-active"
+                                                                data-slick-index="0" aria-hidden="false"
+                                                                style="width: 402px;">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block; position: relative; overflow: hidden;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                        <img role="presentation" alt=""
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            class="zoomImg"
+                                                                            style="position: absolute; top: -19.9694px; left: -38.3117px; opacity: 0; width: 447px; height: 284px; border: none; max-width: none; max-height: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide" data-slick-index="1"
+                                                                aria-hidden="true" style="width: 402px;"
+                                                                tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block; position: relative; overflow: hidden;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                        <img role="presentation" alt=""
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            class="zoomImg"
+                                                                            style="position: absolute; top: 0px; left: 0px; opacity: 0; width: 447px; height: 284px; border: none; max-width: none; max-height: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide" data-slick-index="2"
+                                                                aria-hidden="true" style="width: 402px;"
+                                                                tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block; position: relative; overflow: hidden;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                        <img role="presentation" alt=""
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            class="zoomImg"
+                                                                            style="position: absolute; top: 0px; left: 0px; opacity: 0; width: 447px; height: 284px; border: none; max-width: none; max-height: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide" data-slick-index="3"
+                                                                aria-hidden="true" style="width: 402px;"
+                                                                tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block; position: relative; overflow: hidden;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                        <img role="presentation" alt=""
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            class="zoomImg"
+                                                                            style="position: absolute; top: 0px; left: 0px; opacity: 0; width: 447px; height: 284px; border: none; max-width: none; max-height: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-cloned"
+                                                                data-slick-index="4" id="" aria-hidden="true"
+                                                                style="width: 402px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-cloned"
+                                                                data-slick-index="5" id="" aria-hidden="true"
+                                                                style="width: 402px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-cloned"
+                                                                data-slick-index="6" id="" aria-hidden="true"
+                                                                style="width: 402px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-cloned"
+                                                                data-slick-index="7" id="" aria-hidden="true"
+                                                                style="width: 402px;" tabindex="-1">
+                                                                <div>
+                                                                    <div class="single-slide zoom-image-hover"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-big.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="single-nav-thumb slick-initialized slick-slider">
+                                                    <div class="slick-list draggable">
+                                                        <div class="slick-track"
+                                                            style="opacity: 1; width: 420px; transform: translate3d(0px, 0px, 0px);">
+                                                            <div class="slick-slide slick-current slick-active"
+                                                                data-slick-index="0" aria-hidden="false"
+                                                                style="width: 105px;">
+                                                                <div>
+                                                                    <div class="single-slide"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-1.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-active"
+                                                                data-slick-index="1" aria-hidden="false"
+                                                                style="width: 105px;">
+                                                                <div>
+                                                                    <div class="single-slide"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-2.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-active"
+                                                                data-slick-index="2" aria-hidden="false"
+                                                                style="width: 105px;">
+                                                                <div>
+                                                                    <div class="single-slide"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-3.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slick-slide slick-active"
+                                                                data-slick-index="3" aria-hidden="false"
+                                                                style="width: 105px;">
+                                                                <div>
+                                                                    <div class="single-slide"
+                                                                        style="width: 100%; display: inline-block;">
+                                                                        <img class="img-responsive"
+                                                                            src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/products/details-sm-4.png"
+                                                                            alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_card_bottom_wrapper">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="card_bottom_items">
+                                                    <div class="card_bottom_item_icon">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/shoping.png" alt="">
+                                                    </div>
+                                                    <div class="card_bottom_item_text">
+                                                        <p>Purchased</p>
+                                                        <h3>5782</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card_bottom_items">
+                                                    <div class="card_bottom_item_icon">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/cart.png" alt="">
+                                                    </div>
+                                                    <div class="card_bottom_item_text">
+                                                        <p>In order</p>
+                                                        <h3>1245</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card_bottom_items">
+                                                    <div class="card_bottom_item_icon">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/doller.png" alt="">
+                                                    </div>
+                                                    <div class="card_bottom_item_text">
+                                                        <p>Amount</p>
+                                                        <h3>$82,950</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card_bottom_items">
+                                                    <div class="card_bottom_item_icon">
+                                                        <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/icons/chart.png" alt="">
+                                                    </div>
+                                                    <div class="card_bottom_item_text">
+                                                        <p>In stock</p>
+                                                        <h3>7325</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="row product-overview">
+                                        <div class="col-12">
+                                            <h2 class="product-title-twos">Off-White Odsy-1000 Men Shirt</h2>
+                                            <p class="product-rate">
+                                                <i class="mdi mdi-star is-rated"></i>
+                                                <i class="mdi mdi-star is-rated"></i>
+                                                <i class="mdi mdi-star is-rated"></i>
+                                                <i class="mdi mdi-star is-rated"></i>
+                                                <i class="mdi mdi-star"></i>
+                                                <span class="detail_review_area">1184 Reviews</span>
+                                            </p>
+                                            <p class="product-desc">
+                                                Incididunt laborum consequat laboris anim sint occaecat sint
+                                                incididunt consectetur irure ad. Voluptate culpa aute ut
+                                                excepteur ex ad sit sunt sint proident non qui eu officia. Ut
+                                                nisi adipisicing velit exercitation duis id incididunt mollit
+                                                exercitation.
+                                            </p>
+                                            <p class="product-desc">
+                                                Lorem veniam nulla exercitation. Quis cillum aliqua
+                                                reprehenderit ut eiusmod est adipisicing qui est voluptate
+                                                laboris. Est veniam nisi laborum non ea proident cillum mollit.
+                                            </p>
+                                            <div class="product_model_search_area">
+                                                <ul>
+                                                    <li>Model: <span class="span_block_area">Odsy-1000</span>
+                                                    </li>
+                                                    <li>SKU: <span class="span_block_area">SO#120</span></li>
+                                                    <li>Slug: <span class="span_block_area">/shirt</span></li>
+                                                    <li>Discount: <span class="span_block_area">25%</span></li>
+                                                    <li>Color: <span class="parent_color">
+                                                            <span class="color_plate"
+                                                                style="background-color:#90cdf7;"></span>
+                                                            <span class="color_plate"
+                                                                style="background-color:#ff3b66;"></span>
+                                                            <span class="color_plate"
+                                                                style="background-color:#ffc476;"></span>
+                                                            <span class="color_plate"
+                                                                style="background-color:#1af0ba;"></span>
+                                                        </span></li>
+                                                    <li>Price: <span class="span_block_area">$499.00</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row review-rating mt-4">
+                                        <div class="col-12">
+                                            <ul class="nav nav-tabs" id="myRatingTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="product-detail-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#productdetail"
+                                                        href="#productdetail" role="tab" aria-selected="false">
+                                                        <i class="mdi mdi-library-books mr-1"></i>
+                                                        Description</a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="product-information-tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#productinformation"
+                                                        href="#productinformation" role="tab"
+                                                        aria-selected="false">
+                                                        <i class="mdi mdi-information mr-1"></i>Information</a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="product-reviews-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#productreviews"
+                                                        href="#productreviews" role="tab" aria-selected="true">
+                                                        <i class="mdi mdi-star-half mr-1"></i> Reviews</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent2">
+                                                <div class="tab-pane pt-3 fade" id="productdetail"
+                                                    role="tabpanel">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and
+                                                        typesetting
+                                                        industry.
+                                                        Lorem Ipsum has been the industry's standard dummy text
+                                                        ever
+                                                        since the
+                                                        1500s, when an unknown printer took a galley of type and
+                                                        scrambled it to
+                                                        make a type specimen book. It has survived not only five
+                                                        centuries, but also
+                                                        the leap into electronic typesetting, remaining
+                                                        essentially
+                                                        unchanged.
+                                                    </p>
+                                                    <ul class="features">
+                                                        <li>Any Product types that You want - Simple,
+                                                            Configurable</li>
+                                                        <li>Downloadable/Digital Products, Virtual Products</li>
+                                                        <li>Inventory Management with Backordered items</li>
+                                                        <li>Flatlock seams throughout.</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="tab-pane pt-3 fade" id="productinformation"
+                                                    role="tabpanel">
+                                                    <div class="product_model_search_area">
+                                                        <ul>
+                                                            <li>Model: <span
+                                                                    class="span_block_area">Odsy-1000</span>
+                                                            </li>
+                                                            <li>SKU: <span class="span_block_area">SO#120</span>
+                                                            </li>
+                                                            <li>Slug: <span
+                                                                    class="span_block_area">/shirt</span></li>
+                                                            <li>Discount: <span
+                                                                    class="span_block_area">25%</span></li>
+                                                            <li>Color: <span class="parent_color">
+                                                                    <span class="color_plate"
+                                                                        style="background-color:#90cdf7;"></span>
+                                                                    <span class="color_plate"
+                                                                        style="background-color:#ff3b66;"></span>
+                                                                    <span class="color_plate"
+                                                                        style="background-color:#ffc476;"></span>
+                                                                    <span class="color_plate"
+                                                                        style="background-color:#1af0ba;"></span>
+                                                                </span></li>
+                                                            <li>Price: <span
+                                                                    class="span_block_area">$499.00</span></li>
+                                                            <li>Tag: <span class="span_block_area">Men shirt,
+                                                                    Casual shirt, Winter, Whaite</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane pt-3 fade active show" id="productreviews"
+                                                    role="tabpanel">
+                                                    <div class="ec-t-review-wrapper">
+                                                        <div class="ec-t-review-item">
+                                                            <div class="ec-t-review-avtar">
+                                                                <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/review-image/1.jpg" alt="">
+                                                            </div>
+                                                            <div class="ec-t-review-content">
+                                                                <div class="ec-t-review-top">
+                                                                    <p class="ec-t-review-name">Lindsy stirling
+                                                                    </p>
+                                                                    <div class="ec-t-rate custom_rating_gap">
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star"></i>
+                                                                        <span class="rating_outof">5 out of
+                                                                            5</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ec-t-review-bottom">
+                                                                    <p>
+                                                                        Consectetur exercitation non eiusmod
+                                                                        enim adipisicing mollit velit qui
+                                                                        adipisicing. Tempor enim fugiat minim et
+                                                                        qui incididunt esse incididunt cillum
+                                                                        fugiat.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ec-t-review-item">
+                                                            <div class="ec-t-review-avtar">
+                                                                <img src="https://andit.co/projects/html/andshop/andshop-dashboard/assets/img/review-image/2.jpg" alt="">
+                                                            </div>
+                                                            <div class="ec-t-review-content">
+                                                                <div class="ec-t-review-top">
+                                                                    <p class="ec-t-review-name">Linda Morgus</p>
+                                                                    <div class="ec-t-rate">
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star is-rated"></i>
+                                                                        <i class="mdi mdi-star"></i>
+                                                                        <span class="rating_outof">5 out of
+                                                                            5</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ec-t-review-bottom ">
+                                                                    <p>
+                                                                        Consectetur exercitation non eiusmod
+                                                                        enim adipisicing mollit velit qui
+                                                                        adipisicing. Tempor enim fugiat minim et
+                                                                        qui incididunt esse incididunt cillum
+                                                                        fugiat.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Content -->
+    </div> <!-- End Content Wrapper -->
+
+
+    <th:block layout:fragment="footer_optional">
+        <!-- Option Switcher -->
+        <script th:src="@{/admin/plugins/options-sidebar/optionswitcher.js}"></script>
+    </th:block>
+</body>
+
+</html>
